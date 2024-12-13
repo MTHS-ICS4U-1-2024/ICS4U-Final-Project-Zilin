@@ -6,9 +6,10 @@
  * @since 2024-12-13
  */
 
-import { Scene } from 'phaser'
+import { Scene, GameObjects } from 'phaser'
 
-export class HelloWorld extends Sence {
+export class HelloWorld extends Scene {
+    title: GameObjects.Text
     constructor() {
         super('HelloWorld')
     }
@@ -16,6 +17,7 @@ export class HelloWorld extends Sence {
     create () {
         this.title = this.add.text(512, 460, 'Hello World!', {
             fontFamily: 'Arial Black', fontSize: 40, color: '#ffffff',
-            stroke: '#000000', storkeThickness: 8, align: 'center'
+            stroke: '#000000', strokeThickness: 8, align: 'center'
         }).setOrigin(0.5)
     }
+}
