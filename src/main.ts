@@ -1,4 +1,12 @@
+/*
+* This is the main program
+*
+* @author Zilin
+* @version 1.0
+* @since 2024-12-13
+*/
 import { HelloWorld } from './scenes/HelloWorld';
+import { Boot } from './scenes/Boot';
 
 import { Game, Types } from "phaser";
 
@@ -15,7 +23,8 @@ const config: Types.Core.GameConfig = {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     scene: [
-        HelloWorld
+        HelloWorld,
+        Boot
     ]
 };
 
