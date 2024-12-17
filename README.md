@@ -1,3 +1,3 @@
 # ICS4U Final Project by Zilin
 link to the game:
-https://congenial-space-potato-5gq96vr954j5fr69-8080.app.github.dev/
+https://scaling-dollop-pjr6v7w69ppwc99v6-8080.app.github.dev/

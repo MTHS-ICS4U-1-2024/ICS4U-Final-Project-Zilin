@@ -17,15 +17,16 @@ export class HelloWorld extends Scene {
     }
 
     create () {
-        this.background = this.add.image(512, 384, 'background');
+        this.background = this.add.image(146, 500, 'background');
 
-        this.title = this.add.text(512, 460, 'Hello World!', {
-            fontFamily: 'Arial Black', fontSize: 40, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8, align: 'center'
+        this.title = this.add.text(500, 500, 'Hello World!', {
+            fontFamily: 'Georgia', fontSize: 40, color: '#ff0000',
+            stroke: '#000fff', strokeThickness: 8, align: 'center'
         }).setOrigin(0.5);
     }
 
     preload () {
         this.load.text('Hello World!');
+        this.load.image('background', 'assets/pastel-purple.png');
     }
 }
