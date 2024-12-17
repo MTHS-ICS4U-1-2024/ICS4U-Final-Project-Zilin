@@ -17,10 +17,10 @@ export class HelloWorld extends Scene {
     }
 
     create () {
-        this.background = this.add.image(146, 500, 'background');
+        this.background = this.add.image(400, 20000, 'background');
 
         this.title = this.add.text(500, 500, 'Hello World!', {
-            fontFamily: 'Georgia', fontSize: 40, color: '#ff0000',
+            fontFamily: 'Georgia', fontSize: 100, color: '#ff0000',
             stroke: '#000fff', strokeThickness: 8, align: 'center'
         }).setOrigin(0.5);
     }
