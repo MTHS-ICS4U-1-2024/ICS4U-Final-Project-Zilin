@@ -27,6 +27,6 @@ export class HelloWorld extends Scene {
 
     preload () {
         this.load.text('Hello World!');
-        this.load.image('background', 'assets/pastel-purple.png');
+        this.load.image('background', 'assets/subtital.png');
     }
 }
