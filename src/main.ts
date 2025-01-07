@@ -5,7 +5,6 @@
 * @version 1.0
 * @since 2024-12-13
 */
-import { HelloWorld } from './scenes/HelloWorld';
 import { Boot } from './scenes/Boot';
 import { Game as MainGame } from './scenes/Game';
 import { MainMenu } from './scenes/MainMenu';
