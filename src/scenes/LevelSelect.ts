@@ -7,7 +7,7 @@
 */
 import { Scene, GameObjects } from 'phaser'
 import LoadLevelSelect from '../classes/LoadLevelSelect'
-import SettingsMenu from '../classes/SettingsMenu'
+import Quest from '../classes/Quest'
 
 export class LevelSelect extends Scene {
   /**
