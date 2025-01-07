@@ -5,48 +5,39 @@
  * @version 1.0
  * @since 2025-01-07
  */
-import { Scene, GameObjects } from 'phaser'
+import { Scene, GameObjects } from 'phaser';
 
 export class Credits extends Scene {
   /**
    * The credits background
    */
-  private background: GameObjects.TileSprite
+  background: GameObjects.TileSprite;
 
   /**
    * The game logo
    */
-  private logo: GameObjects.Image
+  logo: GameObjects.Image;
 
   /**
    * The credits text
    */
-  private creditsText: GameObjects.Text
+  creditsText: GameObjects.Text;
 
   /**
    * The return to main menu text button
    */
-  private returnText: GameObjects.Text
+  returnText: GameObjects.Text;
 
   /**
    * The credits text style
    */
-  private textStyle: GameObjects.TextStyle
+  textStyle: GameObjects.TextStyle;
 
   /**
    * Loads the credits
    */
   constructor() {
-    super('Credits')
-
-    this.textStyle = {
-      fontFamily: 'Georgia',
-      fontSize: 70,
-      color: '#002eff',
-      stroke: '#00fbff',
-      strokeThickness: 10,
-      align: 'center'
-    }
+    super('Credits');
   }
 
   /**
@@ -70,13 +61,27 @@ export class Credits extends Scene {
       SCREEN_X / 2,
       SCREEN_Y / 2,
       'author for progamming: Zilin',
-      this.textStyle
+      {
+        fontFamily: 'Georgia',
+        fontSize: 70,
+        color: '#002eff',
+        stroke: '#00fbff',
+        strokeThickness: 10,
+        align: 'center'
+      }
     ).setOrigin(0.5)
     this.returnText = this.add.text(
-      0,
-      0,
-      '\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nClick the logo to return to the main menu.',
-      this.textStyle
+      (SCREEN_X / 4),
+      (SCREEN_Y / 4),
+      'Click the logo to return to the main menu.',
+      {
+        fontFamily: 'Georgia',
+        fontSize: 70,
+        color: '#002eff',
+        stroke: '#00fbff',
+        strokeThickness: 10,
+        align: 'center'
+      }
     )
       .setAlign('left')
       .setFontSize(30)
