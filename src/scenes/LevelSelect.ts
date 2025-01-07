@@ -46,22 +46,12 @@ export class LevelSelect extends Scene {
   levelSelectLoader: LoadLevelSelect
 
   /**
-   * The game settings
-   */
-  settings: SettingsMenu
-
-  /**
    * Loads the level select menu
    */
   constructor() {
     super('LevelSelect')
   }
-
-  init(data: any) {
-    this.settings = data.settings
-    this.settings.showTime = false
-  }
-
+  
   /**
    * Creates the level select menu
    */
