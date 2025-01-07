@@ -18,18 +18,29 @@ import { Game, Types } from "phaser";
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
 const config: Types.Core.GameConfig = {
     type: Phaser.AUTO,
-    width: 2096,
-    height: 900,
+    width: 1800,
+    height: 1000,
+    physics: {
+      default: "arcade",
+      arcade: {
+        debug: false,
+      },
+    },
     parent: 'game-container',
-    backgroundColor: '#00ff00',
+    backgroundColor: '#000000',
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     scene: [
-        HelloWorld,
-        Boot
+        Boot,
+        Preloader,
+        MainMenu,
+        Credits,
+        LevelSelect,
+        MainGame
     ]
+
 };
 
 export default new Game(config);
