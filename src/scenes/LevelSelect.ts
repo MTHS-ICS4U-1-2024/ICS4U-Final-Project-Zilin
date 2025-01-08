@@ -7,7 +7,6 @@
 */
 import { Scene, GameObjects } from 'phaser'
 import LoadLevelSelect from '../classes/LoadLevelSelect'
-import Quest from '../classes/Quest'
 
 export class LevelSelect extends Scene {
   /**
@@ -93,7 +92,7 @@ export class LevelSelect extends Scene {
     ).setFontSize(50)
 
     // Load levels to select
-    this.levelSelectLoader = new LoadLevelSelect(this, 1, this.textStyle, this.settings)
+    this.levelSelectLoader = new LoadLevelSelect(this, 1, this.textStyle, )
   }
 
   /**
