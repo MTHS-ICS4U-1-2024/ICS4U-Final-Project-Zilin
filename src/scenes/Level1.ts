@@ -6,7 +6,7 @@
 * @since 2025-01-09
 */
 import { Scene, GameObjects, Physics } from 'phaser';
-import { DPad } from './DPad';
+import { DPad } from '../classes/DPad';
 import { MenuButton } from './MenuButton'
 
 export class Level1 extends Scene {
@@ -41,9 +41,6 @@ export class Level1 extends Scene {
             console.log('Player fell into a pit!');
             this.scene.restart(); // Restart the level
         });
-
-        // Setup keyboard input
-        this.cursors = this.input.keyboard.createCursorKeys();
     }
 
     update() {
