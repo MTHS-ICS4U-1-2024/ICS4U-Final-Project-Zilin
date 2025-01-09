@@ -6,11 +6,15 @@
 * @since 2025-01-09
 */
 import { Scene, GameObjects, Physics } from 'phaser';
+import { DPad } from './DPad';
+import { MenuButton } from './MenuButton'
 
 export class Level1 extends Scene {
     player: Physics.Arcade.Sprite;
     cursors: Phaser.Types.Input.Keyboard.CursorKeys;
     pits: GameObjects.Group;
+    dPad: DPad;
+    menuButton: MenuButton;
 
     constructor() {
         super('Level1');
@@ -50,5 +54,17 @@ export class Level1 extends Scene {
         if (this.cursors.up.isDown) this.player.setVelocityY(-200);
         else if (this.cursors.down.isDown) this.player.setVelocityY(200);
         else this.player.setVelocityY(0);
+
+        // Get movement from DPad
+        const movement = this.dPad.getMovement();
+
+        // Apply movement to player
+        if (movement.up) this.player.setVelocityY(-200);
+        else if (movement.down) this.player.setVelocityY(200);
+        else this.player.setVelocityY(0);
+
+        if (movement.left) this.player.setVelocityX(-200);
+        else if (movement.right) this.player.setVelocityX(200);
+        else this.player.setVelocityX(0);
     }
 }
