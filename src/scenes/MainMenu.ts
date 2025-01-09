@@ -13,7 +13,12 @@ export class MainMenu extends Scene
 
     create ()
     {
-        this.background = this.add.image(512, 318, 'titleBackground');
+        const gameWidth = this.scale.width;
+        const gameHeight = this.scale.height;
+
+        this.background = this.add.image(512, 318, 'titleBackground')
+        .setOrigin(0, 0)
+        .setDisplaySize(gameWidth, gameHeight);
 
         this.logo = this.add.image(512, 400, 'logo');
 
