@@ -47,6 +47,7 @@ export class Preloader extends Scene
         this.load.image('purplePortal', 'purplePortal.png');
         this.load.image('redPortal', 'redPortal.png');
         this.load.image('bg', 'floor2.png')
+        this.load.image('titleBackground', 'titleBackground.png')
     }
 
     create ()
