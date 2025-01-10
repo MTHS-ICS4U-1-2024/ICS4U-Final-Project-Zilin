@@ -20,9 +20,9 @@ export class MainMenu extends Scene
         .setOrigin(0, 0)
         .setDisplaySize(gameWidth, gameHeight);
 
-        this.logo = this.add.image(gameWidth / 2, gameHeight / 3 - 100, 'logo');
+        this.logo = this.add.image(1170 / 2, 2532 / 3 - 100, 'logo');
 
-        this.title = this.add.text(gameWidth / 2, gameHeight / 2 + 100, 'start', {
+        this.title = this.add.text(1170 / 2, 2532 / 2 + 100, 'start', {
             fontFamily: 'cursive', fontSize: 200, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
