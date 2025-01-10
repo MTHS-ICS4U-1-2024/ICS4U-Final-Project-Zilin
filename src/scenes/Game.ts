@@ -6,7 +6,7 @@
  * @since 2024-12-13
  */
 
-import { Scene, GameObjects, Physics } from 'phaser';
+import { Scene } from 'phaser';
 import { DPad } from '../classes/DPad';
 
 export class Game extends Scene
@@ -14,9 +14,9 @@ export class Game extends Scene
     camera: Phaser.Cameras.Scene2D.Camera;
     background: Phaser.GameObjects.Image;
     msg_text : Phaser.GameObjects.Text;
-    player: Physics.Arcade.Sprite;
+    player: Phaser.Physics.Arcade.Sprite;
     cursors: Phaser.Types.Input.Keyboard.CursorKeys;
-    pits: GameObjects.Group;
+    pits: Phaser.GameObjects.Group;
     dPad: DPad;
     movement: { up: boolean; down: boolean; left: boolean; right: boolean };
 
