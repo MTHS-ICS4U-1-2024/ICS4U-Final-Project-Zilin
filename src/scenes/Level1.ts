@@ -15,7 +15,7 @@ export class Level1 extends Scene {
     pits: GameObjects.Group;
     dPad: DPad;
     menuButton: MenuButton;
-    background: Phaser.GameObjects.Image;
+    background: GameObjects.Image;
 
     constructor() {
         super('Level1');
@@ -26,8 +26,12 @@ export class Level1 extends Scene {
         const walls = this.physics.add.staticGroup();
         walls.create(200, 200, 'wall').setScale(2).refreshBody();
 
-        this.background = this.add.image(0, 0, 'floor');
-        this.background.setAlpha(0.5);
+        const gameWidth = this.scale.width;
+        const gameHeight = this.scale.height;
+
+        this.background = this.add.image(0, 0, 'floor')
+        .setOrigin(0, 0)
+        .setDisplaySize(gameWidth, gameHeight - gameHeight / 3);
 
         // Add pits
         this.pits = this.add.group();
