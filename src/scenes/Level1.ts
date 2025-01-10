@@ -15,6 +15,7 @@ export class Level1 extends Scene {
     pits: GameObjects.Group;
     dPad: DPad;
     menuButton: MenuButton;
+    background: Phaser.GameObjects.Image;
 
     constructor() {
         super('Level1');
@@ -24,6 +25,9 @@ export class Level1 extends Scene {
         // Add maze walls (example tileset or sprites)
         const walls = this.physics.add.staticGroup();
         walls.create(200, 200, 'wall').setScale(2).refreshBody();
+
+        this.background = this.add.image(0, 0, 'floor');
+        this.background.setAlpha(0.5);
 
         // Add pits
         this.pits = this.add.group();
