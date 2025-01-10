@@ -11,7 +11,6 @@ import { MainMenu } from './scenes/MainMenu';
 import { Credits } from './scenes/Credits';
 import { Preloader } from './scenes/Preloader';
 import { Game, Types } from "phaser";
-import { LevelOne } from "./scenes/LevelOne";
 
 //  Find out more information about the Game Config at:
 //  https://newdocs.phaser.io/docs/3.70.0/Phaser.Types.Core.GameConfig
@@ -36,8 +35,7 @@ const config: Types.Core.GameConfig = {
         Preloader,
         MainMenu,
         Credits,
-        MainGame,
-        LevelOne
+        MainGame
     ]
 
 };

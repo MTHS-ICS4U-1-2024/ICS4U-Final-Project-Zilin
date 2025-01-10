@@ -12,7 +12,7 @@ import { DPad } from '../classes/DPad';
 export class Game extends Scene
 {
     camera: Phaser.Cameras.Scene2D.Camera;
-    floor: Phaser.GameObjects.Image;
+    background: Phaser.GameObjects.Image;
     msg_text : Phaser.GameObjects.Text;
     player: Physics.Arcade.Sprite;
     cursors: Phaser.Types.Input.Keyboard.CursorKeys;
@@ -30,8 +30,8 @@ export class Game extends Scene
         this.camera = this.cameras.main;
         this.camera.setBackgroundColor(0x00ff00);
 
-        this.floor = this.add.image(0, 0, 'floor');
-        this.floor.setDisplaySize(1170, (2232 / 3) * 2); // Covers the top half
+        this.background = this.add.image(0, 0, 'floor');
+        this.background.setDisplaySize(1170, (2232 / 3) * 2); // Covers the top half
 
         this.msg_text = this.add.text(512, 384, '', {
             fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
