@@ -20,10 +20,10 @@ export class MainMenu extends Scene
         .setOrigin(0, 0)
         .setDisplaySize(gameWidth, gameHeight);
 
-        this.logo = this.add.image(512, 400, 'logo');
+        this.logo = this.add.image(550, 1024, 'logo');
 
-        this.title = this.add.text(512, 1024, 'start', {
-            fontFamily: 'Arial Black', fontSize: 60, color: '#ffffff',
+        this.title = this.add.text(512, 2048, 'start', {
+            fontFamily: 'Arial Black', fontSize: 200, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5);
