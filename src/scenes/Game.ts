@@ -3,7 +3,7 @@ import { Scene } from 'phaser';
 export class Game extends Scene
 {
     camera: Phaser.Cameras.Scene2D.Camera;
-    background: Phaser.GameObjects.Image;
+    floor: Phaser.GameObjects.Image;
     msg_text : Phaser.GameObjects.Text;
 
     constructor ()
@@ -16,8 +16,8 @@ export class Game extends Scene
         this.camera = this.cameras.main;
         this.camera.setBackgroundColor(0x00ff00);
 
-        this.background = this.add.image(512, 384, 'floor');
-        this.background.setAlpha(0.5);
+        this.floor = this.add.image(0, 0, 'floor');
+        this.floor.setDisplaySize(1170, 2232 / 2); // Covers the top half
 
         this.msg_text = this.add.text(512, 384, '', {
             fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
