@@ -9,7 +9,7 @@ import { Scene, GameObjects, Physics } from 'phaser';
 import { DPad } from '../classes/DPad';
 import { MenuButton } from './MenuButton'
 
-export class Level1 extends Scene {
+export class LevelOne extends Scene {
     player: Physics.Arcade.Sprite;
     cursors: Phaser.Types.Input.Keyboard.CursorKeys;
     pits: GameObjects.Group;

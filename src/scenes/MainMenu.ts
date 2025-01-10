@@ -30,7 +30,7 @@ export class MainMenu extends Scene
 
         this.input.once('pointerdown', () => {
 
-            this.scene.start('Level1');
+            this.scene.start('LevelOne');
 
         });
     }
