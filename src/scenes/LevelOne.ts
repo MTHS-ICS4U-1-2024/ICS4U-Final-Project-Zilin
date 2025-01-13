@@ -6,7 +6,7 @@
 * @since 2025-01-09
 */
 import { Scene, GameObjects, Physics } from 'phaser';
-import { DPad } from '../classes/DPad';
+import { DPad } from '../classes/Button';
 import { MenuButton } from './MenuButton'
 
 export class LevelOne extends Scene {
