@@ -7,7 +7,6 @@
  */
 
 import { Scene } from 'phaser';
-import { DPad } from '../classes/DPad';
 
 export class Game extends Scene
 {
@@ -17,8 +16,6 @@ export class Game extends Scene
     player: Phaser.Physics.Arcade.Sprite;
     cursors: Phaser.Types.Input.Keyboard.CursorKeys;
     pits: Phaser.GameObjects.Group;
-    dPad: DPad;
-    movement: { up: boolean; down: boolean; left: boolean; right: boolean };
 
     constructor ()
     {
@@ -60,6 +57,12 @@ export class Game extends Scene
         this.physics.add.overlap(this.player, this.pits, () => {
             console.log('Player fell into a pit!');
             this.scene.restart(); // Restart the level
+        });
+
+        this.input.once('pointerdown', () => {
+
+            this.scene.start('MainMenu');
+    
         });
     }
 }

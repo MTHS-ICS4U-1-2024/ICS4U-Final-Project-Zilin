@@ -47,7 +47,7 @@ export class Credits extends Scene {
     // Create title images
     const SCREEN_X = 1800
     const SCREEN_Y = 1000
-    this.background = this.add.tileSprite(0, 0, SCREEN_X, SCREEN_Y, 'titleBg')
+    this.background = this.add.tileSprite(0, 0, SCREEN_X, SCREEN_Y, 'titleBackground')
     this.background.setOrigin(0, 0)
     this.logo = this.add.image(SCREEN_X / 2, 100, 'logo').setScale(0.25)
     this.logo.setInteractive(
@@ -73,7 +73,7 @@ export class Credits extends Scene {
     this.returnText = this.add.text(
       (SCREEN_X / 4),
       (SCREEN_Y / 4),
-      'Click the logo to return to the main menu.',
+      'Click to return to the main menu.',
       {
         fontFamily: 'Georgia',
         fontSize: 70,
