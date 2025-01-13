@@ -68,16 +68,18 @@ export class Game extends Scene
         this.physics.add.collider(this.player, key.sprite, () => {
           key.collect(() => {
             // Open key door here
-            
+
           });
         });
 
 
-        // Check for pit collisions
-        this.physics.add.overlap(this.player, this.pits, () => {
-            console.log('Player fell into a pit!');
-            this.scene.restart(); // Restart the level
-        });
+        // Add menu button
+        this.menuButton = new MenuButton(this, 1100, 100);
+        this.add.existing(this.menuButton);
+
+        // Create controls
+        this.cursors = this.input.keyboard.createCursorKeys();
+        }
 
         this.input.once('pointerdown', () => {
 
