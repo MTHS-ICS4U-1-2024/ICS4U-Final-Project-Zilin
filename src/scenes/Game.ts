@@ -7,6 +7,10 @@
  */
 
 import { Scene } from 'phaser';
+import Rock from "../classes/Rock";
+import MenuButton from "../classes/MenuButton";
+import Box from "../classes/Box";
+import Key from "../classes/Key";
 
 export class Game extends Scene
 {
@@ -16,6 +20,7 @@ export class Game extends Scene
     player: Phaser.Physics.Arcade.Sprite;
     cursors: Phaser.Types.Input.Keyboard.CursorKeys;
     pits: Phaser.GameObjects.Group;
+    menuButton: MenuButton;
 
     constructor ()
     {
@@ -27,31 +32,46 @@ export class Game extends Scene
         this.camera = this.cameras.main;
         this.camera.setBackgroundColor(0x00ff00);
 
-        this.background = this.add.image(0, 0, 'floor');
-        this.background.setDisplaySize(1170, 2232 / 2);
+        // Set screen size constants
+        const screenWidth = 1170;
+        const screenHeight = 2532;
 
-        this.msg_text = this.add.text(512, 384, '', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
+        // Add background floor
+        this.add.tileSprite(screenWidth / 2, screenHeight / 2, screenWidth, screenHeight, "floor");
+
+        // Initialize player
+        this.player = this.physics.add.sprite(100, 100, "character");
+        this.player.setCollideWorldBounds(true);
+
+        // Add walls
+        const wall = this.physics.add.staticGroup();
+        wall.create(300, 300, "wall");
+
+        // Add a rock
+        const rock = new Rock(this, 200, 200);
+        this.physics.add.collider(this.player, rock.sprite, () => {
+            rock.moveOpposite(this.player.body.velocity);
         });
 
-        this.msg_text.setOrigin(0.5);
-
-        // Add maze walls (example tileset or sprites)
-        const walls = this.physics.add.staticGroup();
-        walls.create(200, 200, 'wall').setScale(2).refreshBody();
+        // Add a box
+        const box = new Box(this, 400, 400);
+        this.physics.add.collider(this.player, box.sprite, () => {
+            box.push();
+        });
 
         // Add pits
         this.pits = this.add.group();
         this.pits.add(this.add.rectangle(300, 300, 50, 50, 0xff0000)); // Red pits
 
-        // Add player
-        this.player = this.physics.add.sprite(100, 100, 'player');
-        this.player.setCollideWorldBounds(true);
+        // Add a key
+        const key = new Key(this, 500, 500);
+        this.physics.add.collider(this.player, key.sprite, () => {
+          key.collect(() => {
+            // Open key door here
+            
+          });
+        });
 
-        // Add collisions with walls
-        this.physics.add.collider(this.player, walls);
 
         // Check for pit collisions
         this.physics.add.overlap(this.player, this.pits, () => {
