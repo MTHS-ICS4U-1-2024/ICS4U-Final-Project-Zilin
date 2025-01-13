@@ -8,7 +8,6 @@
 import { Boot } from './scenes/Boot';
 import { Game as MainGame } from './scenes/Game';
 import { MainMenu } from './scenes/MainMenu';
-import { Credits } from './scenes/Credits';
 import { Preloader } from './scenes/Preloader';
 import { Game, Types } from "phaser";
 
@@ -34,7 +33,6 @@ const config: Types.Core.GameConfig = {
         Boot,
         Preloader,
         MainMenu,
-        Credits,
         MainGame
     ]
 
