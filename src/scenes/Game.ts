@@ -28,7 +28,7 @@ export class Game extends Scene
         this.camera.setBackgroundColor(0x00ff00);
 
         this.background = this.add.image(0, 0, 'floor');
-        this.background.setDisplaySize(1170, (2232 / 3) * 2); // Covers the top half
+        this.background.setDisplaySize(1170, 2232 / 2);
 
         this.msg_text = this.add.text(512, 384, '', {
             fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
