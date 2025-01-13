@@ -1,49 +1,37 @@
 /*
- * Main game program
- *
- * @author Zilin
- * @version 1.0
- * @since 2024-12-13
- */
-
-import { Scene } from 'phaser';
+* This program is about the first level
+*
+* @author Zilin
+* @version 1.0
+* @since 2025-01-09
+*/
+import { Scene, GameObjects, Physics } from 'phaser';
 import { DPad } from '../classes/DPad';
+import { MenuButton } from './MenuButton'
 
-export class Game extends Scene
-{
-    camera: Phaser.Cameras.Scene2D.Camera;
-    background: Phaser.GameObjects.Image;
-    msg_text : Phaser.GameObjects.Text;
-    player: Phaser.Physics.Arcade.Sprite;
+export class LevelOne extends Scene {
+    player: Physics.Arcade.Sprite;
     cursors: Phaser.Types.Input.Keyboard.CursorKeys;
-    pits: Phaser.GameObjects.Group;
+    pits: GameObjects.Group;
     dPad: DPad;
+    menuButton: MenuButton;
+    floor: GameObjects.Image;
     movement: { up: boolean; down: boolean; left: boolean; right: boolean };
 
-    constructor ()
-    {
-        super('Game');
+    constructor() {
+        super('Level1');
     }
 
-    create ()
-    {
-        this.camera = this.cameras.main;
-        this.camera.setBackgroundColor(0x00ff00);
-
-        this.background = this.add.image(0, 0, 'floor');
-        this.background.setDisplaySize(1170, (2232 / 3) * 2); // Covers the top half
-
-        this.msg_text = this.add.text(512, 384, '', {
-            fontFamily: 'Arial Black', fontSize: 38, color: '#ffffff',
-            stroke: '#000000', strokeThickness: 8,
-            align: 'center'
-        });
-
-        this.msg_text.setOrigin(0.5);
-
+    create() {
         // Add maze walls (example tileset or sprites)
         const walls = this.physics.add.staticGroup();
         walls.create(200, 200, 'wall').setScale(2).refreshBody();
+
+        const screenWidth = this.scale.width;
+        const screenHeight = this.scale.height;
+
+        this.floor = this.add.image(screenWidth / 2, screenHeight / 4, 'floor');
+        this.floor.setDisplaySize(screenWidth, screenHeight / 2); // Covers the top half
 
         // Add pits
         this.pits = this.add.group();
@@ -102,9 +90,9 @@ export class Game extends Scene
             .setInteractive()
             .on('pointerdown', () => this.scene.restart());
 
-        this.add.text(450, 400, 'Credits', { fontSize: '16px', color: '#ffffff' })
+        this.add.text(450, 400, 'Next Level', { fontSize: '16px', color: '#ffffff' })
             .setInteractive()
-            .on('pointerdown', () => this.scene.start('Credits'));
+            .on('pointerdown', () => this.scene.start('Level2'));
 
         this.add.text(450, 450, 'Main Menu', { fontSize: '16px', color: '#ffffff' })
             .setInteractive()
