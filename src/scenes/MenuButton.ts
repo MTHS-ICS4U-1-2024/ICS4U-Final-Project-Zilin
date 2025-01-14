@@ -33,10 +33,6 @@ export class MenuButton {
             .setInteractive()
             .on('pointerdown', () => this.scene.scene.restart());
 
-         this.scene.add.text(450, 400, 'Next Level', { fontSize: '16px', color: '#ffffff' })
-            .setInteractive()
-            .on('pointerdown', () => this.scene.scene.start('Level2'));
-
          this.scene.add.text(450, 450, 'Main Menu', { fontSize: '16px', color: '#ffffff' })
             .setInteractive()
             .on('pointerdown', () => this.scene.scene.start('MainMenu'));

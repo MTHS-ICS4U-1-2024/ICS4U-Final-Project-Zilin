@@ -1,5 +1,6 @@
 /*
  * Main game program
+ * the ratio is 14 x 7
  *
  * @author Zilin
  * @version 1.0
@@ -11,6 +12,7 @@ import Rock from "../classes/Rock";
 import MenuButton from "../classes/MenuButton";
 import Box from "../classes/Box";
 import Key from "../classes/Key";
+import Stair from "../classes/Stair";
 
 export class Game extends Scene
 {
@@ -21,6 +23,7 @@ export class Game extends Scene
     cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
     pits: Phaser.GameObjects.Group;
     menuButton: MenuButton;
+    purplePortal: Phaser.GameObjects.Image;
 
     constructor ()
     {
@@ -36,12 +39,17 @@ export class Game extends Scene
         // Set screen size constants
         const screenWidth = 1170;
         const screenHeight = 2532;
+        const itemHeigh = 2532 / 14
+        const itemWidth = 1170 / 8
+        const xOfItem = itemWidth
+        const yOfItem = itemHeigh
 
         // Add background floor
         this.add.tileSprite(screenWidth / 2, screenHeight / 2, screenWidth, screenHeight, "floor");
 
         // Initialize player
-        this.player = this.physics.add.sprite(100, 100, "character");
+        this.player = this.physics.add.sprite(xOfItem * 2, yOfItem, "player")
+        .setDisplaySize(itemWidth, itemHeigh);
         this.player.setCollideWorldBounds(true);
 
         // Add walls
@@ -55,6 +63,10 @@ export class Game extends Scene
             rock.moveOpposite(this.player.body.velocity);
           }
         });
+
+        // Add a purple portal
+        this.purplePortal = this.add.image(xOfItem, yOfItem, "purplePortal")
+        .setDisplaySize(itemWidth, itemHeigh);
 
         // Add a box
         const box = new Box(this, 400, 400);
@@ -83,6 +95,10 @@ export class Game extends Scene
 
         // Add collision for the keyDoor (optional, if the door blocks the player)
         this.physics.add.collider(this.player, keyDoor);
+
+        // Create stairs
+        new Stair(this, xOfItem, yOfItem * 3);
+        new Stair(this, xOfItem * 8, yOfItem * 6);
 
         // Add menu button
         this.menuButton = new MenuButton(this, 1100, 100);
