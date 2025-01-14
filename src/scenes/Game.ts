@@ -45,7 +45,10 @@ export class Game extends Scene
         const yOfItem = itemHeigh
 
         // Add background floor
-        this.add.tileSprite(screenWidth / 2, screenHeight / 2, screenWidth, screenHeight, "floor");
+        this.background = this.add.image(screenWidth / 2, screenHeight / 2, "floor")
+        .setDisplaySize(1170, 2532);
+        this.background = this.add.image(xOfItem * 4, yOfItem * 4, "floor")
+        .setDisplaySize(screenWidth, itemHeigh * 8);
 
         // Initialize player
         this.player = this.physics.add.sprite(xOfItem * 2, yOfItem, "player")
