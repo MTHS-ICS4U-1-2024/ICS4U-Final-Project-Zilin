@@ -57,7 +57,24 @@ export class Game extends Scene
 
         // Add walls
         const wall = this.physics.add.staticGroup();
-        wall.create(300, 300, "wall");
+        wall.create(xOfItem, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 2, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 2, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 3, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 3, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 4, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 4, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 5, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 5, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 6, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 6, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 7, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 7, yOfItem * 3, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 7, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 7, yOfItem * 5, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 7, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
 
         // Add a rock
         const rock = new Rock(this, 200, 200);
