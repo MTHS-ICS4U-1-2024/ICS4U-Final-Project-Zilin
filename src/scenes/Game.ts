@@ -17,14 +17,15 @@ export class Game extends Scene
     camera: Phaser.Cameras.Scene2D.Camera;
     background: Phaser.GameObjects.Image;
     msg_text : Phaser.GameObjects.Text;
-    player: Phaser.Physics.Arcade.Sprite;
-    cursors: Phaser.Types.Input.Keyboard.CursorKeys;
+    player!: Phaser.Physics.Arcade.Sprite;
+    cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
     pits: Phaser.GameObjects.Group;
     menuButton: MenuButton;
 
     constructor ()
     {
         super('Game');
+        this.input?.keyboard?.createCursorKeys() || null;
     }
 
     create ()
@@ -50,7 +51,9 @@ export class Game extends Scene
         // Add a rock
         const rock = new Rock(this, 200, 200);
         this.physics.add.collider(this.player, rock.sprite, () => {
+          if (this.player && this.player.body) {
             rock.moveOpposite(this.player.body.velocity);
+          }
         });
 
         // Add a box
@@ -65,26 +68,51 @@ export class Game extends Scene
 
         // Add a key
         const key = new Key(this, 500, 500);
-        this.physics.add.collider(this.player, key.sprite, () => {
-          key.collect(() => {
-            // Open key door here
 
-          });
+        // Add the key door
+        const keyDoor = this.physics.add.staticSprite(600, 500, "keyDoor");
+
+        // Set up collision between the player and the key
+        this.physics.add.collider(this.player, key.sprite, () => {
+            key.collect(() => {
+            // Destroy the key door when the key is collected
+            keyDoor.destroy();
+            console.log("Key collected, door opened!");
+            });
         });
 
+        // Add collision for the keyDoor (optional, if the door blocks the player)
+        this.physics.add.collider(this.player, keyDoor);
 
         // Add menu button
         this.menuButton = new MenuButton(this, 1100, 100);
         this.add.existing(this.menuButton);
 
         // Create controls
-        this.cursors = this.input.keyboard.createCursorKeys();
+        this.cursors = this.input!.keyboard!.createCursorKeys();
+        if (this.input.keyboard) {
+            this.cursors = this.input.keyboard.createCursorKeys();
+        } else {
+            console.error("Keyboard input is not available.");
+        }
+    }
+
+    update() {
+        // Player movement
+        if (this.cursors.left.isDown) {
+            this.player.setVelocityX(-150);
+        } else if (this.cursors.right.isDown) {
+            this.player.setVelocityX(150);
+        } else {
+            this.player.setVelocityX(0);
         }
 
-        this.input.once('pointerdown', () => {
-
-            this.scene.start('MainMenu');
-    
-        });
+        if (this.cursors.up.isDown) {
+            this.player.setVelocityY(-150);
+        } else if (this.cursors.down.isDown) {
+            this.player.setVelocityY(150);
+        } else {
+            this.player.setVelocityY(0);
+        }
     }
 }
