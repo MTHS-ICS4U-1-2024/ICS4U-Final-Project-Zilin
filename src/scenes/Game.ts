@@ -38,9 +38,9 @@ export class Game extends Scene
 
         // Set screen size constants
         const screenWidth = 1170;
-        const screenHeight = 2532;
-        const itemHeigh = 2532 / 14
-        const itemWidth = 1170 / 8
+        const screenHeight = 2500;
+        const itemHeigh = screenHeight / 13.5
+        const itemWidth = screenWidth / 8
         const xOfItem = itemWidth
         const yOfItem = itemHeigh
 
