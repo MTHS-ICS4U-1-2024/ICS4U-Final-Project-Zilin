@@ -49,6 +49,7 @@ export class Preloader extends Scene
         this.load.image('floor', 'floorTwo.png')
         this.load.image('titleBackground', 'titleBackground.png')
         this.load.image('select', 'select.png')
+        this.load.image('stair', 'stair.png')
     }
 
     create ()
