@@ -30,11 +30,13 @@ export class MainMenu extends Scene
 
         // Add click interaction
         startText.on("pointerdown", () => {
-        this.scene.start("Game");
+            console.log('Entering the castle.')
+            this.scene.start("Game");
         });
   
         // Alternatively, make the entire screen interactive
         this.input.on("pointerdown", () => {
+            console.log('Entering the castle.')
             this.scene.start("Game");
         });
     }
