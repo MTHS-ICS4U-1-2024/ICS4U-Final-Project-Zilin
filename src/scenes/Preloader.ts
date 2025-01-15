@@ -46,10 +46,13 @@ export class Preloader extends Scene
         this.load.image('player', 'character.png');
         this.load.image('purplePortal', 'purplePortal.png');
         this.load.image('redPortal', 'redPortal.png');
-        this.load.image('floor', 'floorTwo.png')
-        this.load.image('titleBackground', 'titleBackground.png')
-        this.load.image('select', 'select.png')
-        this.load.image('stair', 'stair.png')
+        this.load.image('floor', 'floorTwo.png');
+        this.load.image('titleBackground', 'titleBackground.png');
+        this.load.image('select', 'select.png');
+        this.load.image('stair', 'stair.png');
+        this.load.image('arrow', 'arrow.png');
+        this.load.image('rock', 'rock.png');
+        this.load.image('brokenWall', 'brokenWall.png');
     }
 
     create ()
