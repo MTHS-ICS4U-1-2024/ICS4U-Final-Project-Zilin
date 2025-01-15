@@ -12,7 +12,8 @@ export default class Key {
   public sprite: Phaser.Physics.Arcade.Sprite;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
-    this.sprite = scene.physics.add.sprite(x, y, "key");
+    this.sprite = scene.physics.add.sprite(x, y, "key")
+    .setDisplaySize(1170 / 7, 2532 / 15);
   }
 
   collect(callback: () => void) {

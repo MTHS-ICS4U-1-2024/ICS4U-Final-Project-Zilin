@@ -11,7 +11,8 @@ export default class Box {
   public sprite: Phaser.Physics.Arcade.Sprite;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
-    this.sprite = scene.physics.add.sprite(x, y, "box");
+    this.sprite = scene.physics.add.sprite(x, y, "box")
+    .setDisplaySize(1170 / 7, 2532 / 15);
     this.sprite.setImmovable(true);
   }
 

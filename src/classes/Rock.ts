@@ -11,7 +11,8 @@ export default class Rock {
   public sprite: Phaser.Physics.Arcade.Sprite;
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
-    this.sprite = scene.physics.add.sprite(x, y, "rock");
+    this.sprite = scene.physics.add.sprite(x, y, "rock")
+    .setDisplaySize(1170 / 7, 2532 / 15);
     this.sprite.setImmovable(true);
   }
 

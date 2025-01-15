@@ -48,8 +48,8 @@ export class Game extends Scene
         // Add background floor
         this.background = this.add.image(screenWidth / 2, screenHeight / 2, "floor")
         .setDisplaySize(1170, 2532);
-        this.background = this.add.image(xOfItem * 4, yOfItem * 4, "floor")
-        .setDisplaySize(screenWidth, itemHeigh * 8);
+        this.background = this.add.image(xOfItem * 3, yOfItem * 3, "floor")
+        .setDisplaySize(screenWidth, screenHeight / 5 * 3);
 
         // Initialize player
         this.player = this.physics.add.sprite(xOfItem, yOfItem * 2, "player")
@@ -64,7 +64,7 @@ export class Game extends Scene
         wall.create(xOfItem * 2, yOfItem * 5, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 2, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 2, yOfItem * 7, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3, yOfItem * 8, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 3, yOfItem * 7, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 4, yOfItem, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 4, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 4, yOfItem * 3, "wall").setDisplaySize(itemWidth, itemWidth);
@@ -103,7 +103,7 @@ export class Game extends Scene
         this.pits.add(this.add.rectangle(300, 300, 50, 50, 0xff0000)); // Red pits
 
         // Add a key
-        const key = new Key(this, 500, 500);
+        const key = new Key(this, xOfItem * 6, yOfItem * 2);
 
         // Add the key door
         const keyDoor = this.physics.add.staticSprite(600, 500, "keyDoor");
