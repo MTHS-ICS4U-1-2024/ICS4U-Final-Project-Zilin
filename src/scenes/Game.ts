@@ -152,7 +152,7 @@ export class Game extends Scene
         // Add overlap detection between the player and the red portal
         this.physics.add.overlap(this.player, this.redPortal, () => {
             this.scene.start('GameOver'); // Transition to GameOver scene
-        }
+        });
     }
 
     update() {
