@@ -11,8 +11,8 @@ import Phaser from "phaser";
 export default class Key {
   public sprite: Phaser.Physics.Arcade.Sprite;
 
-  constructor(scene: Phaser.Scene, x: number, y: number) {
-    this.sprite = scene.physics.add.sprite(x, y, "key")
+  constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
+    this.sprite = scene.physics.add.sprite(x, y, texture)
     .setDisplaySize(1170 / 7, 2532 / 15);
   }
 

@@ -90,7 +90,7 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Add a box
-        const box = new Box(this, 50, yOfItem * 3);
+        const box = new Box(this, 50, yOfItem * 3, 'box');
         this.physics.add.collider(this.player, box.sprite, () => {
             box.push();
         });
@@ -104,7 +104,7 @@ export class Game extends Scene
         this.pits.add(this.add.rectangle(300, 300, 50, 50, 0xff0000));
 
         // Add a key
-        const key = new Key(this, xOfItem * 5, yOfItem);
+        const key = new Key(this, xOfItem * 5, yOfItem, 'key');
 
         // Add the key door
         const keyDoor = this.physics.add.staticSprite(xOfItem * 6, yOfItem * 5, "keyDoor");
