@@ -175,11 +175,6 @@ export class Game extends Scene
         // Enable physics on the red portal
         this.physics.add.existing(this.redPortal);
 
-        // Add overlap detection between the player and the red portal
-        this.physics.add.overlap(this.player, this.redPortal, () => {
-            this.scene.start('GameOver'); // Transition to GameOver scene
-        });
-
         // Add button
         new Button(this, 100, 2300, 'upButton', 'up', this.player);
         new Button(this, 100, 2500, 'downButton', 'down', this.player);
@@ -189,6 +184,10 @@ export class Game extends Scene
         // Add WASD controls
         Button.addWASDControls(this, this.player);
 
+        // Add overlap detection between the player and the red portal
+        this.physics.add.overlap(this.player, this.redPortal, () => {
+            this.scene.start('GameOver'); // Transition to GameOver scene
+        });
     }
 
     update() {
