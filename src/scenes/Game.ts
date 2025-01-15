@@ -78,7 +78,7 @@ export class Game extends Scene
         wall.create(xOfItem * 5, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
 
         // Add a rock
-        const rock = new Rock(this, xOfItem, yOfItem * 7);
+        const rock = new Rock(this, xOfItem, yOfItem * 7, 'rock');
         this.physics.add.collider(this.player, rock.sprite, () => {
           if (this.player && this.player.body) {
             rock.moveOpposite(this.player.body.velocity);
@@ -107,7 +107,8 @@ export class Game extends Scene
         const key = new Key(this, xOfItem * 5, yOfItem, 'key');
 
         // Add the key door
-        const keyDoor = this.physics.add.staticSprite(xOfItem * 6, yOfItem * 5, "keyDoor");
+        const keyDoor = this.physics.add.staticSprite(xOfItem * 6, yOfItem * 5, 'keyDoor')
+        .setDisplaySize(itemWidth, itemHeigh);
 
         // Set up collision between the player and the key
         this.physics.add.collider(this.player, key.sprite, () => {
@@ -122,8 +123,8 @@ export class Game extends Scene
         this.physics.add.collider(this.player, keyDoor);
 
         // Create stairs
-        new Stair(this, xOfItem, yOfItem * 3);
-        new Stair(this, xOfItem * 8, yOfItem * 6);
+        new Stair(this, xOfItem, yOfItem * 3, 'stair').setDisplaySize(165, 165);
+        new Stair(this, xOfItem * 8, yOfItem * 6, 'stair').setDisplaySize(165, 165);
 
         // Add menu button
         this.menuButton = new MenuButton(this, 1100, 100);
