@@ -25,6 +25,7 @@ export class Game extends Scene
     menuButton: MenuButton;
     purplePortal: Phaser.GameObjects.Image;
     arrow: Phaser.GameObjects.Image;
+    redPortal: Phaser.GameObjects.Image;
 
     constructor ()
     {
@@ -77,8 +78,11 @@ export class Game extends Scene
         wall.create(xOfItem * 5 + 50, yOfItem * 5 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 5 + 50, yOfItem * 6 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
 
+        // Add collision between the player and the walls
+        this.physics.add.collider(this.player, wall);
+
         // Add a rock
-        const rock = new Rock(this, xOfItem + 50, yOfItem * 7 + 50, 'rock');
+        const rock = new Rock(this, xOfItem * 2 + 50, yOfItem * 7 + 50, "rock");
         this.physics.add.collider(this.player, rock.sprite, () => {
           if (this.player && this.player.body) {
             rock.moveOpposite(this.player.body.velocity);
@@ -90,13 +94,13 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Add a box
-        const box = new Box(this, 50, yOfItem * 3 + 50, 'box');
+        const box = new Box(this, 50, yOfItem * 3 + 50, "box");
         this.physics.add.collider(this.player, box.sprite, () => {
             box.push();
         });
 
         // Add arrow
-        this.arrow = this.add.image(xOfItem * 6 + 50, yOfItem * 6 + 50, 'arrow')
+        this.arrow = this.add.image(xOfItem * 6 + 50, yOfItem * 6 + 50, "arrow")
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Add pits
@@ -104,10 +108,10 @@ export class Game extends Scene
         this.pits.add(this.add.rectangle(300, 300, 50, 50, 0xff0000));
 
         // Add a key
-        const key = new Key(this, xOfItem * 5 + 50, yOfItem + 50, 'key');
+        const key = new Key(this, xOfItem * 5 + 50, yOfItem + 50, "key");
 
         // Add the key door
-        const keyDoor = this.physics.add.staticSprite(xOfItem * 6 + 50, yOfItem * 5 + 50, 'keyDoor')
+        const keyDoor = this.physics.add.staticSprite(xOfItem * 6 + 50, yOfItem * 5 + 50, "keyDoor")
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Set up collision between the player and the key
@@ -136,6 +140,18 @@ export class Game extends Scene
             this.cursors = this.input.keyboard.createCursorKeys();
         } else {
             console.error("Keyboard input is not available.");
+        }
+
+        // add red portal
+        this.redPortal = this.add.image(xOfItem * 6 + 50, yOfItem * 7 + 50, "redPortal")
+        .setDisplaySize(itemWidth, itemHeigh);
+
+        // Enable physics on the red portal
+        this.physics.add.existing(this.redPortal);
+
+        // Add overlap detection between the player and the red portal
+        this.physics.add.overlap(this.player, this.redPortal, () => {
+            this.scene.start('GameOver'); // Transition to GameOver scene
         }
     }
 
