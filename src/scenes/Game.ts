@@ -40,10 +40,10 @@ export class Game extends Scene
         // Set screen size constants
         const screenWidth = 1170;
         const screenHeight = 2532;
-        const itemHeigh = screenHeight / 15
-        const itemWidth = screenWidth / 7
-        const xOfItem = itemWidth
-        const yOfItem = itemHeigh
+        const itemHeigh = 165
+        const itemWidth = 165
+        const xOfItem = screenWidth / 15
+        const yOfItem = screenHeight / 7
 
         // Add background floor
         this.background = this.add.image(screenWidth / 2, screenHeight / 2, "floor")
@@ -141,17 +141,17 @@ export class Game extends Scene
     update() {
         // Player movement
         if (this.cursors.left.isDown) {
-            this.player.setVelocityX(-150);
+            this.player.setVelocityX(-165);
         } else if (this.cursors.right.isDown) {
-            this.player.setVelocityX(150);
+            this.player.setVelocityX(165);
         } else {
             this.player.setVelocityX(0);
         }
 
         if (this.cursors.up.isDown) {
-            this.player.setVelocityY(-150);
+            this.player.setVelocityY(-165);
         } else if (this.cursors.down.isDown) {
-            this.player.setVelocityY(150);
+            this.player.setVelocityY(165);
         } else {
             this.player.setVelocityY(0);
         }
