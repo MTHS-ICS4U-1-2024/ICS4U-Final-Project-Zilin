@@ -5,35 +5,75 @@
 * @version 1.0
 * @since 2025-01-09
 */
-import Phaser from "phaser";
-
 export default class MenuButton extends Phaser.GameObjects.Image {
+  menuShown: boolean;
+
   constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
     super(scene, x, y, texture);
+    this.menuShown = false;
+
+    // Add to scene and set interactive
+    scene.add.existing(this);
     this.setInteractive();
 
+    // Show menu on click
     this.on("pointerdown", () => {
-      this.showMenu(scene);
+      if (!this.menuShown) {
+        this.showMenu(scene);
+      }
     });
   }
 
   showMenu(scene: Phaser.Scene) {
-    // Pause game
+    this.menuShown = true;
+
+    // Pause the current scene
     scene.scene.pause();
 
-    // Show select menu
-    scene.add.image(585, 1266, "select");
+    // Create a semi-transparent background
+    const menuBackground = scene.add.rectangle(585, 1266, 400, 600, 0x000000, 0.7);
 
-    // Add restart button
-    const restartButton = scene.add.text(500, 1100, "Restart", { fontSize: "32px", color: "#fff" }).setInteractive();
+    // Add a title
+    const title = scene.add.text(485, 1050, "Pause Menu", {
+      fontSize: "40px",
+      color: "#fff",
+      fontStyle: "bold",
+    });
+
+    // Add Restart button
+    const restartButton = scene.add.text(500, 1150, "Restart", {
+      fontSize: "32px",
+      color: "#fff",
+      backgroundColor: "#666",
+      padding: { x: 10, y: 5 },
+    }).setInteractive();
+
     restartButton.on("pointerdown", () => {
+      this.closeMenu(scene, [menuBackground, title, restartButton, backButton]);
       scene.scene.restart();
     });
 
-    // Add back button
-    const backButton = scene.add.text(500, 1200, "Back", { fontSize: "32px", color: "#fff" }).setInteractive();
+    // Add Back to Main Menu button
+    const backButton = scene.add.text(500, 1250, "Main Menu", {
+      fontSize: "32px",
+      color: "#fff",
+      backgroundColor: "#666",
+      padding: { x: 10, y: 5 },
+    }).setInteractive();
+
     backButton.on("pointerdown", () => {
-      scene.scene.start("MainMenu"); // Replace with your main menu scene
+      this.closeMenu(scene, [menuBackground, title, restartButton, backButton]);
+      scene.scene.start("MainMenu");
     });
+  }
+
+  closeMenu(scene: Phaser.Scene, menuElements: Phaser.GameObjects.GameObject[]) {
+    // Remove menu elements
+    menuElements.forEach(element => element.destroy());
+
+    // Resume the scene
+    scene.scene.resume();
+
+    this.menuShown = false;
   }
 }

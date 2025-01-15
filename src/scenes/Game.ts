@@ -13,6 +13,7 @@ import MenuButton from "../classes/MenuButton";
 import Box from "../classes/Box";
 import Key from "../classes/Key";
 import Stair from "../classes/Stair";
+import Button from "../classes/Button"
 
 export class Game extends Scene
 {
@@ -155,7 +156,8 @@ export class Game extends Scene
         new Stair(this, xOfItem * 8 + 50, yOfItem * 6 + 50, 'stair').setDisplaySize(165, 165);
 
         // Add menu button
-        this.menuButton = new MenuButton(this, 50, yOfItem * 8 + 50, 'menuButton');
+        // Create the menu button
+        new MenuButton(this, 1100, 50, 'menuButton');
         this.add.existing(this.menuButton);
 
         // Create controls
@@ -177,6 +179,16 @@ export class Game extends Scene
         this.physics.add.overlap(this.player, this.redPortal, () => {
             this.scene.start('GameOver'); // Transition to GameOver scene
         });
+
+        // Add button
+        new Button(this, 100, 2300, 'upButton', 'up', this.player);
+        new Button(this, 100, 2500, 'downButton', 'down', this.player);
+        new Button(this, 50, 2400, 'leftButton', 'left', this.player);
+        new Button(this, 150, 2400, 'rightButton', 'right', this.player);
+
+        // Add WASD controls
+        Button.addWASDControls(this, this.cursors, this.player);
+
     }
 
     update() {
