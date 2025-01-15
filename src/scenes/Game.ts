@@ -49,34 +49,58 @@ export class Game extends Scene
         // Add background floor
         this.background = this.add.image(screenWidth / 2, screenHeight / 2, "floor")
         .setDisplaySize(1170, 2532);
-        this.background = this.add.image(xOfItem, yOfItem * 4, "floor")
+        this.background = this.add.image(xOfItem, yOfItem * 5, "floor")
         .setDisplaySize(screenWidth * 2, screenHeight / 5 * 3);
 
-        // Initialize player
+        // add player
         this.player = this.physics.add.sprite(50, yOfItem, "player")
-        .setDisplaySize(itemWidth, itemHeigh);
-        this.player.setCollideWorldBounds(true);
+        .setDisplaySize(itemWidth, itemHeigh)
+        .setCollideWorldBounds(true);
+
+        // Ensure the physics body is properly configured
+        if (this.player.body) {
+            this.player.body.setSize(itemWidth, itemHeigh);
+            this.player.body.setOffset(0, 0);
+        }
 
         // Add walls
         const wall = this.physics.add.staticGroup();
-        wall.create(xOfItem * 1 + 50, 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 1 + 50, yOfItem * 1 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 1 + 50, yOfItem * 3 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 1 + 50, yOfItem * 4 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 1 + 50, yOfItem * 5 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 1 + 50, yOfItem * 6 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 2 + 50, yOfItem * 6 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3 + 50, 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3 + 50, yOfItem * 1 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3 + 50, yOfItem * 2 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3 + 50, yOfItem * 3 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3 + 50, yOfItem * 4 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3 + 50, yOfItem * 6 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 4 + 50, yOfItem * 6 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 5 + 50, yOfItem * 0 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 5 + 50, yOfItem * 2 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 5 + 50, yOfItem * 5 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 5 + 50, yOfItem * 6 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 1 + 50, 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 1 + 50, yOfItem * 1 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 1 + 50, yOfItem * 3 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 1 + 50, yOfItem * 4 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 1 + 50, yOfItem * 5 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 1 + 50, yOfItem * 6 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 2 + 50, yOfItem * 6 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 3 + 50, 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 3 + 50, yOfItem * 1 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 3 + 50, yOfItem * 2 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 3 + 50, yOfItem * 3 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 3 + 50, yOfItem * 4 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 3 + 50, yOfItem * 6 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 4 + 50, yOfItem * 6 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 5 + 50, yOfItem * 0 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 5 + 50, yOfItem * 2 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 5 + 50, yOfItem * 5 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 5 + 50, yOfItem * 6 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
 
         // Add collision between the player and the walls
         this.physics.add.collider(this.player, wall);
