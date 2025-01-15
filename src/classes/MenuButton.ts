@@ -8,8 +8,8 @@
 import Phaser from "phaser";
 
 export default class MenuButton extends Phaser.GameObjects.Image {
-  constructor(scene: Phaser.Scene, x: number, y: number) {
-    super(scene, x, y, "menuButton");
+  constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
+    super(scene, x, y, texture);
     this.setInteractive();
 
     this.on("pointerdown", () => {

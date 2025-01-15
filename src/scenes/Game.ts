@@ -127,7 +127,7 @@ export class Game extends Scene
         new Stair(this, xOfItem * 8 + 50, yOfItem * 6 + 50, 'stair').setDisplaySize(165, 165);
 
         // Add menu button
-        this.menuButton = new MenuButton(this, 1100, 100);
+        this.menuButton = new MenuButton(this, 50, yOfItem * 8 + 50, 'menuButton');
         this.add.existing(this.menuButton);
 
         // Create controls
