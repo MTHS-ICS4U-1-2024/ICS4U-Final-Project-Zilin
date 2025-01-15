@@ -187,7 +187,7 @@ export class Game extends Scene
         new Button(this, 150, 2400, 'rightButton', 'right', this.player);
 
         // Add WASD controls
-        Button.addWASDControls(this, this.cursors, this.player);
+        Button.addWASDControls(this, this.player);
 
     }
 

@@ -42,16 +42,25 @@ export default class Button {
         }
     }
 
-    static addWASDControls(scene: Scene, cursors: Phaser.Types.Input.Keyboard.CursorKeys, player: Phaser.Physics.Arcade.Sprite) {
-        // Handle WASD keys
-        scene.input.keyboard.on('keydown-W', () => player.setVelocityY(-165));
-        scene.input.keyboard.on('keydown-A', () => player.setVelocityX(-165));
-        scene.input.keyboard.on('keydown-S', () => player.setVelocityY(165));
-        scene.input.keyboard.on('keydown-D', () => player.setVelocityX(165));
-
-        scene.input.keyboard.on('keyup-W', () => player.setVelocityY(0));
-        scene.input.keyboard.on('keyup-A', () => player.setVelocityX(0));
-        scene.input.keyboard.on('keyup-S', () => player.setVelocityY(0));
-        scene.input.keyboard.on('keyup-D', () => player.setVelocityX(0));
+    // Adds WASD keyboard controls
+  static addWASDControls(scene: Scene, player: Phaser.Physics.Arcade.Sprite) {
+    if (!scene.input.keyboard) {
+      console.error("Keyboard input is not available in the scene.");
+      return;
     }
+
+    const keyboard = scene.input.keyboard;
+
+    // WASD Key Down
+    keyboard.on("keydown-W", () => player.setVelocityY(-165));
+    keyboard.on("keydown-A", () => player.setVelocityX(-165));
+    keyboard.on("keydown-S", () => player.setVelocityY(165));
+    keyboard.on("keydown-D", () => player.setVelocityX(165));
+
+    // WASD Key Up
+    keyboard.on("keyup-W", () => player.setVelocityY(0));
+    keyboard.on("keyup-A", () => player.setVelocityX(0));
+    keyboard.on("keyup-S", () => player.setVelocityY(0));
+    keyboard.on("keyup-D", () => player.setVelocityX(0));
+  }
 }
