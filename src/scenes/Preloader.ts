@@ -50,6 +50,7 @@ export class Preloader extends Scene
         this.load.image('titleBackground', 'titleBackground.png')
         this.load.image('select', 'select.png')
         this.load.image('stair', 'stair.png')
+        this.load.image('arrow', 'arrow.png')
     }
 
     create ()

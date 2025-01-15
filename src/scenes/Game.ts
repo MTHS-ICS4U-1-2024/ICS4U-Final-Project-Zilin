@@ -24,6 +24,7 @@ export class Game extends Scene
     pits: Phaser.GameObjects.Group;
     menuButton: MenuButton;
     purplePortal: Phaser.GameObjects.Image;
+    arrow: Phaser.GameObjects.Image;
 
     constructor ()
     {
@@ -38,9 +39,9 @@ export class Game extends Scene
 
         // Set screen size constants
         const screenWidth = 1170;
-        const screenHeight = 2500;
-        const itemHeigh = screenHeight / 13.5
-        const itemWidth = screenWidth / 8
+        const screenHeight = 2532;
+        const itemHeigh = screenHeight / 15
+        const itemWidth = screenWidth / 7
         const xOfItem = itemWidth
         const yOfItem = itemHeigh
 
@@ -51,30 +52,29 @@ export class Game extends Scene
         .setDisplaySize(screenWidth, itemHeigh * 8);
 
         // Initialize player
-        this.player = this.physics.add.sprite(xOfItem * 2, yOfItem, "player")
+        this.player = this.physics.add.sprite(xOfItem, yOfItem * 2, "player")
         .setDisplaySize(itemWidth, itemHeigh);
         this.player.setCollideWorldBounds(true);
 
         // Add walls
         const wall = this.physics.add.staticGroup();
-        wall.create(xOfItem, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 2, yOfItem, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 2, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 2, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 2, yOfItem * 5, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 2, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 2, yOfItem * 7, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 3, yOfItem * 8, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 4, yOfItem, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 4, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 4, yOfItem * 3, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 4, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 5, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 5, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 6, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 4, yOfItem * 5, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 4, yOfItem * 7, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 6, yOfItem, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 6, yOfItem * 3, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 6, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 7, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 7, yOfItem * 3, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 7, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 7, yOfItem * 5, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 7, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 6, yOfItem * 7, "wall").setDisplaySize(itemWidth, itemWidth);
 
         // Add a rock
         const rock = new Rock(this, 200, 200);
@@ -93,6 +93,10 @@ export class Game extends Scene
         this.physics.add.collider(this.player, box.sprite, () => {
             box.push();
         });
+
+        // Add arrow
+        this.arrow = this.add.image(xOfItem * 7, yOfItem * 7, 'arrow')
+        .setDisplaySize(itemWidth, itemHeigh);
 
         // Add pits
         this.pits = this.add.group();
