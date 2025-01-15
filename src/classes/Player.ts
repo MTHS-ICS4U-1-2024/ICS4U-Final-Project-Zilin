@@ -26,7 +26,7 @@ export default class Player {
       up: Phaser.Input.Keyboard.KeyCodes.W,
       left: Phaser.Input.Keyboard.KeyCodes.A,
       down: Phaser.Input.Keyboard.KeyCodes.S,
-      right: Phaser.Input.Keyboard.KeyCodes.D
+      right: Phaser.Input.Keyboard.KeyCodes.D,
     }) as { [key: string]: Phaser.Input.Keyboard.Key };
 
     if (cursors.left?.isDown || wasd.left.isDown) {
@@ -52,6 +52,7 @@ export default class Player {
     boxes: Phaser.Physics.Arcade.Group,
     pits?: Phaser.Physics.Arcade.Group
   ) {
+    // Teleport between stairs
     this.scene.physics.add.overlap(this.sprite, stairs, (player, stair) => {
       const otherStair = stairs.getChildren().find((s) => s !== stair);
       if (otherStair) {
@@ -62,21 +63,36 @@ export default class Player {
       }
     });
 
+    // Handle rocks
     this.scene.physics.add.collider(this.sprite, rocks, (player, rock) => {
-      const velocity = (player as Phaser.Physics.Arcade.Sprite).body.velocity;
+      const playerBody = (player as Phaser.Physics.Arcade.Sprite)?.body;
+      if (!playerBody) return;
+
+      const velocity = playerBody.velocity;
       (rock as Phaser.Physics.Arcade.Sprite).setVelocity(velocity.x, velocity.y);
     });
 
-    this.scene.physics.add.collider(this.sprite, boxes, (player, box) => {
-      const velocity = (player as Phaser.Physics.Arcade.Sprite).body.velocity;
-      (box as Phaser.Physics.Arcade.Sprite).setVelocity(velocity.x, velocity.y);
+    // Handle boxes and pits
+    if (pits) {
+      this.scene.physics.add.collider(this.sprite, boxes, (player, box) => {
+        const playerBody = (player as Phaser.Physics.Arcade.Sprite)?.body;
+        if (!playerBody) return;
 
-      if (pits) {
-        this.scene.physics.add.overlap(box, pits, () => {
-          box.destroy();
-          pits.destroy();
+        const velocity = playerBody.velocity;
+        const boxSprite = box as Phaser.Physics.Arcade.Sprite;
+        boxSprite.setVelocity(velocity.x, velocity.y);
+
+        // Check for overlap with pits
+        this.scene.physics.add.overlap(boxSprite, pits, () => {
+          boxSprite.destroy();
+          pits.getChildren().forEach((pit) => {
+            const pitSprite = pit as Phaser.Physics.Arcade.Sprite;
+            if (this.scene.physics.overlap(boxSprite, pitSprite)) {
+              pitSprite.destroy();
+            }
+          });
         });
-      }
-    });
+      });
+    }
   }
 }
