@@ -43,11 +43,11 @@ export default class Button {
     }
 
     // Adds WASD keyboard controls
-  static addWASDControls(scene: Scene, player: Phaser.Physics.Arcade.Sprite) {
-    if (!scene.input.keyboard) {
-      console.error("Keyboard input is not available in the scene.");
-      return;
-    }
+    static addWASDControls(scene: Scene, player: Phaser.Physics.Arcade.Sprite) {
+        if (!scene.input.keyboard) {
+            console.error("Keyboard input is not available in the scene.");
+            return;
+        }
 
     const keyboard = scene.input.keyboard;
 
