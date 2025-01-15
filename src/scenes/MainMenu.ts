@@ -22,16 +22,20 @@ export class MainMenu extends Scene
 
         this.logo = this.add.image(1170 / 2, 2532 / 3 - 100, 'logo');
 
-        this.title = this.add.text(1170 / 2, 2532 / 2 + 100, 'start', {
+        const startText = this.add.text(1170 / 2, 2532 / 2 + 100, 'start', {
             fontFamily: 'cursive', fontSize: 200, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5);
 
-        this.input.once('pointerdown', () => {
-
-            this.scene.start('Game');
-
+        // Add click interaction
+        startText.on("pointerdown", () => {
+        this.scene.start("Game");
+        });
+  
+        // Alternatively, make the entire screen interactive
+        this.input.on("pointerdown", () => {
+            this.scene.start("Game");
         });
     }
 }
