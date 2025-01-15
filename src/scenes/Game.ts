@@ -42,13 +42,13 @@ export class Game extends Scene
         const screenHeight = 2532;
         const itemHeigh = 165
         const itemWidth = 165
-        const xOfItem = (screenWidth / 15) + 50
-        const yOfItem = (screenHeight / 7) + 50
+        const xOfItem = (screenWidth / 15)
+        const yOfItem = (screenHeight / 7)
 
         // Add background floor
         this.background = this.add.image(screenWidth / 2, screenHeight / 2, "floor")
         .setDisplaySize(1170, 2532);
-        this.background = this.add.image(xOfItem * 3, yOfItem * 3, "floor")
+        this.background = this.add.image(xOfItem, yOfItem * 3, "floor")
         .setDisplaySize(screenWidth * 2, screenHeight / 5 * 3);
 
         // Initialize player
@@ -58,27 +58,27 @@ export class Game extends Scene
 
         // Add walls
         const wall = this.physics.add.staticGroup();
-        wall.create(xOfItem * 1, 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 1, yOfItem * 1, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 1, yOfItem * 3, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 1, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 1, yOfItem * 5, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 1, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 2, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3, 50, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3, yOfItem * 1, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3, yOfItem * 3, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 4, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 5, yOfItem * 0, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 5, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 5, yOfItem * 5, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 5, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 1 + 50, 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 1 + 50, yOfItem * 1 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 1 + 50, yOfItem * 3 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 1 + 50, yOfItem * 4 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 1 + 50, yOfItem * 5 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 1 + 50, yOfItem * 6 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 2 + 50, yOfItem * 6 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 3 + 50, 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 3 + 50, yOfItem * 1 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 3 + 50, yOfItem * 2 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 3 + 50, yOfItem * 3 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 3 + 50, yOfItem * 4 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 3 + 50, yOfItem * 6 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 4 + 50, yOfItem * 6 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 5 + 50, yOfItem * 0 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 5 + 50, yOfItem * 2 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 5 + 50, yOfItem * 5 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 5 + 50, yOfItem * 6 + 50, "wall").setDisplaySize(itemWidth, itemWidth);
 
         // Add a rock
-        const rock = new Rock(this, xOfItem, yOfItem * 7, 'rock');
+        const rock = new Rock(this, xOfItem + 50, yOfItem * 7 + 50, 'rock');
         this.physics.add.collider(this.player, rock.sprite, () => {
           if (this.player && this.player.body) {
             rock.moveOpposite(this.player.body.velocity);
@@ -90,13 +90,13 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Add a box
-        const box = new Box(this, 50, yOfItem * 3, 'box');
+        const box = new Box(this, 50, yOfItem * 3 + 50, 'box');
         this.physics.add.collider(this.player, box.sprite, () => {
             box.push();
         });
 
         // Add arrow
-        this.arrow = this.add.image(xOfItem * 6, yOfItem * 6, 'arrow')
+        this.arrow = this.add.image(xOfItem * 6 + 50, yOfItem * 6 + 50, 'arrow')
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Add pits
@@ -104,10 +104,10 @@ export class Game extends Scene
         this.pits.add(this.add.rectangle(300, 300, 50, 50, 0xff0000));
 
         // Add a key
-        const key = new Key(this, xOfItem * 5, yOfItem, 'key');
+        const key = new Key(this, xOfItem * 5 + 50, yOfItem + 50, 'key');
 
         // Add the key door
-        const keyDoor = this.physics.add.staticSprite(xOfItem * 6, yOfItem * 5, 'keyDoor')
+        const keyDoor = this.physics.add.staticSprite(xOfItem * 6 + 50, yOfItem * 5 + 50, 'keyDoor')
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Set up collision between the player and the key
@@ -123,8 +123,8 @@ export class Game extends Scene
         this.physics.add.collider(this.player, keyDoor);
 
         // Create stairs
-        new Stair(this, xOfItem, yOfItem * 3, 'stair').setDisplaySize(165, 165);
-        new Stair(this, xOfItem * 8, yOfItem * 6, 'stair').setDisplaySize(165, 165);
+        new Stair(this, xOfItem + 50, yOfItem * 3 + 50, 'stair').setDisplaySize(165, 165);
+        new Stair(this, xOfItem * 8 + 50, yOfItem * 6 + 50, 'stair').setDisplaySize(165, 165);
 
         // Add menu button
         this.menuButton = new MenuButton(this, 1100, 100);
