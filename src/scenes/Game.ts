@@ -42,8 +42,8 @@ export class Game extends Scene
         const screenHeight = 2532;
         const itemHeigh = 165
         const itemWidth = 165
-        const xOfItem = screenWidth / 15
-        const yOfItem = screenHeight / 7
+        const xOfItem = (screenWidth / 15) + 50
+        const yOfItem = (screenHeight / 7) + 50
 
         // Add background floor
         this.background = this.add.image(screenWidth / 2, screenHeight / 2, "floor")
@@ -52,20 +52,20 @@ export class Game extends Scene
         .setDisplaySize(screenWidth * 2, screenHeight / 5 * 3);
 
         // Initialize player
-        this.player = this.physics.add.sprite(0, yOfItem, "player")
+        this.player = this.physics.add.sprite(50, yOfItem, "player")
         .setDisplaySize(itemWidth, itemHeigh);
         this.player.setCollideWorldBounds(true);
 
         // Add walls
         const wall = this.physics.add.staticGroup();
-        wall.create(xOfItem * 1, yOfItem * 0, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 1, 50, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 1, yOfItem * 1, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 1, yOfItem * 3, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 1, yOfItem * 4, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 1, yOfItem * 5, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 1, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 2, yOfItem * 6, "wall").setDisplaySize(itemWidth, itemWidth);
-        wall.create(xOfItem * 3, yOfItem * 0, "wall").setDisplaySize(itemWidth, itemWidth);
+        wall.create(xOfItem * 3, 50, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 3, yOfItem * 1, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 3, yOfItem * 2, "wall").setDisplaySize(itemWidth, itemWidth);
         wall.create(xOfItem * 3, yOfItem * 3, "wall").setDisplaySize(itemWidth, itemWidth);
@@ -86,11 +86,11 @@ export class Game extends Scene
         });
 
         // Add a purple portal
-        this.purplePortal = this.add.image(0, 0, "purplePortal")
+        this.purplePortal = this.add.image(50, 50, "purplePortal")
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Add a box
-        const box = new Box(this, 0, yOfItem * 3);
+        const box = new Box(this, 50, yOfItem * 3);
         this.physics.add.collider(this.player, box.sprite, () => {
             box.push();
         });
