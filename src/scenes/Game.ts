@@ -52,7 +52,7 @@ export class Game extends Scene
         .setDisplaySize(screenWidth, screenHeight / 5 * 3);
 
         // Initialize player
-        this.player = this.physics.add.sprite(xOfItem, yOfItem * 2, "player")
+        this.player = this.physics.add.sprite(0, yOfItem, "player")
         .setDisplaySize(itemWidth, itemHeigh);
         this.player.setCollideWorldBounds(true);
 
@@ -86,7 +86,7 @@ export class Game extends Scene
 
         // Add a purple portal
         this.purplePortal = this.add.image(xOfItem, yOfItem, "purplePortal")
-        .setDisplaySize(itemWidth, itemHeigh);
+        .setDisplaySize(0, 0);
 
         // Add a box
         const box = new Box(this, 400, 400);
