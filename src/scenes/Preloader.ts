@@ -41,8 +41,8 @@ export class Preloader extends Scene
         this.load.image('downButton', 'down.png');
         this.load.image('menuButton', 'menuButton.png');
         this.load.image('start', 'start.png');
-        this.load.image('key', 'YellowKey.png');
-        this.load.image('keyDoor', 'YellowKeyDoor.png');
+        this.load.image('key', 'key.png');
+        this.load.image('keyDoor', 'lock.png');
         this.load.image('player', 'character.png');
         this.load.image('purplePortal', 'purplePortal.png');
         this.load.image('redPortal', 'redPortal.png');
