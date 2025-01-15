@@ -42,8 +42,8 @@ export class Game extends Scene
         const screenHeight = 2532;
         const itemHeigh = 165
         const itemWidth = 165
-        const xOfItem = (screenWidth / 15)
-        const yOfItem = (screenHeight / 7)
+        const xOfItem = (screenWidth / 7)
+        const yOfItem = (screenHeight / 15)
 
         // Add background floor
         this.background = this.add.image(screenWidth / 2, screenHeight / 2, "floor")
