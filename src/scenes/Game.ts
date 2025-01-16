@@ -128,7 +128,7 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Add a box
-        const box = new Box(this, xOfItem * 4 + 50, yOfItem * 5 + 50, "box");
+        const box = new Box(this, xOfItem * 4 + 50, yOfItem * 5 + 50, 'box');
         this.physics.add.collider(this.player.sprite, box.sprite, () => {
             box.push();
         });
