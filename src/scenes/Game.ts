@@ -29,6 +29,7 @@ export class Game extends Scene
     private rock!: Rock;
     private wallGroup!: Phaser.Physics.Arcade.Group;
     private brokenWallGroup!: Phaser.Physics.Arcade.Group;
+    private box!: Box;
 
     constructor ()
     {
@@ -130,7 +131,9 @@ export class Game extends Scene
         // Add a box
         const box = new Box(this, xOfItem * 4 + 50, yOfItem * 5 + 50, 'box');
         this.physics.add.collider(this.player.sprite, box.sprite, () => {
-            box.push();
+            if (this.player.sprite.body) {
+                box.push();
+            }
         });
 
         // Add arrow

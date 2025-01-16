@@ -16,8 +16,18 @@ export default class Box {
     this.sprite.setImmovable(true);
   }
 
-  push() {
-    // Add behavior to destroy pit and itself
-    console.log("Box pushed!");
+  push(velocity: Phaser.Math.Vector2) {
+    const speed = 150; // Adjust the pushing speed
+    this.sprite.setVelocity(velocity.x * speed, velocity.y * speed);
+  }
+
+  stop() {
+    this.sprite.setVelocity(0);
+  }
+
+  handleCollisionWithPit(pit: Phaser.GameObjects.GameObject) {
+    console.log("Box destroyed along with pit!");
+    this.sprite.destroy(); // Destroy the box
+    pit.destroy(); // Destroy the pit
   }
 }
