@@ -128,11 +128,8 @@ export class Game extends Scene
         // Add a rock
         this.rock = new Rock(this, 50, yOfItem * 3 + 50, "rock");
         this.physics.add.collider(this.player.sprite, this.rock.sprite, () => {
-            if (this.player.sprite.body) {
-                this.rock.roll(
-                    new Phaser.Math.Vector2(
-                        this.player.sprite.body.velocity.x,
-                        this.player.sprite.body.velocity.y));
+            if (this.player && this.player.body) {
+                this.rock.roll(this.player.body.velocity);
             }
         });
 
@@ -158,11 +155,8 @@ export class Game extends Scene
         // Add a box
         const box = new Box(this, xOfItem * 6 + 50, yOfItem * 2 + 50, 'box');
         this.physics.add.collider(this.player.sprite, box.sprite, () => {
-            if (this.player.sprite.body) {
-                const velocity = new Phaser.Math.Vector2(
-                    this.player.sprite.body.velocity.x,
-                    this.player.sprite.body.velocity.y);
-                box.push(velocity);
+            if (this.player && this.player.body) {
+                box.push(this.player.body.velocity);
             } 
         });
 
