@@ -22,7 +22,7 @@ export default class Player {
     constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
       this.scene = scene;
       this._sprite = scene.physics.add.sprite(x, y, texture)
-      .setDisplaySize(165, 165);
+      .setDisplaySize(140, 140);
   
       // Add keyboard controls
       this.cursors = this.scene.input.keyboard!.createCursorKeys();
