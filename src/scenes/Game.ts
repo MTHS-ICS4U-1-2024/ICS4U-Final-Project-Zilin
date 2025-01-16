@@ -133,7 +133,7 @@ export class Game extends Scene
         // Create broken wall group
         this.brokenWallGroup = this.physics.add.staticGroup();
         this.brokenWallGroup.create(50, yOfItem * 7 + 50, "brokenWall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(165, 165).refreshBody();
 
         // Add collision between player and broken wall
         this.physics.add.collider(this.player.sprite, this.brokenWallGroup);
@@ -217,11 +217,11 @@ export class Game extends Scene
 
         // Add the first stair with proper position and size
         stairs.add(new Stair(this, xOfItem * 2 + 50, yOfItem + 50, 'stair')
-        .setDisplaySize(itemWidth, itemHeight));
+        .setDisplaySize(165, 165));
 
         // Add the second stair with a different position and size
         stairs.add(new Stair(this, xOfItem * 4 + 50, yOfItem * 7 + 50, 'stair')
-            .setDisplaySize(itemWidth, itemHeight));
+            .setDisplaySize(165, 165));
 
         // Create the menu button
         this.menuButton = new MenuButton(this, 100, yOfItem * 10 + 50, 'menuButton')

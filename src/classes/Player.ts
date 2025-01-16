@@ -45,8 +45,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     const screenHeight = this.scene.scale.height;
   
     // Button size relative to screen dimensions (for example, 8% of screen width)
-    const buttonSize = 200;
-    const buttonSpacing = 12;
+    const buttonSize = 250;
+    const buttonSpacing = 20;
   
     // Adjust positions based on screen size
     this.upButton = new Button(
