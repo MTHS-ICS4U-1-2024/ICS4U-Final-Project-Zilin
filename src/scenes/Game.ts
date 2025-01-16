@@ -131,11 +131,20 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Add a box
-        const box = new Box(this, xOfItem * 4 + 50, yOfItem * 5 + 50, 'box');
+        const box = new Box(this, xOfItem * 6 + 50, yOfItem * 2 + 50, 'box');
         this.physics.add.collider(this.player.sprite, box.sprite, () => {
             if (this.player.sprite.body) {
                 const velocity = this.player.sprite.body.velocity;
                 box.push(velocity);
+            } 
+        });
+
+        // Add a box
+        const boxTwo = new Box(this, 50, yOfItem * 3 + 50, 'box');
+        this.physics.add.collider(this.player.sprite, boxTwo.sprite, () => {
+            if (this.player.sprite.body) {
+                const velocity = this.player.sprite.body.velocity;
+                boxTwo.push(velocity);
             } 
         });
 
@@ -188,8 +197,8 @@ export class Game extends Scene
             classType: Stair,
             runChildUpdate: true
         });
-        stairs.add(new Stair(this, xOfItem * 2 + 50, yOfItem + 50, 'stair');
-        stairs.add(new Stair(this, xOfItem * 5 + 50, yOfItem * 7 + 50, 'stair');
+        stairs.add(new Stair(this, xOfItem * 2 + 50, yOfItem + 50, 'stair'));
+        stairs.add(new Stair(this, xOfItem * 5 + 50, yOfItem * 7 + 50, 'stair'));
 
         // Create the menu button
         this.menuButton = new MenuButton(this, 50, yOfItem * 9 + 50, 'menuButton')
