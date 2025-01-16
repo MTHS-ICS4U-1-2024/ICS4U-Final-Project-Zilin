@@ -222,7 +222,7 @@ export class Game extends Scene
         .setDisplaySize(165, 165));
 
         // Add the second stair with a different position and size
-        const stair 2 = stairs.add(new Stair(this, xOfItem * 4 + 50, yOfItem * 7 + 50, 'stair')
+        const stair2 = stairs.add(new Stair(this, xOfItem * 4 + 50, yOfItem * 7 + 50, 'stair')
             .setDisplaySize(165, 165));
 
         // Create the menu button
