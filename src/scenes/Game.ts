@@ -107,7 +107,7 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
         wall.create(xOfItem * 5 + 50, yOfItem * 5 + 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
-        wall.create(xOfItem * 5 + 50, yOfItem * 6 + 50, "wall")
+        wall.create(xOfItem * 5 + 50, yOfItem * 7 + 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
         wall.create(xOfItem * 5 + 50, yOfItem * 8 + 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
@@ -120,7 +120,7 @@ export class Game extends Scene
         this.physics.add.collider(this.player.sprite, wall);
 
         // Add a rock
-        this.rock = new Rock(this, xOfItem + 50, yOfItem * 7 + 50, "rock");
+        this.rock = new Rock(this, 50, yOfItem * 3 + 50, "rock");
         this.physics.add.collider(this.player.sprite, this.rock.sprite, () => {
             if (this.player.sprite.body) {
                 this.rock.moveOpposite(
@@ -132,7 +132,7 @@ export class Game extends Scene
 
         // Create broken wall group
         this.brokenWallGroup = this.physics.add.staticGroup();
-        this.brokenWallGroup.create(xOfItem * 4 + 50, yOfItem * 7 + 50, "brokenWall")
+        this.brokenWallGroup.create(50, yOfItem * 7 + 50, "brokenWall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
 
         // Add collision between player and broken wall
@@ -160,25 +160,9 @@ export class Game extends Scene
             } 
         });
 
-        // Add a box two
-        const boxTwo = new Box(this, 50, yOfItem * 3 + 50, 'box');
-        this.physics.add.collider(this.player.sprite, boxTwo.sprite, () => {
-            if (this.player.sprite.body) {
-                const velocity = new Phaser.Math.Vector2(
-                    this.player.sprite.body.velocity.x,
-                    this.player.sprite.body.velocity.y);
-                boxTwo.push(velocity);
-            } 
-        });
-
         // Stop the box when it hits a wall
         this.physics.add.collider(box.sprite, this.wallGroup, () => {
             box.stop(); // Stop the box's movement upon hitting a wall
-        });
-
-        // Stop the box two when it hits a wall
-        this.physics.add.collider(boxTwo.sprite, this.wallGroup, () => {
-            boxTwo.stop(); // Stop the box's movement upon hitting a wall
         });
 
         // Destroy the box and pit when they collide
@@ -188,20 +172,13 @@ export class Game extends Scene
             }
         });
 
-        // Destroy the box two and pit when they collide
-        this.physics.add.overlap(boxTwo.sprite, this.pits, (_, pit) => {
-            if (pit instanceof Phaser.GameObjects.GameObject) {
-                boxTwo.handleCollisionWithPit(pit);
-            }
-        });
-
         // Add arrow
         this.arrow = this.add.image(xOfItem * 6 + 50, yOfItem * 6 + 50, "arrow")
         .setDisplaySize(itemWidth, itemHeight);
 
         // Add pits
         this.pits = this.physics.add.group();
-        this.pits.create(50, yOfItem * 4 + 50, 'pit')
+        this.pits.create(xOfItem + 50, yOfItem * 2 + 50, 'pit')
         .setDisplaySize(itemWidth, itemHeight).refreshBody();
         this.pits.create(xOfItem + 50, yOfItem * 3 + 50, 'pit')
         .setDisplaySize(itemWidth, itemHeight).refreshBody();
@@ -240,15 +217,11 @@ export class Game extends Scene
 
         // Add the first stair with proper position and size
         stairs.add(new Stair(this, xOfItem * 2 + 50, yOfItem + 50, 'stair')
-        .setDisplaySize(itemWidth, itemHeight) // Ensure `itemWidth` and `itemHeight` are defined properly
-        .refreshBody()
-        );
+        .setDisplaySize(itemWidth, itemHeight));
 
         // Add the second stair with a different position and size
-        stairs.add(new Stair(this, xOfItem * 5 + 50, yOfItem * 7 + 50, 'stair')
-            .setDisplaySize(itemWidth, itemHeight) // Same size as first stair
-            .refreshBody()
-        );
+        stairs.add(new Stair(this, xOfItem * 4 + 50, yOfItem * 7 + 50, 'stair')
+            .setDisplaySize(itemWidth, itemHeight));
 
         // Create the menu button
         this.menuButton = new MenuButton(this, 100, yOfItem * 10 + 50, 'menuButton')
