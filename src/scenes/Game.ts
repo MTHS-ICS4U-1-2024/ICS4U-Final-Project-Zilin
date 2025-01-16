@@ -155,8 +155,8 @@ export class Game extends Scene
         this.physics.add.collider(this.player, keyDoor);
 
         // Create stairs
-        new Stair(this, xOfItem + 50, yOfItem * 3 + 50, 'stair').setDisplaySize(165, 165);
-        new Stair(this, xOfItem * 8 + 50, yOfItem * 6 + 50, 'stair').setDisplaySize(165, 165);
+        new Stair(this, 50, yOfItem * 3 + 50, 'stair').setDisplaySize(165, 165);
+        new Stair(this, xOfItem * 7 + 50, yOfItem * 5 + 50, 'stair').setDisplaySize(165, 165);
 
         // Add menu button
         // Create the menu button
