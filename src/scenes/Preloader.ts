@@ -52,6 +52,8 @@ export class Preloader extends Scene
         this.load.image('stair', 'stairs.png');
         this.load.image('arrow', 'arrow.png');
         this.load.image('rock', 'rock.png');
+        this.load.image('box', 'box.png');
+        this.load.image('pit', 'pit.png');
         this.load.image('brokenWall', 'brokenWall.png');
     }
 
