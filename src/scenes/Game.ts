@@ -158,7 +158,6 @@ export class Game extends Scene
         stairs.add(new Stair(this, xOfItem * 2 + 50, 50, 'stair'));
         stairs.add(new Stair(this, xOfItem * 5 + 50, yOfItem * 7 + 50, 'stair'));
 
-        // Add menu button
         // Create the menu button
         new MenuButton(this, 1100, 50, 'menuButton');
         this.add.existing(this.menuButton);
