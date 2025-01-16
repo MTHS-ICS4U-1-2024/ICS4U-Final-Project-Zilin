@@ -28,15 +28,9 @@ export class MainMenu extends Scene
             align: 'center'
         }).setOrigin(0.5);
 
-        // Add click interaction
-        startText.on("pointerdown", () => {
-            console.log('Entering the castle.')
-            this.scene.start("Game");
-        });
   
         // Alternatively, make the entire screen interactive
         this.input.on("pointerdown", () => {
-            console.log('Entering the castle.')
             this.scene.start("GameOver");
         });
     }
