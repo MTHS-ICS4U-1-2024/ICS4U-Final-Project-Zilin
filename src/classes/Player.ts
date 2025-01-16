@@ -21,6 +21,10 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // Call the parent class constructor to initialize Phaser.Physics.Arcade.Sprite
     super(scene, x, y, texture);
 
+    // Add player to the scene and enable physics
+    scene.add.existing(this);
+    scene.physics.add.existing(this);
+
     // Add keyboard controls
     this.cursors = this.scene.input.keyboard!.createCursorKeys();
     this.wasd = this.scene.input.keyboard!.addKeys({

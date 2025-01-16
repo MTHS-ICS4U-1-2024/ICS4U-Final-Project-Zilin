@@ -61,6 +61,9 @@ export class Game extends Scene
             console.error('Player failed to initialize.');
         }
 
+        // Enable player collision with world bounds
+        this.player.setCollideWorldBounds(true);
+
         // Add walls
         const wall = this.physics.add.staticGroup();
         wall.create(xOfItem * 0 + 50, yOfItem * 8 + 50, "wall")
@@ -265,6 +268,9 @@ export class Game extends Scene
     }
 
     update() {
+        // Debugging: Ensure update is running
+        console.log("Update is running");
+
         // Player movement
         if (this.cursors.left.isDown) {
             this.player.setVelocityX(-165);
@@ -281,5 +287,7 @@ export class Game extends Scene
         } else {
             this.player.setVelocityY(0);
         }
+
+        this.player.update();
     }
 }
