@@ -123,7 +123,10 @@ export class Game extends Scene
         this.rock = new Rock(this, xOfItem + 50, yOfItem * 7 + 50, "rock");
         this.physics.add.collider(this.player.sprite, this.rock.sprite, () => {
             if (this.player.sprite.body) {
-                this.rock.moveOpposite(this.player.sprite.body.velocity);
+                this.rock.moveOpposite(
+                    new Phaser.Math.Vector2(
+                        this.player.sprite.body.velocity.x,
+                        this.player.sprite.body.velocity.y));
             }
         });
 
@@ -150,7 +153,9 @@ export class Game extends Scene
         const box = new Box(this, xOfItem * 6 + 50, yOfItem * 2 + 50, 'box');
         this.physics.add.collider(this.player.sprite, box.sprite, () => {
             if (this.player.sprite.body) {
-                const velocity = this.player.sprite.body.velocity;
+                const velocity = new Phaser.Math.Vector2(
+                    this.player.sprite.body.velocity.x,
+                    this.player.sprite.body.velocity.y);
                 box.push(velocity);
             } 
         });
@@ -159,7 +164,9 @@ export class Game extends Scene
         const boxTwo = new Box(this, 50, yOfItem * 3 + 50, 'box');
         this.physics.add.collider(this.player.sprite, boxTwo.sprite, () => {
             if (this.player.sprite.body) {
-                const velocity = this.player.sprite.body.velocity;
+                const velocity = new Phaser.Math.Vector2(
+                    this.player.sprite.body.velocity.x,
+                    this.player.sprite.body.velocity.y);
                 boxTwo.push(velocity);
             } 
         });
