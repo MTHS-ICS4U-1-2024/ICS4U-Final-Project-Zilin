@@ -37,7 +37,7 @@ export class MainMenu extends Scene
         // Alternatively, make the entire screen interactive
         this.input.on("pointerdown", () => {
             console.log('Entering the castle.')
-            this.scene.start("Game");
+            this.scene.start("GameOver");
         });
     }
 }
