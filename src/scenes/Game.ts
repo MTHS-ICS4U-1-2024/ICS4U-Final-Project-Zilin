@@ -104,10 +104,10 @@ export class Game extends Scene
         this.physics.add.collider(this.player.sprite, wall);
 
         // Add a rock
-        const rock = new Rock(this, xOfItem + 50, yOfItem * 7 + 50, "rock");
-        this.physics.add.collider(this.player.sprite, rock.sprite, () => {
+        this.rock = new Rock(this, xOfItem + 50, yOfItem * 7 + 50, "rock");
+        this.physics.add.collider(this.player.sprite, this.rock.sprite, () => {
             if (this.player.sprite.body) {
-                rock.moveOpposite(this.player.sprite.body.velocity);
+                this.rock.moveOpposite(this.player.sprite.body.velocity);
             }
         });
 
