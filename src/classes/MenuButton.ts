@@ -57,7 +57,7 @@ export default class MenuButton extends Phaser.GameObjects.Image {
       padding: { x: 10, y: 5 },
     }).setInteractive();
 
-    const cancelButton = scene.add.text(200, 1100, "Cancel", {
+    const cancelButton = scene.add.text(200, 1300, "Cancel", {
       fontSize: "100px",
       color: "#fff",
       backgroundColor: "#666",
