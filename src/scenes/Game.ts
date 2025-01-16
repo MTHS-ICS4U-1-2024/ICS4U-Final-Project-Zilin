@@ -12,16 +12,16 @@ import MenuButton from "../classes/MenuButton";
 import Box from "../classes/Box";
 import Key from "../classes/Key";
 import Stair from "../classes/Stair";
-import Button from "../classes/Button"
+import Player from "../classes/Player";
 
 export class Game extends Scene
 {
     camera: Phaser.Cameras.Scene2D.Camera;
     background: Phaser.GameObjects.Image;
     msg_text : Phaser.GameObjects.Text;
-    player!: Phaser.Physics.Arcade.Sprite;
+    player: Player;
     cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
-    pits: Phaser.GameObjects.Image;
+    pits: Phaser.Physics.Arcade.Group;
     menuButton: MenuButton;
     purplePortal: Phaser.GameObjects.Image;
     arrow: Phaser.GameObjects.Image;
@@ -53,15 +53,7 @@ export class Game extends Scene
         .setDisplaySize(screenWidth * 2, screenHeight / 5 * 3);
 
         // add player
-        this.player = this.physics.add.sprite(50, yOfItem, "player")
-        .setDisplaySize(itemWidth, itemHeigh)
-        .setCollideWorldBounds(true);
-
-        // Ensure the physics body is properly configured
-        if (this.player.body) {
-            this.player.body.setSize(itemWidth, itemHeigh);
-            this.player.body.setOffset(0, 0);
-        }
+        this.player = new Player(this, 50, yOfItem + 50, "player");
 
         // Add walls
         const wall = this.physics.add.staticGroup();
@@ -102,15 +94,15 @@ export class Game extends Scene
         wall.create(xOfItem * 5 + 50, yOfItem * 6 + 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
 
-        // Add collision between the player and the walls
-        this.physics.add.collider(this.player, wall);
+        // Add collision between player and walls
+        this.physics.add.collider(this.player.sprite, wall);
 
         // Add a rock
-        const rock = new Rock(this, xOfItem * 2 + 50, yOfItem * 7 + 50, "rock");
-        this.physics.add.collider(this.player, rock.sprite, () => {
-          if (this.player && this.player.body) {
-            rock.moveOpposite(this.player.body.velocity);
-          }
+        const rock = new Rock(this, xOfItem * 3 + 50, yOfItem * 4 + 50, "rock");
+        this.physics.add.collider(this.player.sprite, rock.sprite, () => {
+            if (this.player.sprite.body) {
+                rock.moveOpposite(this.player.sprite.body.velocity);
+            }
         });
 
         // Add a purple portal
@@ -118,8 +110,8 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Add a box
-        const box = new Box(this, 50, yOfItem * 3 + 50, "box");
-        this.physics.add.collider(this.player, box.sprite, () => {
+        const box = new Box(this, xOfItem * 4 + 50, yOfItem * 5 + 50, "box");
+        this.physics.add.collider(this.player.sprite, box.sprite, () => {
             box.push();
         });
 
@@ -128,11 +120,12 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Add pits
-        this.pits = this.add.image(50, yOfItem * 4 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
-        this.pits = this.add.image(xOfItem + 50, yOfItem * 3 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
-        this.pits = this.add.image(xOfItem * 5 + 50, yOfItem * 3 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
-        this.pits = this.add.image(xOfItem * 5 + 50, yOfItem * 4 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
-        this.pits = this.add.image(xOfItem * 6 + 50, yOfItem * 3 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
+        this.pits = this.physics.add.staticGroup();
+        this.pits.create(50, yOfItem * 4 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
+        this.pits.create(xOfItem + 50, yOfItem * 3 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
+        this.pits.create(xOfItem * 5 + 50, yOfItem * 3 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
+        this.pits.create(xOfItem * 5 + 50, yOfItem * 4 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
+        this.pits.create(xOfItem * 6 + 50, yOfItem * 3 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
 
 
         // Add a key
@@ -143,7 +136,7 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Set up collision between the player and the key
-        this.physics.add.collider(this.player, key.sprite, () => {
+        this.physics.add.collider(this.player.sprite, key.sprite, () => {
             key.collect(() => {
             // Destroy the key door when the key is collected
             keyDoor.destroy();
@@ -154,9 +147,13 @@ export class Game extends Scene
         // Add collision for the keyDoor (optional, if the door blocks the player)
         this.physics.add.collider(this.player, keyDoor);
 
-        // Create stairs
-        new Stair(this, 50, yOfItem * 3 + 50, 'stair').setDisplaySize(165, 165);
-        new Stair(this, xOfItem * 7 + 50, yOfItem * 5 + 50, 'stair').setDisplaySize(165, 165);
+        // Add stairs
+        const stairs = this.physics.add.group({
+            classType: Stair,
+            runChildUpdate: true
+        });
+        stairs.add(new Stair(this, xOfItem * 2 + 50, 50, 'stair'));
+        stairs.add(new Stair(this, xOfItem * 5 + 50, yOfItem * 7 + 50, 'stair'));
 
         // Add menu button
         // Create the menu button
@@ -171,15 +168,20 @@ export class Game extends Scene
             console.error("Keyboard input is not available.");
         }
 
+        // Handle player interactions
+        this.player.handleInteractions(
+            stairs as Phaser.Physics.Arcade.Group,
+            rock.sprite,
+            box.sprite,
+            this.pits
+        );
+
         // add red portal
         this.redPortal = this.add.image(xOfItem * 6 + 50, yOfItem * 7 + 50, "redPortal")
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Enable physics on the red portal
         this.physics.add.existing(this.redPortal);
-
-        // Add WASD controls
-        Button.addWASDControls(this, this.player);
 
         // Add overlap detection between the player and the red portal
         this.physics.add.overlap(this.player, this.redPortal, () => {
@@ -188,21 +190,6 @@ export class Game extends Scene
     }
 
     update() {
-        // Player movement
-        if (this.cursors.left.isDown) {
-            this.player.setVelocityX(-165);
-        } else if (this.cursors.right.isDown) {
-            this.player.setVelocityX(165);
-        } else {
-            this.player.setVelocityX(0);
-        }
-
-        if (this.cursors.up.isDown) {
-            this.player.setVelocityY(-165);
-        } else if (this.cursors.down.isDown) {
-            this.player.setVelocityY(165);
-        } else {
-            this.player.setVelocityY(0);
-        }
+        this.player.update();
     }
 }
