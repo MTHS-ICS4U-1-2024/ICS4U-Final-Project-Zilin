@@ -242,7 +242,7 @@ export class Game extends Scene
         });
 
         // Create the menu button
-        this.menuButton = new MenuButton(this, 100, yOfItem * 10 + 50, 'menuButton')
+        this.menuButton = new MenuButton(this, 100, yOfItem * 10 - 50, 'menuButton')
         .setDisplaySize(itemWidth * 2, itemHeight * 2);
         this.add.existing(this.menuButton);
 
