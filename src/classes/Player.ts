@@ -10,17 +10,18 @@ import Button from "./Button";
 
 export default class Player {
     private scene: Phaser.Scene;
-    private sprite: Phaser.Physics.Arcade.Sprite;
+    private _sprite: Phaser.Physics.Arcade.Sprite;
     private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
     private wasd!: { [key: string]: Phaser.Input.Keyboard.Key };
     upButton: Button;
     downButton: Button;
     leftButton: Button;
     rightButton: Button;
+
   
     constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
       this.scene = scene;
-      this.sprite = scene.physics.add.sprite(x, y, texture)
+      this._sprite = scene.physics.add.sprite(x, y, texture)
       .setDisplaySize(165, 165);
   
       // Add keyboard controls
@@ -34,6 +35,10 @@ export default class Player {
   
       // Add virtual buttons
       this.createVirtualButtons();
+    }
+
+    get sprite(): Phaser.Physics.Arcade.Sprite {
+      return this._sprite;
     }
   
     private createVirtualButtons() {

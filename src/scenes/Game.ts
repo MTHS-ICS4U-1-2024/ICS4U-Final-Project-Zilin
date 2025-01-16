@@ -19,7 +19,7 @@ export class Game extends Scene
     camera: Phaser.Cameras.Scene2D.Camera;
     background: Phaser.GameObjects.Image;
     msg_text : Phaser.GameObjects.Text;
-    player: Player;
+    private player!: Player;
     cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
     pits: Phaser.Physics.Arcade.Group;
     menuButton: MenuButton;
@@ -120,7 +120,7 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Add pits
-        this.pits = this.physics.add.staticGroup();
+        this.pits = this.physics.add.group();
         this.pits.create(50, yOfItem * 4 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
         this.pits.create(xOfItem + 50, yOfItem * 3 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
         this.pits.create(xOfItem * 5 + 50, yOfItem * 3 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
@@ -145,7 +145,7 @@ export class Game extends Scene
         });
 
         // Add collision for the keyDoor (optional, if the door blocks the player)
-        this.physics.add.collider(this.player, keyDoor);
+        this.physics.add.collider(this.player.sprite, keyDoor);
 
         // Add stairs
         const stairs = this.physics.add.group({
@@ -168,14 +168,6 @@ export class Game extends Scene
             console.error("Keyboard input is not available.");
         }
 
-        // Handle player interactions
-        this.player.handleInteractions(
-            stairs as Phaser.Physics.Arcade.Group,
-            rock.sprite,
-            box.sprite,
-            this.pits
-        );
-
         // add red portal
         this.redPortal = this.add.image(xOfItem * 6 + 50, yOfItem * 7 + 50, "redPortal")
         .setDisplaySize(itemWidth, itemHeigh);
@@ -184,7 +176,7 @@ export class Game extends Scene
         this.physics.add.existing(this.redPortal);
 
         // Add overlap detection between the player and the red portal
-        this.physics.add.overlap(this.player, this.redPortal, () => {
+        this.physics.add.overlap(this.player.sprite, this.redPortal, () => {
             this.scene.start('GameOver'); // Transition to GameOver scene
         });
     }
