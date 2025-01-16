@@ -22,7 +22,7 @@ export class Game extends Scene
     private player!: Player;
     cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
     pits: Phaser.Physics.Arcade.Group;
-    menuButton: MenuButton;
+    private menuButton: MenuButton;
     purplePortal: Phaser.GameObjects.Image;
     arrow: Phaser.GameObjects.Image;
     redPortal: Phaser.GameObjects.Image;
@@ -159,7 +159,7 @@ export class Game extends Scene
         stairs.add(new Stair(this, xOfItem * 5 + 50, yOfItem * 7 + 50, 'stair'));
 
         // Create the menu button
-        new MenuButton(this, 1100, 50, 'menuButton');
+        this.menuButton = new MenuButton(this, 1100, 50, 'menuButton');
         this.add.existing(this.menuButton);
 
         // Create controls

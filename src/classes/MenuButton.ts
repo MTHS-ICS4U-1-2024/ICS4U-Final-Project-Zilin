@@ -40,27 +40,25 @@ export default class MenuButton extends Phaser.GameObjects.Image {
       fontStyle: "bold",
     });
 
-    // Add Restart button
-    const restartButton = scene.add.text(500, 1150, "Restart", {
-      fontSize: "32px",
-      color: "#fff",
-      backgroundColor: "#666",
-      padding: { x: 10, y: 5 },
-    }).setInteractive();
-
-    restartButton.on("pointerdown", () => {
-      this.closeMenu(scene, [menuBackground, title, restartButton, backButton]);
-      scene.scene.restart();
-    });
-
-    // Add Back to Main Menu button
     const backButton = scene.add.text(500, 1250, "Main Menu", {
       fontSize: "32px",
       color: "#fff",
       backgroundColor: "#666",
       padding: { x: 10, y: 5 },
     }).setInteractive();
-
+  
+    const restartButton = scene.add.text(500, 1150, "Restart", {
+      fontSize: "32px",
+      color: "#fff",
+      backgroundColor: "#666",
+      padding: { x: 10, y: 5 },
+    }).setInteractive();
+  
+    restartButton.on("pointerdown", () => {
+      this.closeMenu(scene, [menuBackground, title, restartButton, backButton]);
+      scene.scene.restart();
+    });
+  
     backButton.on("pointerdown", () => {
       this.closeMenu(scene, [menuBackground, title, restartButton, backButton]);
       scene.scene.start("MainMenu");
