@@ -17,7 +17,7 @@ export default class Box {
   }
 
   push(velocity: Phaser.Math.Vector2) {
-    const speed = 150; // Adjust the pushing speed
+    const speed = 10; // Adjust the pushing speed
     this.sprite.setVelocity(velocity.x * speed, velocity.y * speed);
   }
 

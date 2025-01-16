@@ -45,7 +45,7 @@ export default class Player {
       const screenWidth = this.scene.scale.width;
       const screenHeight = this.scene.scale.height;
     
-      const buttonSize = 200; // Size of buttons
+      const buttonSize = 150; // Size of buttons
       const buttonSpacing = 30; // Spacing between buttons
 
       this.upButton = new Button(
