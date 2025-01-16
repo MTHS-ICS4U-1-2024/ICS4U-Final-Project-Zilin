@@ -7,109 +7,103 @@
 */
 import Phaser from "phaser";
 import Button from "./Button";
-import Stair from "./Stair"
+import Stair from "./Stair";
 
-export default class Player {
-    private scene: Phaser.Scene;
-    private _sprite: Phaser.Physics.Arcade.Sprite;
-    private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
-    private wasd!: { [key: string]: Phaser.Input.Keyboard.Key };
-    upButton: Button;
-    downButton: Button;
-    leftButton: Button;
-    rightButton: Button;
+export default class Player extends Phaser.Physics.Arcade.Sprite {
+  private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
+  private wasd!: { [key: string]: Phaser.Input.Keyboard.Key };
+  upButton: Button;
+  downButton: Button;
+  leftButton: Button;
+  rightButton: Button;
 
-  
-    constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
-      this.scene = scene;
-      this._sprite = scene.physics.add.sprite(x, y, texture)
-      .setDisplaySize(140, 140);
-  
-      // Add keyboard controls
-      this.cursors = this.scene.input.keyboard!.createCursorKeys();
-      this.wasd = this.scene.input.keyboard!.addKeys({
-        up: Phaser.Input.Keyboard.KeyCodes.W,
-        down: Phaser.Input.Keyboard.KeyCodes.S,
-        left: Phaser.Input.Keyboard.KeyCodes.A,
-        right: Phaser.Input.Keyboard.KeyCodes.D,
-      }) as { [key: string]: Phaser.Input.Keyboard.Key };
-  
-      // Add virtual buttons
-      this.createVirtualButtons();
+  constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
+    // Call the parent class constructor to initialize Phaser.Physics.Arcade.Sprite
+    super(scene, x, y, texture);
 
-      // Add player to scene and set physics
-      scene.add.existing(this);
-      scene.physics.add.existing(this);
+    // Add keyboard controls
+    this.cursors = this.scene.input.keyboard!.createCursorKeys();
+    this.wasd = this.scene.input.keyboard!.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.W,
+      down: Phaser.Input.Keyboard.KeyCodes.S,
+      left: Phaser.Input.Keyboard.KeyCodes.A,
+      right: Phaser.Input.Keyboard.KeyCodes.D,
+    }) as { [key: string]: Phaser.Input.Keyboard.Key };
+
+    // Add virtual buttons
+    this.createVirtualButtons();
+
+    // Add player to the scene and set physics
+    scene.add.existing(this);
+    scene.physics.add.existing(this);
+    this.setDisplaySize(140, 140); // Ensure player has the correct size
+  }
+
+  private createVirtualButtons() {
+    const screenWidth = this.scene.scale.width;
+    const screenHeight = this.scene.scale.height;
+
+    const buttonSize = 100; // Size of buttons
+    const buttonSpacing = 20; // Spacing between buttons
+
+    this.upButton = new Button(
+      this.scene,
+      screenWidth / 2,
+      screenHeight - (buttonSize * 2) - buttonSpacing,
+      "upButton",
+      () => this.setVelocityY(-300)
+    );
+
+    this.downButton = new Button(
+      this.scene,
+      screenWidth / 2,
+      screenHeight - buttonSize,
+      "downButton",
+      () => this.setVelocityY(300)
+    );
+
+    this.leftButton = new Button(
+      this.scene,
+      screenWidth / 2 - buttonSize - buttonSpacing,
+      screenHeight - buttonSize * 1.5,
+      "leftButton",
+      () => this.setVelocityX(-300)
+    );
+
+    this.rightButton = new Button(
+      this.scene,
+      screenWidth / 2 - buttonSize - buttonSpacing,
+      screenHeight - buttonSize * 1.5,
+      "rightButton",
+      () => this.setVelocityX(300)
+    );
+  }
+
+  public update() {
+    // Handle player movement
+    if (this.cursors.left.isDown || this.wasd.left.isDown) {
+      this.setVelocityX(-165);
+    } else if (this.cursors.right.isDown || this.wasd.right.isDown) {
+      this.setVelocityX(165);
+    } else {
+      this.setVelocityX(0);
     }
 
-    get sprite(): Phaser.Physics.Arcade.Sprite {
-      return this._sprite;
+    if (this.cursors.up.isDown || this.wasd.up.isDown) {
+      this.setVelocityY(-165);
+    } else if (this.cursors.down.isDown || this.wasd.down.isDown) {
+      this.setVelocityY(165);
+    } else {
+      this.setVelocityY(0);
     }
-  
-    private createVirtualButtons() {
-      const screenWidth = this.scene.scale.width;
-      const screenHeight = this.scene.scale.height;
-    
-      const buttonSize = 100; // Size of buttons
-      const buttonSpacing = 20; // Spacing between buttons
 
-      this.upButton = new Button(
-        this.scene,
-        screenWidth / 2,
-        screenHeight - (buttonSize * 2) - buttonSpacing,
-        "upButton",
-        () => this.sprite.setVelocityY(-300)
-      );
-  
-      this.downButton = new Button(
-        this.scene,
-        screenWidth / 2,
-        screenHeight - buttonSize,
-        "downButton",
-        () => this.sprite.setVelocityY(300)
-      );
-  
-      this.leftButton = new Button(
-        this.scene,
-        screenWidth / 2 - buttonSize - buttonSpacing,
-        screenHeight - buttonSize * 1.5,
-        "leftButton",
-        () => this.sprite.setVelocityX(-300)
-      );
-  
-      this.rightButton = new Button(
-        this.scene,
-        screenWidth / 2 - buttonSize - buttonSpacing,
-        screenHeight - buttonSize * 1.5,
-        "rightButton",
-        () => this.sprite.setVelocityX(300)
-      );
-    }
-  
-    public update() {
-      if (this.cursors.left.isDown || this.wasd.left.isDown) {
-        this.sprite.setVelocityX(-165);
-      } else if (this.cursors.right.isDown || this.wasd.right.isDown) {
-        this.sprite.setVelocityX(165);
-      } else {
-        this.sprite.setVelocityX(0);
-      }
-  
-      if (this.cursors.up.isDown || this.wasd.up.isDown) {
-        this.sprite.setVelocityY(-165);
-      } else if (this.cursors.down.isDown || this.wasd.down.isDown) {
-        this.sprite.setVelocityY(165);
-      } else {
-        this.sprite.setVelocityY(0);
-      }
+    // Assuming you have two stairs instances, `stair1` and `stair2`
+    const stair1 = new Stair(this.scene, 100, 100, 'stairTexture');
+    const stair2 = new Stair(this.scene, 500, 500, 'stairTexture');
 
-          // Assuming you have two stairs instances, `stair1` and `stair2`
-      const stair1 = new Stair(this.scene, 100, 100, 'stairTexture');
-      const stair2 = new Stair(this.scene, 500, 500, 'stairTexture');
-
-      stair1.teleport(this, stair2);
-      stair2.teleport(this, stair1);
-    }
+    stair1.teleport(this, stair2);
+    stair2.teleport(this, stair1);
+  }
 
   public handleInteractions(
     stairs: Phaser.Physics.Arcade.Group,
@@ -118,7 +112,7 @@ export default class Player {
     pits?: Phaser.Physics.Arcade.Group
   ) {
     // Teleport between stairs
-    this.scene.physics.add.overlap(this.sprite, stairs, (player, stair) => {
+    this.scene.physics.add.overlap(this, stairs, (player, stair) => {
       const otherStair = stairs.getChildren().find((s) => s !== stair);
       if (otherStair) {
         (player as Phaser.Physics.Arcade.Sprite).setPosition(
@@ -129,7 +123,7 @@ export default class Player {
     });
 
     // Handle rocks
-    this.scene.physics.add.collider(this.sprite, rocks, (player, rock) => {
+    this.scene.physics.add.collider(this, rocks, (player, rock) => {
       const playerBody = (player as Phaser.Physics.Arcade.Sprite)?.body;
       if (!playerBody) return;
 
@@ -139,7 +133,7 @@ export default class Player {
 
     // Handle boxes and pits
     if (pits) {
-      this.scene.physics.add.collider(this.sprite, boxes, (player, box) => {
+      this.scene.physics.add.collider(this, boxes, (player, box) => {
         const playerBody = (player as Phaser.Physics.Arcade.Sprite)?.body;
         if (!playerBody) return;
 
