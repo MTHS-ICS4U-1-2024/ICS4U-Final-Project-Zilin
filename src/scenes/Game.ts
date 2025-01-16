@@ -44,7 +44,7 @@ export class Game extends Scene
         // Set screen size constants
         const screenWidth = 1170;
         const screenHeight = 2532;
-        const itemHeigh = 165
+        const itemHeight = 165
         const itemWidth = 165
         const xOfItem = (screenWidth / 7)
         const yOfItem = (screenHeight / 15)
@@ -133,7 +133,7 @@ export class Game extends Scene
         // Create broken wall group
         this.brokenWallGroup = this.physics.add.staticGroup();
         this.brokenWallGroup.create(xOfItem * 4 + 50, yOfItem * 7 + 50, "brokenWall")
-        .setDisplaySize(itemWidth, itemHeigh).refreshBody();
+        .setDisplaySize(itemWidth, itemHeight).refreshBody();
 
         // Add collision between player and broken wall
         this.physics.add.collider(this.player.sprite, this.brokenWallGroup);
@@ -147,7 +147,7 @@ export class Game extends Scene
 
         // Add a purple portal
         this.purplePortal = this.add.image(50, 50, "purplePortal")
-        .setDisplaySize(itemWidth, itemHeigh);
+        .setDisplaySize(itemWidth, itemHeight);
 
         // Add a box
         const box = new Box(this, xOfItem * 6 + 50, yOfItem * 2 + 50, 'box');
@@ -197,20 +197,20 @@ export class Game extends Scene
 
         // Add arrow
         this.arrow = this.add.image(xOfItem * 6 + 50, yOfItem * 6 + 50, "arrow")
-        .setDisplaySize(itemWidth, itemHeigh);
+        .setDisplaySize(itemWidth, itemHeight);
 
         // Add pits
         this.pits = this.physics.add.group();
         this.pits.create(50, yOfItem * 4 + 50, 'pit')
-        .setDisplaySize(itemWidth, itemHeigh).refreshBody();
+        .setDisplaySize(itemWidth, itemHeight).refreshBody();
         this.pits.create(xOfItem + 50, yOfItem * 3 + 50, 'pit')
-        .setDisplaySize(itemWidth, itemHeigh).refreshBody();
+        .setDisplaySize(itemWidth, itemHeight).refreshBody();
         this.pits.create(xOfItem * 5 + 50, yOfItem * 3 + 50, 'pit')
-        .setDisplaySize(itemWidth, itemHeigh).refreshBody();
+        .setDisplaySize(itemWidth, itemHeight).refreshBody();
         this.pits.create(xOfItem * 5 + 50, yOfItem * 4 + 50, 'pit')
-        .setDisplaySize(itemWidth, itemHeigh).refreshBody();
+        .setDisplaySize(itemWidth, itemHeight).refreshBody();
         this.pits.create(xOfItem * 6 + 50, yOfItem * 3 + 50, 'pit')
-        .setDisplaySize(itemWidth, itemHeigh).refreshBody();
+        .setDisplaySize(itemWidth, itemHeight).refreshBody();
 
 
         // Add a key
@@ -218,7 +218,7 @@ export class Game extends Scene
 
         // Add the key door
         const keyDoor = this.physics.add.staticSprite(xOfItem * 6 + 50, yOfItem * 5 + 50, "keyDoor")
-        .setDisplaySize(itemWidth, itemHeigh);
+        .setDisplaySize(itemWidth, itemHeight);
 
         // Set up collision between the player and the key
         this.physics.add.collider(this.player.sprite, key.sprite, () => {
@@ -232,19 +232,27 @@ export class Game extends Scene
         // Add collision for the keyDoor (optional, if the door blocks the player)
         this.physics.add.collider(this.player.sprite, keyDoor);
 
-        // Add stairs
+        // Assuming `xOfItem`, `yOfItem`, `itemWidth`, `itemHeight` are defined properly
         const stairs = this.physics.add.group({
             classType: Stair,
             runChildUpdate: true
         });
+
+        // Add the first stair with proper position and size
         stairs.add(new Stair(this, xOfItem * 2 + 50, yOfItem + 50, 'stair')
-        .setDisplaySize(itemWidth, itemHeigh).refreshBody());
+        .setDisplaySize(itemWidth, itemHeight) // Ensure `itemWidth` and `itemHeight` are defined properly
+        .refreshBody()
+        );
+
+        // Add the second stair with a different position and size
         stairs.add(new Stair(this, xOfItem * 5 + 50, yOfItem * 7 + 50, 'stair')
-        .setDisplaySize(itemWidth, itemHeigh).refreshBody());
+            .setDisplaySize(itemWidth, itemHeight) // Same size as first stair
+            .refreshBody()
+        );
 
         // Create the menu button
         this.menuButton = new MenuButton(this, 100, yOfItem * 10 + 50, 'menuButton')
-        .setDisplaySize(itemWidth * 2, itemHeigh * 2);
+        .setDisplaySize(itemWidth * 2, itemHeight * 2);
         this.add.existing(this.menuButton);
 
         // Create controls
@@ -257,7 +265,7 @@ export class Game extends Scene
 
         // add red portal
         this.redPortal = this.add.image(xOfItem * 6 + 50, yOfItem * 7 + 50, "redPortal")
-        .setDisplaySize(itemWidth, itemHeigh);
+        .setDisplaySize(itemWidth, itemHeight);
 
         // Enable physics on the red portal
         this.physics.add.existing(this.redPortal);
