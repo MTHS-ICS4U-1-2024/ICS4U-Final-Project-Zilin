@@ -80,7 +80,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     const screenWidth = this.scene.scale.width;
     const screenHeight = this.scene.scale.height;
   
-    const buttonSize = 400;
+    const buttonSize = 200;
     const buttonSpacing = 20;
   
     // Up button
@@ -89,7 +89,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       screenWidth / 2,
       screenHeight - (buttonSize * 2) - buttonSpacing,
       "upButton",
-      () => this.setVelocityY(-300)
+      () => this.setVelocityY(-400)
     );
     this.upButton.button.setDisplaySize(buttonSize, buttonSize);
     this.upButton.button.on("pointerup", () => this.setVelocityY(0)); // Correct listener
@@ -100,7 +100,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       screenWidth / 2,
       screenHeight - buttonSize,
       "downButton",
-      () => this.setVelocityY(300)
+      () => this.setVelocityY(400)
     );
     this.downButton.button.setDisplaySize(buttonSize, buttonSize);
     this.downButton.button.on("pointerup", () => this.setVelocityY(0));
@@ -111,7 +111,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       screenWidth / 2 - buttonSize - buttonSpacing,
       screenHeight - buttonSize * 1.5,
       "leftButton",
-      () => this.setVelocityX(-300)
+      () => this.setVelocityX(-400)
     );
     this.leftButton.button.setDisplaySize(buttonSize, buttonSize);
     this.leftButton.button.on("pointerup", () => this.setVelocityX(0));
@@ -122,7 +122,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       screenWidth / 2 + buttonSize + buttonSpacing,
       screenHeight - buttonSize * 1.5,
       "rightButton",
-      () => this.setVelocityX(300)
+      () => this.setVelocityX(400)
     );
     this.rightButton.button.setDisplaySize(buttonSize, buttonSize);
     this.rightButton.button.on("pointerup", () => this.setVelocityX(0));
