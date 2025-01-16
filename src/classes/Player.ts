@@ -57,6 +57,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       () => this.setVelocityY(-300)
     );
     this.upButton.button.setDisplaySize(buttonSize, buttonSize);
+    this.upButton.button.on('pointerup', () => this.setVelocityY(0));
   
     this.downButton = new Button(
       this.scene,
@@ -66,6 +67,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       () => this.setVelocityY(300)
     );
     this.downButton.button.setDisplaySize(buttonSize, buttonSize);
+    this.upButton.button.on('pointerup', () => this.setVelocityY(0));
   
     this.leftButton = new Button(
       this.scene,
@@ -75,6 +77,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       () => this.setVelocityX(-300)
     );
     this.leftButton.button.setDisplaySize(buttonSize, buttonSize);
+    this.upButton.button.on('pointerup', () => this.setVelocityX(0));
   
     this.rightButton = new Button(
       this.scene,
@@ -84,6 +87,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       () => this.setVelocityX(300)
     );
     this.rightButton.button.setDisplaySize(buttonSize, buttonSize);
+    this.upButton.button.on('pointerup', () => this.setVelocityX(0));
   }
 
   public update() {
@@ -103,14 +107,14 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     } else {
       this.setVelocityY(0);
     }
-
-    // Assuming you have two stairs instances, `stair1` and `stair2`
+    // Assuming you have two stairs in your scene
     const stair1 = new Stair(this.scene, 100, 100, 'stairTexture');
     const stair2 = new Stair(this.scene, 500, 500, 'stairTexture');
 
+    // Set up teleportation between the two stairs
     stair1.teleport(this, stair2);
     stair2.teleport(this, stair1);
-  }
+    }
 
   public handleInteractions(
     stairs: Phaser.Physics.Arcade.Group,
