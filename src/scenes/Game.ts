@@ -52,7 +52,7 @@ export class Game extends Scene
         // Add background floor
         this.background = this.add.image(screenWidth / 2, screenHeight / 2, "floor")
         .setDisplaySize(1170, 2532);
-        this.background = this.add.image(xOfItem, yOfItem * 5, "floor")
+        this.background = this.add.image(xOfItem, yOfItem * 5 - 60, "floor")
         .setDisplaySize(screenWidth * 2, screenHeight / 5 * 3);
 
         // add player
