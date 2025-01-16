@@ -34,7 +34,7 @@ export default class MenuButton extends Phaser.GameObjects.Image {
 
     // Create a semi-transparent background
     const menuBackground = scene.add.image(1170 / 2, 2532 / 2, 'select')
-    .setDisplaySize(1000, 2100);
+    .setDisplaySize(1100, 2100);
 
     // Add a title
     const title = scene.add.text(200, 700, "Pause Menu", {
