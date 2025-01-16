@@ -26,6 +26,9 @@ export class Game extends Scene
     purplePortal: Phaser.GameObjects.Image;
     arrow: Phaser.GameObjects.Image;
     redPortal: Phaser.GameObjects.Image;
+    private rock!: Rock;
+    private wallGroup!: Phaser.Physics.Arcade.Group;
+    private brokenWallGroup!: Phaser.Physics.Arcade.Group;
 
     constructor ()
     {
@@ -101,12 +104,24 @@ export class Game extends Scene
         this.physics.add.collider(this.player.sprite, wall);
 
         // Add a rock
-        const rock = new Rock(this, xOfItem * 3 + 50, yOfItem * 4 + 50, "rock");
+        const rock = new Rock(this, xOfItem + 50, yOfItem * 7 + 50, "rock");
         this.physics.add.collider(this.player.sprite, rock.sprite, () => {
             if (this.player.sprite.body) {
                 rock.moveOpposite(this.player.sprite.body.velocity);
             }
         });
+
+        // Create broken wall group
+        const brokenWallGroup = this.physics.add.staticGroup();
+        this.brokenWallGroup.create(xOfItem * 5 + 50, yOfItem * 6 + 50, "brokenWall")
+        .setDisplaySize(itemWidth, itemHeigh);
+
+        // Add collision between player and broken wall
+        this.physics.add.collider(this.player.sprite, brokenWallGroup);
+
+        // Add collision handling for the rock
+        this.rock.handleCollisions(this, this.wallGroup, this.brokenWallGroup);
+
 
         // Add a purple portal
         this.purplePortal = this.add.image(50, 50, "purplePortal")
@@ -161,7 +176,8 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemHeigh));
 
         // Create the menu button
-        this.menuButton = new MenuButton(this, 1100, 50, 'menuButton');
+        this.menuButton = new MenuButton(this, 50, yOfItem * 9 + 50, 'menuButton')
+        .setDisplaySize(itemWidth * 2, itemHeigh * 2);
         this.add.existing(this.menuButton);
 
         // Create controls
