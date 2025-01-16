@@ -45,7 +45,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     const screenHeight = this.scene.scale.height;
 
     const buttonSize = 50; // Size of buttons
-    const buttonSpacing = 20; // Spacing between buttons
+    const buttonSpacing = 10; // Spacing between buttons
 
     this.upButton = new Button(
       this.scene,
