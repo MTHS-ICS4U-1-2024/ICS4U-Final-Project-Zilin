@@ -24,7 +24,8 @@ export default class Button {
         this.scene = scene;
 
         // Create the button
-        this.button = scene.add.image(x, y, texture).setInteractive();
+        this.button = scene.add.image(x, y, texture)
+        .setInteractive().setDisplaySize(200, 200);
         this.button.setScrollFactor(0); // Ensure button stays in place
 
         // Add interactive behavior

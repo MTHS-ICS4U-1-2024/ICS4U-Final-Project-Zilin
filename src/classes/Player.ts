@@ -42,34 +42,40 @@ export default class Player {
     }
   
     private createVirtualButtons() {
+      const screenWidth = this.scene.scale.width;
+      const screenHeight = this.scene.scale.height;
+    
+      const buttonSize = 200; // Size of buttons
+      const buttonSpacing = 30; // Spacing between buttons
+
       this.upButton = new Button(
         this.scene,
-        100,
-        this.scene.scale.height - 200,
+        screenWidth / 2,
+        screenHeight - (buttonSize * 2) - buttonSpacing,
         "upButton",
         () => this.sprite.setVelocityY(-165)
       );
   
       this.downButton = new Button(
         this.scene,
-        100,
-        this.scene.scale.height - 100,
+        screenWidth / 2,
+        screenHeight - buttonSize,
         "downButton",
         () => this.sprite.setVelocityY(165)
       );
   
       this.leftButton = new Button(
         this.scene,
-        50,
-        this.scene.scale.height - 150,
+        screenWidth / 2 - buttonSize - buttonSpacing,
+        screenHeight - buttonSize * 1.5,
         "leftButton",
         () => this.sprite.setVelocityX(-165)
       );
   
       this.rightButton = new Button(
         this.scene,
-        150,
-        this.scene.scale.height - 150,
+        screenWidth / 2 - buttonSize - buttonSpacing,
+        screenHeight - buttonSize * 1.5,
         "rightButton",
         () => this.sprite.setVelocityX(165)
       );
