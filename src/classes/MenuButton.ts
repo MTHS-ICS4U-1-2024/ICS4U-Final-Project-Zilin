@@ -66,13 +66,13 @@ export default class MenuButton extends Phaser.GameObjects.Image {
     
     restartButton.on("pointerdown", () => {
       console.log("Restart button clicked");
-      this.closeMenu(scene, [menuBackground, title, restartButton, backButton]);
+      this.closeMenu(scene, [menuBackground, title, restartButton, backButton, cancelButton]);
       scene.scene.restart();
     });
   
     backButton.on("pointerdown", () => {
       console.log("Main Menu button clicked");
-      this.closeMenu(scene, [menuBackground, title, restartButton, backButton]);
+      this.closeMenu(scene, [menuBackground, title, restartButton, backButton, cancelButton]);
       scene.scene.start("MainMenu");
     });
 
