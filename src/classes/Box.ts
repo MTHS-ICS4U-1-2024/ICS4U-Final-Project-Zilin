@@ -1,5 +1,5 @@
 /*
-* the is the box program
+* this is the box program
 *
 * @author Zilin
 * @version 1.0

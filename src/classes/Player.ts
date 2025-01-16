@@ -53,7 +53,7 @@ export default class Player {
         screenWidth / 2,
         screenHeight - (buttonSize * 2) - buttonSpacing,
         "upButton",
-        () => this.sprite.setVelocityY(-165)
+        () => this.sprite.setVelocityY(-300)
       );
   
       this.downButton = new Button(
@@ -61,7 +61,7 @@ export default class Player {
         screenWidth / 2,
         screenHeight - buttonSize,
         "downButton",
-        () => this.sprite.setVelocityY(165)
+        () => this.sprite.setVelocityY(300)
       );
   
       this.leftButton = new Button(
@@ -69,7 +69,7 @@ export default class Player {
         screenWidth / 2 - buttonSize - buttonSpacing,
         screenHeight - buttonSize * 1.5,
         "leftButton",
-        () => this.sprite.setVelocityX(-165)
+        () => this.sprite.setVelocityX(-300)
       );
   
       this.rightButton = new Button(
@@ -77,7 +77,7 @@ export default class Player {
         screenWidth / 2 - buttonSize - buttonSpacing,
         screenHeight - buttonSize * 1.5,
         "rightButton",
-        () => this.sprite.setVelocityX(165)
+        () => this.sprite.setVelocityX(300)
       );
     }
   
