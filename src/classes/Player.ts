@@ -45,7 +45,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     const screenHeight = this.scene.scale.height;
   
     // Button size relative to screen dimensions (for example, 8% of screen width)
-    const buttonSize = 300;
+    const buttonSize = 400;
     const buttonSpacing = 20;
   
     // Adjust positions based on screen size
@@ -107,14 +107,7 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     } else {
       this.setVelocityY(0);
     }
-    // Assuming you have two stairs in your scene
-    const stair1 = new Stair(this.scene, 100, 100, 'stairTexture');
-    const stair2 = new Stair(this.scene, 500, 500, 'stairTexture');
-
-    // Set up teleportation between the two stairs
-    stair1.teleport(this, stair2);
-    stair2.teleport(this, stair1);
-    }
+  }
 
   public handleInteractions(
     stairs: Phaser.Physics.Arcade.Group,
