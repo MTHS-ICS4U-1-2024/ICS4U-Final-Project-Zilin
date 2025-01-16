@@ -43,10 +43,12 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   private createVirtualButtons() {
     const screenWidth = this.scene.scale.width;
     const screenHeight = this.scene.scale.height;
-
-    const buttonSize = 50; // Size of buttons
-    const buttonSpacing = 10; // Spacing between buttons
-
+  
+    // Button size relative to screen dimensions (for example, 8% of screen width)
+    const buttonSize = screenWidth * 0.1; // 10% of screen width
+    const buttonSpacing = buttonSize * 0.1; // Space between buttons (10% of button size)
+  
+    // Adjust positions based on screen size
     this.upButton = new Button(
       this.scene,
       screenWidth / 2,
@@ -54,7 +56,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       "upButton",
       () => this.setVelocityY(-300)
     );
-
+    this.upButton.button.setDisplaySize(buttonSize, buttonSize);
+  
     this.downButton = new Button(
       this.scene,
       screenWidth / 2,
@@ -62,7 +65,8 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       "downButton",
       () => this.setVelocityY(300)
     );
-
+    this.downButton.button.setDisplaySize(buttonSize, buttonSize);
+  
     this.leftButton = new Button(
       this.scene,
       screenWidth / 2 - buttonSize - buttonSpacing,
@@ -70,14 +74,16 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       "leftButton",
       () => this.setVelocityX(-300)
     );
-
+    this.leftButton.button.setDisplaySize(buttonSize, buttonSize);
+  
     this.rightButton = new Button(
       this.scene,
-      screenWidth / 2 - buttonSize - buttonSpacing,
+      screenWidth / 2 + buttonSize + buttonSpacing,
       screenHeight - buttonSize * 1.5,
       "rightButton",
       () => this.setVelocityX(300)
     );
+    this.rightButton.button.setDisplaySize(buttonSize, buttonSize);
   }
 
   public update() {
