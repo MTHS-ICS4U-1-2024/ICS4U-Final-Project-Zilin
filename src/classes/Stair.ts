@@ -11,8 +11,6 @@ export default class Stair extends Phaser.Physics.Arcade.Sprite {
       super(scene, x, y, texture);
       scene.add.existing(this);
       scene.physics.add.existing(this);
-      this.setDisplaySize(165, 165);
-      this.refreshBody();
     }
   
     teleport(character: Phaser.Physics.Arcade.Sprite, targetStair: Stair) {

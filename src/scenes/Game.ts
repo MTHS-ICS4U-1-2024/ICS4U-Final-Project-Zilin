@@ -63,6 +63,8 @@ export class Game extends Scene
 
         // Add walls
         const wall = this.physics.add.staticGroup();
+        wall.create(xOfItem * 0 + 50, yOfItem * 8 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
         wall.create(xOfItem * 1 + 50, 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
         wall.create(xOfItem * 1 + 50, yOfItem * 1 + 50, "wall")
@@ -75,7 +77,11 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
         wall.create(xOfItem * 1 + 50, yOfItem * 6 + 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 1 + 50, yOfItem * 8 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
         wall.create(xOfItem * 2 + 50, yOfItem * 6 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 2 + 50, yOfItem * 8 + 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
         wall.create(xOfItem * 3 + 50, 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
@@ -89,7 +95,11 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
         wall.create(xOfItem * 3 + 50, yOfItem * 6 + 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 3 + 50, yOfItem * 8 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
         wall.create(xOfItem * 4 + 50, yOfItem * 6 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 4 + 50, yOfItem * 8 + 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
         wall.create(xOfItem * 5 + 50, yOfItem * 0 + 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
@@ -98,6 +108,12 @@ export class Game extends Scene
         wall.create(xOfItem * 5 + 50, yOfItem * 5 + 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
         wall.create(xOfItem * 5 + 50, yOfItem * 6 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 5 + 50, yOfItem * 8 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 6 + 50, yOfItem * 8 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 7 + 50, yOfItem * 8 + 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
 
         // Add collision between player and walls
@@ -113,7 +129,7 @@ export class Game extends Scene
 
         // Create broken wall group
         this.brokenWallGroup = this.physics.add.staticGroup();
-        this.brokenWallGroup.create(xOfItem * 5 + 50, yOfItem * 6 + 50, "brokenWall")
+        this.brokenWallGroup.create(xOfItem * 4 + 50, yOfItem * 7 + 50, "brokenWall")
         .setDisplaySize(itemWidth, itemHeigh).refreshBody();
 
         // Add collision between player and broken wall
@@ -214,8 +230,10 @@ export class Game extends Scene
             classType: Stair,
             runChildUpdate: true
         });
-        stairs.add(new Stair(this, xOfItem * 2 + 50, yOfItem + 50, 'stair'));
-        stairs.add(new Stair(this, xOfItem * 5 + 50, yOfItem * 7 + 50, 'stair'));
+        stairs.add(new Stair(this, xOfItem * 2 + 50, yOfItem + 50, 'stair')
+        .setDisplaySize(itemWidth, itemHeigh).refreshBody());
+        stairs.add(new Stair(this, xOfItem * 5 + 50, yOfItem * 7 + 50, 'stair')
+        .setDisplaySize(itemWidth, itemHeigh).refreshBody());
 
         // Create the menu button
         this.menuButton = new MenuButton(this, 100, yOfItem * 10 + 50, 'menuButton')
