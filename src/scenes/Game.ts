@@ -218,12 +218,26 @@ export class Game extends Scene
         });
 
         // Add the first stair with proper position and size
-        const stair1 = stairs.add(new Stair(this, xOfItem * 2 + 50, yOfItem + 50, 'stair')
-        .setDisplaySize(165, 165));
+        const stair1 = new Stair(this, xOfItem * 2 + 50, yOfItem + 50, 'stair');
+        stair1.setDisplaySize(165, 165);
+        stairs.add(stair1); 
 
         // Add the second stair with a different position and size
-        const stair2 = stairs.add(new Stair(this, xOfItem * 4 + 50, yOfItem * 7 + 50, 'stair')
-            .setDisplaySize(165, 165));
+        const stair2 = new Stair(this, xOfItem * 4 + 50, yOfItem * 7 + 50, 'stair');
+        stair2.setDisplaySize(165, 165);
+        stairs.add(stair1);
+
+        this.physics.add.overlap(this.player, stairs, (_, stair) => {
+            // Type assertion to ensure stair is a Stair instance
+            if (stair instanceof Stair) {
+                // Teleport the player to the other stair
+                if (stair === stair1) {
+                    stair1.teleport(this.player, stair2);
+                } else if (stair === stair2) {
+                    stair2.teleport(this.player, stair1);
+                }
+            }
+        });
 
         // Create the menu button
         this.menuButton = new MenuButton(this, 100, yOfItem * 10 + 50, 'menuButton')

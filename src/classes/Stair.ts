@@ -20,11 +20,11 @@ export default class Stair extends Phaser.Physics.Arcade.Sprite {
     scene.physics.add.existing(this, false); // False to disable collision box if necessary
   }
 
-  teleport(character: Phaser.Physics.Arcade.Sprite, targetStair: Stair) {
+  teleport(player: Phaser.Physics.Arcade.Sprite, targetStair: Stair) {
     // Overlap detection, triggers only once
-    this.scene.physics.add.overlap(character, this, () => {
+    this.scene.physics.add.overlap(player, this, () => {
       // Set the position of the character to the target stair's position
-      character.setPosition(targetStair.x, targetStair.y);
+      player.setPosition(targetStair.x, targetStair.y);
     }, undefined, this);  // 'undefined' for the callback argument type.
   }
 }
