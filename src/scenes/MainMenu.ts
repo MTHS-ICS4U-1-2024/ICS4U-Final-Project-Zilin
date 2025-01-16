@@ -22,7 +22,7 @@ export class MainMenu extends Scene
 
         this.logo = this.add.image(1170 / 2, 2532 / 3 - 100, 'logo');
 
-        const startText = this.add.text(1170 / 2, 2532 / 2 + 100, 'start', {
+        this.add.text(1170 / 2, 2532 / 2 + 100, 'start', {
             fontFamily: 'cursive', fontSize: 200, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
