@@ -5,6 +5,8 @@
 * @version 1.0
 * @since 2025-01-09
 */
+import Phaser from "phaser";
+
 export default class MenuButton extends Phaser.GameObjects.Image {
   menuShown: boolean;
 
@@ -31,24 +33,25 @@ export default class MenuButton extends Phaser.GameObjects.Image {
     scene.scene.pause();
 
     // Create a semi-transparent background
-    const menuBackground = scene.add.rectangle(585, 1266, 400, 600, 0x000000, 0.7);
+    const menuBackground = scene.add.image(1170 / 2, 2532 / 2, 'select')
+    .setDisplaySize(700, 2100);
 
     // Add a title
-    const title = scene.add.text(485, 1050, "Pause Menu", {
-      fontSize: "40px",
+    const title = scene.add.text(485, 800, "Pause Menu", {
+      fontSize: "160px",
       color: "#fff",
       fontStyle: "bold",
     });
 
-    const backButton = scene.add.text(500, 1250, "Main Menu", {
-      fontSize: "32px",
+    const backButton = scene.add.text(500, 1000, "Main Menu", {
+      fontSize: "120px",
       color: "#fff",
       backgroundColor: "#666",
       padding: { x: 10, y: 5 },
     }).setInteractive();
   
-    const restartButton = scene.add.text(500, 1150, "Restart", {
-      fontSize: "32px",
+    const restartButton = scene.add.text(500, 1500, "Restart", {
+      fontSize: "120px",
       color: "#fff",
       backgroundColor: "#666",
       padding: { x: 10, y: 5 },
