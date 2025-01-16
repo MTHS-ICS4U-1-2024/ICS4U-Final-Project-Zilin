@@ -29,7 +29,6 @@ export class Game extends Scene
     private rock!: Rock;
     private wallGroup!: Phaser.Physics.Arcade.Group;
     private brokenWallGroup!: Phaser.Physics.Arcade.Group;
-    private box!: Box;
 
     constructor ()
     {
@@ -132,7 +131,20 @@ export class Game extends Scene
         const box = new Box(this, xOfItem * 4 + 50, yOfItem * 5 + 50, 'box');
         this.physics.add.collider(this.player.sprite, box.sprite, () => {
             if (this.player.sprite.body) {
-                box.push();
+                const velocity = this.player.sprite.body.velocity;
+                box.push(velocity);
+            } 
+        });
+
+        // Stop the box when it hits a wall
+        this.physics.add.collider(box.sprite, this.wallGroup, () => {
+            box.stop(); // Stop the box's movement upon hitting a wall
+        });
+
+        // Destroy the box and pit when they collide
+        this.physics.add.overlap(box.sprite, this.pits, (_, pit) => {
+            if (pit instanceof Phaser.GameObjects.GameObject) {
+                box.handleCollisionWithPit(pit);
             }
         });
 
