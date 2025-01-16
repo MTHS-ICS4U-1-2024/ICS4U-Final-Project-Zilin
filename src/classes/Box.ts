@@ -13,13 +13,17 @@ export default class Box {
   constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
     this.sprite = scene.physics.add.sprite(x, y, texture)
       .setDisplaySize(1170 / 7, 2532 / 15).refreshBody();
-    this.sprite.setImmovable(true);
+    this.sprite.setImmovable(false);
   }
 
-  // Method to push the box in a given direction, with adjusted speed
   push(velocity: Phaser.Math.Vector2) {
-    const speed = 10; // Adjust the pushing speed as needed
+    const speed = 10; // Adjust the pushing speed
     this.sprite.setVelocity(velocity.x * speed, velocity.y * speed);
+  }
+  
+  moveOpposite(velocity: Phaser.Math.Vector2) {
+    const speed = 10;
+    this.sprite.setVelocity(-velocity.x * speed, -velocity.y * speed); // Move in the opposite direction
   }
 
   // Method to stop the box
