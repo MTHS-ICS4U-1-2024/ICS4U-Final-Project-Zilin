@@ -120,7 +120,11 @@ export class Game extends Scene
         this.physics.add.collider(this.player.sprite, this.brokenWallGroup);
 
         // Add collision handling for the rock
-        this.rock.handleCollisions(this, this.wallGroup, this.brokenWallGroup);
+        if (this.rock) {
+            this.rock.handleCollisions(this, this.wallGroup, this.brokenWallGroup);
+        } else {
+            console.error('Rock is not defined');
+        }
 
         // Add a purple portal
         this.purplePortal = this.add.image(50, 50, "purplePortal")
