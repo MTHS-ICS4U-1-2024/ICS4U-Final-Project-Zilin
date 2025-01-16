@@ -60,6 +60,7 @@ export class Game extends Scene
         if (!this.player) {
             console.error('Player failed to initialize.');
         }
+        this.player.initializeControls();
 
         // Enable player collision with world bounds
         this.player.setCollideWorldBounds(true);

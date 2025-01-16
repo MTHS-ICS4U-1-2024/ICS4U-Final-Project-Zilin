@@ -25,9 +25,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
 
-    console.log("Cursors:", this.cursors);
-    console.log("WASD:", this.wasd);
-
     // Add keyboard controls
     this.cursors = this.scene.input.keyboard!.createCursorKeys();
     this.wasd = this.scene.input.keyboard!.addKeys({
@@ -43,6 +40,40 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     // Add player to the scene and set physics
     this.setDisplaySize(140, 140); // Ensure player has the correct size
     this.setCollideWorldBounds(true); 
+
+    this.initializeControls();
+  }
+
+  public initializeControls() {
+    if (!this.scene.input.keyboard) {
+      console.error("Keyboard input is not available.");
+      return;
+    }
+
+    // Initialize cursor keys
+    this.cursors = this.scene.input.keyboard.createCursorKeys();
+    console.log("Cursors initialized:", this.cursors);
+
+    // Initialize WASD keys
+    this.wasd = this.scene.input.keyboard.addKeys({
+      up: Phaser.Input.Keyboard.KeyCodes.W,
+      down: Phaser.Input.Keyboard.KeyCodes.S,
+      left: Phaser.Input.Keyboard.KeyCodes.A,
+      right: Phaser.Input.Keyboard.KeyCodes.D,
+    }) as { [key: string]: Phaser.Input.Keyboard.Key };
+    console.log("WASD initialized:", this.wasd);
+
+    if (this.scene.input.keyboard) {
+      this.cursors = this.scene.input.keyboard.createCursorKeys();
+      this.wasd = this.scene.input.keyboard.addKeys({
+        up: Phaser.Input.Keyboard.KeyCodes.W,
+        down: Phaser.Input.Keyboard.KeyCodes.S,
+        left: Phaser.Input.Keyboard.KeyCodes.A,
+        right: Phaser.Input.Keyboard.KeyCodes.D,
+      }) as { [key: string]: Phaser.Input.Keyboard.Key };
+    } else {
+      console.error("Keyboard input is not available.");
+    }
   }
 
   private createVirtualButtons() {
@@ -98,21 +129,22 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
   }
   
   public update() {
+    // Debugging movement state
     console.log("Cursors state:", {
-      left: this.cursors.left.isDown,
-      right: this.cursors.right.isDown,
-      up: this.cursors.up.isDown,
-      down: this.cursors.down.isDown,
-    });
-    
-    console.log("WASD state:", {
-      left: this.wasd.left.isDown,
-      right: this.wasd.right.isDown,
-      up: this.wasd.up.isDown,
-      down: this.wasd.down.isDown,
+      left: this.cursors.left?.isDown,
+      right: this.cursors.right?.isDown,
+      up: this.cursors.up?.isDown,
+      down: this.cursors.down?.isDown,
     });
 
-    // Handle player movement
+    console.log("WASD state:", {
+      left: this.wasd.left?.isDown,
+      right: this.wasd.right?.isDown,
+      up: this.wasd.up?.isDown,
+      down: this.wasd.down?.isDown,
+    });
+
+    // Movement logic
     if (this.cursors.left.isDown || this.wasd.left.isDown) {
       this.setVelocityX(-165);
     } else if (this.cursors.right.isDown || this.wasd.right.isDown) {

@@ -6,7 +6,7 @@
 * @version 1.0
 * @since 2025-01-09
 */
-import { Scene } from 'phaser';
+import { Scene } from "phaser";
 
 export default class Button {
     scene: Scene;
@@ -24,17 +24,18 @@ export default class Button {
         this.scene = scene;
 
         // Create the button
-        this.button = scene.add.image(x, y, texture)
-        .setInteractive();
+        this.button = scene.add.image(x, y, texture).setInteractive();
         this.button.setScrollFactor(0); // Ensure button stays in place
 
+        const initialScale = this.button.scale;
+
         // Add interactive behavior
-        this.button.on('pointerdown', () => {
-            this.button.setScale(0.9); // Feedback
+        this.button.on("pointerdown", () => {
+            this.button.setScale(initialScale * 0.9); // Feedback
             onClick(); // Trigger action
         });
-        this.button.on('pointerup', () => {
-            this.button.setScale(1); // Reset feedback
+        this.button.on("pointerup", () => {
+            this.button.setScale(initialScale); // Reset feedback
         });
     }
 
@@ -50,18 +51,41 @@ export default class Button {
             return;
         }
 
+        if (!(player.body instanceof Phaser.Physics.Arcade.Body)) {
+            console.error("The provided player does not have a physics body.");
+            return;
+        }
+
         const keyboard = scene.input.keyboard;
 
-        // WASD Key Down
-        keyboard.on("keydown-W", () => player.setVelocityY(-velocity));
-        keyboard.on("keydown-A", () => player.setVelocityX(-velocity));
-        keyboard.on("keydown-S", () => player.setVelocityY(velocity));
-        keyboard.on("keydown-D", () => player.setVelocityX(velocity));
+        // Define keydown and keyup actions
+        const moveUp = () => player.setVelocityY(-velocity);
+        const moveLeft = () => player.setVelocityX(-velocity);
+        const moveDown = () => player.setVelocityY(velocity);
+        const moveRight = () => player.setVelocityX(velocity);
+        const stopVertical = () => player.setVelocityY(0);
+        const stopHorizontal = () => player.setVelocityX(0);
 
-        // WASD Key Up
-        keyboard.on("keyup-W", () => player.setVelocityY(0));
-        keyboard.on("keyup-A", () => player.setVelocityX(0));
-        keyboard.on("keyup-S", () => player.setVelocityY(0));
-        keyboard.on("keyup-D", () => player.setVelocityX(0));
+        // Add listeners
+        keyboard.on("keydown-W", moveUp);
+        keyboard.on("keydown-A", moveLeft);
+        keyboard.on("keydown-S", moveDown);
+        keyboard.on("keydown-D", moveRight);
+        keyboard.on("keyup-W", stopVertical);
+        keyboard.on("keyup-A", stopHorizontal);
+        keyboard.on("keyup-S", stopVertical);
+        keyboard.on("keyup-D", stopHorizontal);
+
+        // Clean up on scene shutdown
+        scene.events.once(Phaser.Scenes.Events.SHUTDOWN, () => {
+            keyboard.off("keydown-W", moveUp);
+            keyboard.off("keydown-A", moveLeft);
+            keyboard.off("keydown-S", moveDown);
+            keyboard.off("keydown-D", moveRight);
+            keyboard.off("keyup-W", stopVertical);
+            keyboard.off("keyup-A", stopHorizontal);
+            keyboard.off("keyup-S", stopVertical);
+            keyboard.off("keyup-D", stopHorizontal);
+        });
     }
 }
