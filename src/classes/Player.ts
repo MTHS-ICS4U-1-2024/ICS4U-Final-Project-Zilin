@@ -25,6 +25,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     scene.add.existing(this);
     scene.physics.add.existing(this);
 
+    console.log("Cursors:", this.cursors);
+    console.log("WASD:", this.wasd);
+
     // Add keyboard controls
     this.cursors = this.scene.input.keyboard!.createCursorKeys();
     this.wasd = this.scene.input.keyboard!.addKeys({
@@ -38,20 +41,18 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
     this.createVirtualButtons();
 
     // Add player to the scene and set physics
-    scene.add.existing(this);
-    scene.physics.add.existing(this);
     this.setDisplaySize(140, 140); // Ensure player has the correct size
+    this.setCollideWorldBounds(true); 
   }
 
   private createVirtualButtons() {
     const screenWidth = this.scene.scale.width;
     const screenHeight = this.scene.scale.height;
   
-    // Button size relative to screen dimensions (for example, 8% of screen width)
     const buttonSize = 400;
     const buttonSpacing = 20;
   
-    // Adjust positions based on screen size
+    // Up button
     this.upButton = new Button(
       this.scene,
       screenWidth / 2,
@@ -60,8 +61,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       () => this.setVelocityY(-300)
     );
     this.upButton.button.setDisplaySize(buttonSize, buttonSize);
-    this.upButton.button.on('pointerup', () => this.setVelocityY(0));
+    this.upButton.button.on("pointerup", () => this.setVelocityY(0)); // Correct listener
   
+    // Down button
     this.downButton = new Button(
       this.scene,
       screenWidth / 2,
@@ -70,8 +72,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       () => this.setVelocityY(300)
     );
     this.downButton.button.setDisplaySize(buttonSize, buttonSize);
-    this.upButton.button.on('pointerup', () => this.setVelocityY(0));
+    this.downButton.button.on("pointerup", () => this.setVelocityY(0));
   
+    // Left button
     this.leftButton = new Button(
       this.scene,
       screenWidth / 2 - buttonSize - buttonSpacing,
@@ -80,8 +83,9 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       () => this.setVelocityX(-300)
     );
     this.leftButton.button.setDisplaySize(buttonSize, buttonSize);
-    this.upButton.button.on('pointerup', () => this.setVelocityX(0));
+    this.leftButton.button.on("pointerup", () => this.setVelocityX(0));
   
+    // Right button
     this.rightButton = new Button(
       this.scene,
       screenWidth / 2 + buttonSize + buttonSpacing,
@@ -90,10 +94,24 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
       () => this.setVelocityX(300)
     );
     this.rightButton.button.setDisplaySize(buttonSize, buttonSize);
-    this.upButton.button.on('pointerup', () => this.setVelocityX(0));
+    this.rightButton.button.on("pointerup", () => this.setVelocityX(0));
   }
-
+  
   public update() {
+    console.log("Cursors state:", {
+      left: this.cursors.left.isDown,
+      right: this.cursors.right.isDown,
+      up: this.cursors.up.isDown,
+      down: this.cursors.down.isDown,
+    });
+    
+    console.log("WASD state:", {
+      left: this.wasd.left.isDown,
+      right: this.wasd.right.isDown,
+      up: this.wasd.up.isDown,
+      down: this.wasd.down.isDown,
+    });
+
     // Handle player movement
     if (this.cursors.left.isDown || this.wasd.left.isDown) {
       this.setVelocityX(-165);
