@@ -24,17 +24,6 @@ export default class MenuButton extends Phaser.GameObjects.Image {
         this.showMenu(scene);
       }
     });
-
-    // Check if keyboard input is available before adding the listener
-    if (scene.input.keyboard) {
-      scene.input.keyboard.on("keydown-ESC", () => {
-        if (!this.menuShown) {
-          this.showMenu(scene);
-        }
-      });
-    } else {
-      console.warn("Keyboard input is not available in this scene.");
-    }
   }
 
   showMenu(scene: Phaser.Scene) {
