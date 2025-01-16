@@ -155,8 +155,10 @@ export class Game extends Scene
             classType: Stair,
             runChildUpdate: true
         });
-        stairs.add(new Stair(this, xOfItem * 2 + 50, 50, 'stair'));
-        stairs.add(new Stair(this, xOfItem * 5 + 50, yOfItem * 7 + 50, 'stair'));
+        stairs.add(new Stair(this, xOfItem * 2 + 50, 50, 'stair')
+        .setDisplaySize(itemWidth, itemHeigh));
+        stairs.add(new Stair(this, xOfItem * 5 + 50, yOfItem * 7 + 50, 'stair')
+        .setDisplaySize(itemWidth, itemHeigh));
 
         // Create the menu button
         this.menuButton = new MenuButton(this, 1100, 50, 'menuButton');
