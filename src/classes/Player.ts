@@ -7,7 +7,6 @@
 */
 import Phaser from "phaser";
 import Button from "./Button";
-import Stair from "./Stair";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   sprite: Phaser.GameObjects.Sprite;
