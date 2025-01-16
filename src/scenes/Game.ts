@@ -54,6 +54,9 @@ export class Game extends Scene
 
         // add player
         this.player = new Player(this, 50, yOfItem + 50, "player");
+        if (!this.player) {
+            console.error('Player failed to initialize.');
+        }
 
         // Add walls
         const wall = this.physics.add.staticGroup();
