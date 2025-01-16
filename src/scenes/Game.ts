@@ -107,6 +107,8 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
         wall.create(xOfItem * 5 + 50, yOfItem * 5 + 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        wall.create(xOfItem * 5 + 50, yOfItem * 6 + 50, "wall")
+        .setDisplaySize(itemWidth, itemWidth).refreshBody();
         wall.create(xOfItem * 5 + 50, yOfItem * 7 + 50, "wall")
         .setDisplaySize(itemWidth, itemWidth).refreshBody();
         wall.create(xOfItem * 5 + 50, yOfItem * 8 + 50, "wall")
@@ -123,7 +125,7 @@ export class Game extends Scene
         this.rock = new Rock(this, 50, yOfItem * 3 + 50, "rock");
         this.physics.add.collider(this.player.sprite, this.rock.sprite, () => {
             if (this.player.sprite.body) {
-                this.rock.moveOpposite(
+                this.rock.roll(
                     new Phaser.Math.Vector2(
                         this.player.sprite.body.velocity.x,
                         this.player.sprite.body.velocity.y));
