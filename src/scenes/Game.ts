@@ -167,17 +167,6 @@ export class Game extends Scene
             box.stop(); // Stop the box's movement upon hitting a wall
         });
 
-        // Destroy the box and pit when they collide
-        this.physics.add.overlap(box.sprite, this.pits, (_, pit) => {
-            if (pit instanceof Phaser.GameObjects.GameObject) {
-                box.handleCollisionWithPit(pit);
-            }
-        });
-
-        // Add arrow
-        this.arrow = this.add.image(xOfItem * 6 + 50, yOfItem * 6 + 50, "arrow")
-        .setDisplaySize(itemWidth, itemHeight);
-
         // Add pits
         this.pits = this.physics.add.group();
         this.pits.create(xOfItem + 50, yOfItem * 2 + 50, 'pit')
@@ -191,6 +180,16 @@ export class Game extends Scene
         this.pits.create(xOfItem * 6 + 50, yOfItem * 3 + 50, 'pit')
         .setDisplaySize(itemWidth, itemHeight).refreshBody();
 
+        // Destroy the box and pit when they collide
+        this.physics.add.overlap(box.sprite, this.pits, (_, pit) => {
+            if (pit instanceof Phaser.GameObjects.GameObject) {
+                box.handleCollisionWithPit(pit);
+            }
+        });
+
+        // Add arrow
+        this.arrow = this.add.image(xOfItem * 6 + 50, yOfItem * 6 + 50, "arrow")
+        .setDisplaySize(itemWidth, itemHeight);
 
         // Add a key
         const key = new Key(this, xOfItem * 5 + 50, yOfItem + 50, "key");
