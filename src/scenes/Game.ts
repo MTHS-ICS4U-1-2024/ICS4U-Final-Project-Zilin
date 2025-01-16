@@ -22,7 +22,7 @@ export class Game extends Scene
     msg_text : Phaser.GameObjects.Text;
     player!: Phaser.Physics.Arcade.Sprite;
     cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
-    pits: Phaser.GameObjects.Group;
+    pits: Phaser.GameObjects.Image;
     menuButton: MenuButton;
     purplePortal: Phaser.GameObjects.Image;
     arrow: Phaser.GameObjects.Image;
@@ -129,8 +129,12 @@ export class Game extends Scene
         .setDisplaySize(itemWidth, itemHeigh);
 
         // Add pits
-        this.pits = this.add.group();
-        this.pits.add(this.add.rectangle(300, 300, 50, 50, 0xff0000));
+        this.pits = this.add.image(50, yOfItem * 4 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
+        this.pits = this.add.image(xOfItem + 50, yOfItem * 3 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
+        this.pits = this.add.image(xOfItem * 5 + 50, yOfItem * 3 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
+        this.pits = this.add.image(xOfItem * 5 + 50, yOfItem * 4 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
+        this.pits = this.add.image(xOfItem * 6 + 50, yOfItem * 3 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
+
 
         // Add a key
         const key = new Key(this, xOfItem * 5 + 50, yOfItem + 50, "key");
