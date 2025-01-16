@@ -25,17 +25,13 @@ export default class Rock {
   }
 
       
-  handleCollisions(scene: Phaser.Scene, wallGroup: Phaser.Physics.Arcade.Group, brokenWallGroup: Phaser.Physics.Arcade.Group) {
-    scene.physics.add.collider(this.sprite, wallGroup, () => {
-      // Collision with a normal wall - simply stop movement
-      this.sprite.setVelocity(0);
+  handleCollisions(scene: Phaser.Scene, wallGroup: Phaser.Physics.Arcade.Group, brokenWallGroup: Phaser.Physics.Arcade.Group | Phaser.Physics.Arcade.StaticGroup) {
+    scene.physics.add.collider(this.sprite, wallGroup);
+    scene.physics.add.collider(this.sprite, brokenWallGroup, (_, brokenWall) => {
+        if (brokenWall instanceof Phaser.GameObjects.GameObject) {
+            this.sprite.destroy(); // Destroy the rock
+            brokenWall.destroy(); // Destroy the broken wall
+        }
     });
-
-    scene.physics.add.collider(this.sprite, brokenWallGroup, (rock, brokenWall) => {
-      // Collision with a broken wall - destroy both the rock and the broken wall
-      this.sprite.destroy();
-      rock.destroy();
-      brokenWall.destroy();
-    });
-  }
+}
 }

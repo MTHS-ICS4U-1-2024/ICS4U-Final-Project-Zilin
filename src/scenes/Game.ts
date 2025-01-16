@@ -28,7 +28,7 @@ export class Game extends Scene
     redPortal: Phaser.GameObjects.Image;
     private rock!: Rock;
     private wallGroup!: Phaser.Physics.Arcade.Group;
-    private brokenWallGroup!: Phaser.Physics.Arcade.Group;
+    private brokenWallGroup!: Phaser.Physics.Arcade.StaticGroup;
 
     constructor ()
     {
@@ -112,16 +112,15 @@ export class Game extends Scene
         });
 
         // Create broken wall group
-        const brokenWallGroup = this.physics.add.staticGroup();
+        this.brokenWallGroup = this.physics.add.staticGroup();
         this.brokenWallGroup.create(xOfItem * 5 + 50, yOfItem * 6 + 50, "brokenWall")
-        .setDisplaySize(itemWidth, itemHeigh);
+        .setDisplaySize(itemWidth, itemHeigh).refreshBody();
 
         // Add collision between player and broken wall
-        this.physics.add.collider(this.player.sprite, brokenWallGroup);
+        this.physics.add.collider(this.player.sprite, this.brokenWallGroup);
 
         // Add collision handling for the rock
         this.rock.handleCollisions(this, this.wallGroup, this.brokenWallGroup);
-
 
         // Add a purple portal
         this.purplePortal = this.add.image(50, 50, "purplePortal")
