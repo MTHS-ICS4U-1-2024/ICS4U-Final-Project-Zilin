@@ -139,7 +139,7 @@ export class Game extends Scene
             } 
         });
 
-        // Add a box
+        // Add a box two
         const boxTwo = new Box(this, 50, yOfItem * 3 + 50, 'box');
         this.physics.add.collider(this.player.sprite, boxTwo.sprite, () => {
             if (this.player.sprite.body) {
@@ -153,10 +153,22 @@ export class Game extends Scene
             box.stop(); // Stop the box's movement upon hitting a wall
         });
 
+        // Stop the box two when it hits a wall
+        this.physics.add.collider(boxTwo.sprite, this.wallGroup, () => {
+            boxTwo.stop(); // Stop the box's movement upon hitting a wall
+        });
+
         // Destroy the box and pit when they collide
         this.physics.add.overlap(box.sprite, this.pits, (_, pit) => {
             if (pit instanceof Phaser.GameObjects.GameObject) {
                 box.handleCollisionWithPit(pit);
+            }
+        });
+
+        // Destroy the box two and pit when they collide
+        this.physics.add.overlap(boxTwo.sprite, this.pits, (_, pit) => {
+            if (pit instanceof Phaser.GameObjects.GameObject) {
+                boxTwo.handleCollisionWithPit(pit);
             }
         });
 
@@ -201,7 +213,7 @@ export class Game extends Scene
         stairs.add(new Stair(this, xOfItem * 5 + 50, yOfItem * 7 + 50, 'stair'));
 
         // Create the menu button
-        this.menuButton = new MenuButton(this, 50, yOfItem * 9 + 50, 'menuButton')
+        this.menuButton = new MenuButton(this, 100, yOfItem * 10 + 50, 'menuButton')
         .setDisplaySize(itemWidth * 2, itemHeigh * 2);
         this.add.existing(this.menuButton);
 

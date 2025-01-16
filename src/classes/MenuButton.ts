@@ -34,24 +34,31 @@ export default class MenuButton extends Phaser.GameObjects.Image {
 
     // Create a semi-transparent background
     const menuBackground = scene.add.image(1170 / 2, 2532 / 2, 'select')
-    .setDisplaySize(700, 2100);
+    .setDisplaySize(1000, 2100);
 
     // Add a title
-    const title = scene.add.text(485, 800, "Pause Menu", {
-      fontSize: "160px",
+    const title = scene.add.text(200, 700, "Pause Menu", {
+      fontSize: "120px",
       color: "#fff",
       fontStyle: "bold",
     });
 
-    const backButton = scene.add.text(500, 1000, "Main Menu", {
-      fontSize: "120px",
+    const backButton = scene.add.text(200, 900, "Main Menu", {
+      fontSize: "100px",
       color: "#fff",
       backgroundColor: "#666",
       padding: { x: 10, y: 5 },
     }).setInteractive();
   
-    const restartButton = scene.add.text(500, 1500, "Restart", {
-      fontSize: "120px",
+    const restartButton = scene.add.text(200, 1100, "Restart", {
+      fontSize: "100px",
+      color: "#fff",
+      backgroundColor: "#666",
+      padding: { x: 10, y: 5 },
+    }).setInteractive();
+
+    const cancelButton = scene.add.text(200, 1100, "Cancel", {
+      fontSize: "100px",
       color: "#fff",
       backgroundColor: "#666",
       padding: { x: 10, y: 5 },
@@ -65,6 +72,10 @@ export default class MenuButton extends Phaser.GameObjects.Image {
     backButton.on("pointerdown", () => {
       this.closeMenu(scene, [menuBackground, title, restartButton, backButton]);
       scene.scene.start("MainMenu");
+    });
+
+    cancelButton.on("pointerdown", () => {
+      this.closeMenu(scene, [menuBackground, title, restartButton, backButton, cancelButton]);
     });
   }
 
