@@ -10,8 +10,8 @@ import Button from "./Button";
 
 export default class Player extends Phaser.Physics.Arcade.Sprite {
   sprite: Phaser.GameObjects.Sprite;
-  private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
-  private wasd!: { [key: string]: Phaser.Input.Keyboard.Key };
+  private cursors: Phaser.Types.Input.Keyboard.CursorKeys;
+  private wasd: { [key: string]: Phaser.Input.Keyboard.Key };
   upButton: Button;
   downButton: Button;
   leftButton: Button;
