@@ -178,11 +178,16 @@ export class Game extends Scene
 
         // Add pits
         this.pits = this.physics.add.group();
-        this.pits.create(50, yOfItem * 4 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
-        this.pits.create(xOfItem + 50, yOfItem * 3 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
-        this.pits.create(xOfItem * 5 + 50, yOfItem * 3 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
-        this.pits.create(xOfItem * 5 + 50, yOfItem * 4 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
-        this.pits.create(xOfItem * 6 + 50, yOfItem * 3 + 50, 'pit').setDisplaySize(itemWidth, itemHeigh);
+        this.pits.create(50, yOfItem * 4 + 50, 'pit')
+        .setDisplaySize(itemWidth, itemHeigh).refreshBody();
+        this.pits.create(xOfItem + 50, yOfItem * 3 + 50, 'pit')
+        .setDisplaySize(itemWidth, itemHeigh).refreshBody();
+        this.pits.create(xOfItem * 5 + 50, yOfItem * 3 + 50, 'pit')
+        .setDisplaySize(itemWidth, itemHeigh).refreshBody();
+        this.pits.create(xOfItem * 5 + 50, yOfItem * 4 + 50, 'pit')
+        .setDisplaySize(itemWidth, itemHeigh).refreshBody();
+        this.pits.create(xOfItem * 6 + 50, yOfItem * 3 + 50, 'pit')
+        .setDisplaySize(itemWidth, itemHeigh).refreshBody();
 
 
         // Add a key

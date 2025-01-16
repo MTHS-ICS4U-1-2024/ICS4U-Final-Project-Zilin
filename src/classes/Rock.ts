@@ -12,7 +12,7 @@ export default class Rock {
 
   constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
     this.sprite = scene.physics.add.sprite(x, y, texture)
-    .setDisplaySize(1170 / 7, 2532 / 15);
+    .setDisplaySize(1170 / 7, 2532 / 15).refreshBody();
     this.sprite.setImmovable(true);
   }
 
