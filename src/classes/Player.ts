@@ -7,6 +7,7 @@
 */
 import Phaser from "phaser";
 import Button from "./Button";
+import Stair from "./Stair"
 
 export default class Player {
     private scene: Phaser.Scene;
@@ -35,6 +36,10 @@ export default class Player {
   
       // Add virtual buttons
       this.createVirtualButtons();
+
+      // Add player to scene and set physics
+      scene.add.existing(this);
+      scene.physics.add.existing(this);
     }
 
     get sprite(): Phaser.Physics.Arcade.Sprite {
@@ -97,6 +102,13 @@ export default class Player {
       } else {
         this.sprite.setVelocityY(0);
       }
+
+          // Assuming you have two stairs instances, `stair1` and `stair2`
+      const stair1 = new Stair(this.scene, 100, 100, 'stairTexture');
+      const stair2 = new Stair(this.scene, 500, 500, 'stairTexture');
+
+      stair1.teleport(this, stair2);
+      stair2.teleport(this, stair1);
     }
 
   public handleInteractions(
