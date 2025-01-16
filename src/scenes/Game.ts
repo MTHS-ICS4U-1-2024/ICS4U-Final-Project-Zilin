@@ -265,8 +265,6 @@ export class Game extends Scene
     }
 
     update() {
-        this.player.update();
-
         // Player movement
         if (this.cursors.left.isDown) {
             this.player.setVelocityX(-165);
