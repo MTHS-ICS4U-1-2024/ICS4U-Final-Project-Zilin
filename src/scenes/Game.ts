@@ -267,5 +267,22 @@ export class Game extends Scene
 
     update() {
         this.player.update();
+
+        // Player movement
+        if (this.cursors.left.isDown) {
+            this.player.setVelocityX(-165);
+        } else if (this.cursors.right.isDown) {
+            this.player.setVelocityX(165);
+        } else {
+            this.player.setVelocityX(0);
+        }
+
+        if (this.cursors.up.isDown) {
+            this.player.setVelocityY(-165);
+        } else if (this.cursors.down.isDown) {
+            this.player.setVelocityY(165);
+        } else {
+            this.player.setVelocityY(0);
+        }
     }
 }
