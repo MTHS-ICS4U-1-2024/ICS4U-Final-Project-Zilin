@@ -6,45 +6,90 @@
 * @since 2025-01-09
 */
 import Phaser from "phaser";
+import Button from "./Button";
 
 export default class Player {
-  private sprite: Phaser.Physics.Arcade.Sprite;
-  private scene: Phaser.Scene;
-
-  constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
-    this.scene = scene;
-    this.sprite = scene.physics.add.sprite(x, y, texture);
-    this.sprite.setCollideWorldBounds(true);
-  }
-
-  public update() {
-    const keyboard = this.scene.input?.keyboard;
-    if (!keyboard) return;
-
-    const cursors = keyboard.createCursorKeys();
-    const wasd = keyboard.addKeys({
-      up: Phaser.Input.Keyboard.KeyCodes.W,
-      left: Phaser.Input.Keyboard.KeyCodes.A,
-      down: Phaser.Input.Keyboard.KeyCodes.S,
-      right: Phaser.Input.Keyboard.KeyCodes.D,
-    }) as { [key: string]: Phaser.Input.Keyboard.Key };
-
-    if (cursors.left?.isDown || wasd.left.isDown) {
-      this.sprite.setVelocityX(-150);
-    } else if (cursors.right?.isDown || wasd.right.isDown) {
-      this.sprite.setVelocityX(150);
-    } else {
-      this.sprite.setVelocityX(0);
+    private scene: Phaser.Scene;
+    private sprite: Phaser.Physics.Arcade.Sprite;
+    private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
+    private wasd!: { [key: string]: Phaser.Input.Keyboard.Key };
+    private upButton!: Button;
+    private downButton!: Button;
+    private leftButton!: Button;
+    private rightButton!: Button;
+  
+    constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
+      this.scene = scene;
+      this.sprite = scene.physics.add.sprite(x, y, texture);
+  
+      // Add keyboard controls
+      this.cursors = this.scene.input.keyboard!.createCursorKeys();
+      this.wasd = this.scene.input.keyboard!.addKeys({
+        up: Phaser.Input.Keyboard.KeyCodes.W,
+        down: Phaser.Input.Keyboard.KeyCodes.S,
+        left: Phaser.Input.Keyboard.KeyCodes.A,
+        right: Phaser.Input.Keyboard.KeyCodes.D,
+      }) as { [key: string]: Phaser.Input.Keyboard.Key };
+  
+      // Add virtual buttons
+      this.createVirtualButtons();
     }
-
-    if (cursors.up?.isDown || wasd.up.isDown) {
-      this.sprite.setVelocityY(-150);
-    } else if (cursors.down?.isDown || wasd.down.isDown) {
-      this.sprite.setVelocityY(150);
-    } else {
-      this.sprite.setVelocityY(0);
+  
+    private createVirtualButtons() {
+      this.upButton = new Button(
+        this.scene,
+        100,
+        this.scene.scale.height - 200,
+        "upButton",
+        () => this.sprite.setVelocityY(-165),
+        () => this.sprite.setVelocityY(0)
+      );
+  
+      this.downButton = new Button(
+        this.scene,
+        100,
+        this.scene.scale.height - 100,
+        "downButton",
+        () => this.sprite.setVelocityY(165),
+        () => this.sprite.setVelocityY(0)
+      );
+  
+      this.leftButton = new Button(
+        this.scene,
+        50,
+        this.scene.scale.height - 150,
+        "leftButton",
+        () => this.sprite.setVelocityX(-165),
+        () => this.sprite.setVelocityX(0)
+      );
+  
+      this.rightButton = new Button(
+        this.scene,
+        150,
+        this.scene.scale.height - 150,
+        "rightButton",
+        () => this.sprite.setVelocityX(165),
+        () => this.sprite.setVelocityX(0)
+      );
     }
-  }
+  
+    public update() {
+      if (this.cursors.left.isDown || this.wasd.left.isDown) {
+        this.sprite.setVelocityX(-165);
+      } else if (this.cursors.right.isDown || this.wasd.right.isDown) {
+        this.sprite.setVelocityX(165);
+      } else {
+        this.sprite.setVelocityX(0);
+      }
+  
+      if (this.cursors.up.isDown || this.wasd.up.isDown) {
+        this.sprite.setVelocityY(-165);
+      } else if (this.cursors.down.isDown || this.wasd.down.isDown) {
+        this.sprite.setVelocityY(165);
+      } else {
+        this.sprite.setVelocityY(0);
+      }
+    }
 
   public handleInteractions(
     stairs: Phaser.Physics.Arcade.Group,

@@ -175,12 +175,6 @@ export class Game extends Scene
         // Enable physics on the red portal
         this.physics.add.existing(this.redPortal);
 
-        // Add button
-        new Button(this, 100, 2300, 'upButton', 'up', this.player);
-        new Button(this, 100, 2500, 'downButton', 'down', this.player);
-        new Button(this, 50, 2400, 'leftButton', 'left', this.player);
-        new Button(this, 150, 2400, 'rightButton', 'right', this.player);
-
         // Add WASD controls
         Button.addWASDControls(this, this.player);
 
