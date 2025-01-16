@@ -13,10 +13,10 @@ export default class Player {
     private sprite: Phaser.Physics.Arcade.Sprite;
     private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
     private wasd!: { [key: string]: Phaser.Input.Keyboard.Key };
-    private upButton!: Button;
-    private downButton!: Button;
-    private leftButton!: Button;
-    private rightButton!: Button;
+    upButton: Button;
+    downButton: Button;
+    leftButton: Button;
+    rightButton: Button;
   
     constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
       this.scene = scene;
@@ -41,8 +41,7 @@ export default class Player {
         100,
         this.scene.scale.height - 200,
         "upButton",
-        () => this.sprite.setVelocityY(-165),
-        () => this.sprite.setVelocityY(0)
+        () => this.sprite.setVelocityY(-165)
       );
   
       this.downButton = new Button(
@@ -50,8 +49,7 @@ export default class Player {
         100,
         this.scene.scale.height - 100,
         "downButton",
-        () => this.sprite.setVelocityY(165),
-        () => this.sprite.setVelocityY(0)
+        () => this.sprite.setVelocityY(165)
       );
   
       this.leftButton = new Button(
@@ -59,8 +57,7 @@ export default class Player {
         50,
         this.scene.scale.height - 150,
         "leftButton",
-        () => this.sprite.setVelocityX(-165),
-        () => this.sprite.setVelocityX(0)
+        () => this.sprite.setVelocityX(-165)
       );
   
       this.rightButton = new Button(
@@ -68,8 +65,7 @@ export default class Player {
         150,
         this.scene.scale.height - 150,
         "rightButton",
-        () => this.sprite.setVelocityX(165),
-        () => this.sprite.setVelocityX(0)
+        () => this.sprite.setVelocityX(165)
       );
     }
   
