@@ -13,6 +13,7 @@ export class GameOver extends Scene
     create ()
     {
         this.background = this.add.image(0, 0, 'titleBackground')
+        .setOrigin(0, 0)
         .setDisplayOrigin(1170, 2532);
 
         this.gameover_text = this.add.text(512, 300, 'Thanks.', {

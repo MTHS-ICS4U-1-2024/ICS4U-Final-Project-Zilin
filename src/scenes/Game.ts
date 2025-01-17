@@ -48,7 +48,7 @@ export class Game extends Scene
         // Add background floor
         this.background = this.add.image(screenWidth / 2, screenHeight / 2, "floor")
         .setDisplaySize(1170, 2532);
-        this.background = this.add.image(xOfItem, yOfItem * 5, "floor")
+        this.background = this.add.image(xOfItem, yOfItem * 5 - 100, "floor")
         .setDisplaySize(screenWidth * 2, screenHeight / 5 * 3);
 
         // add player
@@ -216,7 +216,7 @@ export class Game extends Scene
         });
 
         // Add the first stair with proper position and size
-        const stair1 = new Stair(this, xOfItem * 2 + 50, yOfItem + 50, 'stair');
+        const stair1 = new Stair(this, xOfItem * 2 + 50, 50, 'stair');
         stair1.setDisplaySize(165, 165);
         stairs.add(stair1); 
 
@@ -229,9 +229,7 @@ export class Game extends Scene
             // Type assertion to ensure stair is a Stair instance
             if (stair instanceof Stair) {
                 // Teleport the player to the other stair
-                if (stair === stair1) {
-                    stair1.teleport(this.player, stair2);
-                } else if (stair === stair2) {
+                if (stair === stair2) {
                     stair2.teleport(this.player, stair1);
                 }
             }
@@ -241,9 +239,52 @@ export class Game extends Scene
         this.cursors = this.input!.keyboard!.createCursorKeys();
         if (this.input.keyboard) {
             this.cursors = this.input.keyboard.createCursorKeys();
+
+            // Initialize WASD keys
+            this.input.keyboard.addKeys({
+                W: Phaser.Input.Keyboard.KeyCodes.W,
+                A: Phaser.Input.Keyboard.KeyCodes.A,
+                S: Phaser.Input.Keyboard.KeyCodes.S,
+                D: Phaser.Input.Keyboard.KeyCodes.D,
+            });
         } else {
             console.error("Keyboard input is not available.");
         }
+
+        const buttonSize = 400;
+        const buttonAlpha = 20;
+
+        const upButton = this.add.image(screenWidth / 2,
+            screenHeight - (buttonSize * 2) - buttonAlpha, "upButton")
+        .setDisplaySize(buttonSize, buttonSize)
+        .setInteractive()
+        .setAlpha(buttonAlpha);
+        upButton.on('pointerdown', () => this.player.setVelocityY(-165));
+        upButton.on('pointerup', () => this.player.setVelocityY(0));
+
+        const downButton = this.add.image(screenWidth / 2,
+            screenHeight - buttonSize, "downButton")
+        .setDisplaySize(buttonSize, buttonSize)
+        .setInteractive()
+        .setAlpha(buttonAlpha);
+        downButton.on('pointerdown', () => this.player.setVelocityY(165));
+        downButton.on('pointerup', () => this.player.setVelocityY(0));
+
+        const leftButton = this.add.image(screenWidth / 2 - buttonSize - buttonAlpha,
+            screenHeight - buttonSize * 1.5,, "leftButton")
+        .setDisplaySize(buttonSize, buttonSize)
+        .setInteractive()
+        .setAlpha(buttonAlpha);
+        leftButton.on('pointerdown', () => this.player.setVelocityX(-165));
+        leftButton.on('pointerup', () => this.player.setVelocityX(0));
+
+        const rightButton = this.add.image(      screenWidth / 2 + buttonSize + buttonAlpha,
+            screenHeight - buttonSize * 1.5,, "rightButton")
+        .setDisplaySize(buttonSize, buttonSize)
+        .setInteractive()
+        .setAlpha(buttonAlpha);
+        rightButton.on('pointerdown', () => this.player.setVelocityX(165));
+        rightButton.on('pointerup', () => this.player.setVelocityX(0));
 
         // add red portal
         this.redPortal = this.add.image(xOfItem * 6 + 50, yOfItem * 7 + 50, "redPortal")
@@ -259,21 +300,46 @@ export class Game extends Scene
     }
 
     update() {
-        // Player movement
-        if (this.cursors.left.isDown) {
-            this.player.setVelocityX(-165);
-        } else if (this.cursors.right.isDown) {
-            this.player.setVelocityX(165);
-        } else {
-            this.player.setVelocityX(0);
+    // Player movement
+    let velocityX = 0;
+    let velocityY = 0;
+
+    // Arrow keys movement
+    if (this.cursors.left.isDown) {
+        velocityX = -165;
+    } else if (this.cursors.right.isDown) {
+        velocityX = 165;
+    }
+
+    if (this.cursors.up.isDown) {
+        velocityY = -165;
+    } else if (this.cursors.down.isDown) {
+        velocityY = 165;
+    }
+
+    // WASD movement
+    if (this.input.keyboard) {
+        const keys = this.input.keyboard.addKeys({
+            W: Phaser.Input.Keyboard.KeyCodes.W,
+            A: Phaser.Input.Keyboard.KeyCodes.A,
+            S: Phaser.Input.Keyboard.KeyCodes.S,
+            D: Phaser.Input.Keyboard.KeyCodes.D,
+        });
+
+        if (keys.A.isDown) {
+            velocityX = -165;
+        } else if (keys.D.isDown) {
+            velocityX = 165;
         }
 
-        if (this.cursors.up.isDown) {
-            this.player.setVelocityY(-165);
-        } else if (this.cursors.down.isDown) {
-            this.player.setVelocityY(165);
-        } else {
-            this.player.setVelocityY(0);
+        if (keys.W.isDown) {
+            velocityY = -165;
+        } else if (keys.S.isDown) {
+            velocityY = 165;
         }
+    }
+
+    // Apply velocity to the player
+    this.player.setVelocity(velocityX, velocityY);
     }
 }
