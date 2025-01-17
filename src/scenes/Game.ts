@@ -139,6 +139,7 @@ export class Game extends Scene
 
         // Add collision between player and broken wall
         this.physics.add.collider(this.player, this.brokenWallGroup);
+        this.physics.add.collider(rock.sprite, this.wallGroup);
 
         // Destroy the rock and broken wall when they collide
         this.physics.add.overlap(rock.sprite, this.brokenWallGroup, (_, brokenWall) => {
@@ -349,9 +350,9 @@ export class Game extends Scene
 
     // Arrow keys movement
     if (this.cursors.left.isDown) {
-        velocityX = -200;
+        velocityX = -165;
     } else if (this.cursors.right.isDown) {
-        velocityX = 200;
+        velocityX = 165;
     }
 
     if (this.cursors.up.isDown) {
@@ -375,9 +376,9 @@ export class Game extends Scene
         };
 
         if (keys.A.isDown) {
-            velocityX = -200;
+            velocityX = -165;
         } else if (keys.D.isDown) {
-            velocityX = 200;
+            velocityX = 165;
         }
 
         if (keys.W.isDown) {
