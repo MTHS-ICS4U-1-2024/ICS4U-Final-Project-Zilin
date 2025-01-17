@@ -36,18 +36,16 @@ export default class Rock {
    * @param wallGroup - Group of solid walls.
    * @param brokenWallGroup - Group of breakable walls.
    */
-  handleCollisions(scene: Phaser.Scene, wallGroup: Phaser.Physics.Arcade.Group, brokenWallGroup: Phaser.Physics.Arcade.Group | Phaser.Physics.Arcade.StaticGroup) {
+  handleCollisionsWithWall(scene: Phaser.Scene, wallGroup: Phaser.Physics.Arcade.Group) {
     // Collision with solid walls stops the rock
     scene.physics.add.collider(this.sprite, wallGroup, () => {
       this.sprite.setVelocity(0); // Stop the rock
     });
-
-    // Collision with breakable walls destroys both rock and wall
-    scene.physics.add.collider(this.sprite, brokenWallGroup, (_, brokenWall) => {
-      if (brokenWall instanceof Phaser.Physics.Arcade.Sprite) {
-        this.sprite.destroy(); // Destroy the rock
-        brokenWall.destroy(); // Destroy the broken wall
-      }
-    });
   }
-}
+
+  handleCollisionsWithBrokenWall(brokenWall: Phaser.GameObjects.GameObject) {
+    console.log('The rock destroyed the broken wall.');
+      this.sprite.destroy(); // Destroy the rock
+      brokenWall.destroy(); // Destroy the broken wall
+  }
+};

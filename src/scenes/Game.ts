@@ -26,7 +26,6 @@ export class Game extends Scene
     purplePortal: Phaser.GameObjects.Image;
     arrow: Phaser.GameObjects.Image;
     redPortal: Phaser.GameObjects.Image;
-    rock!: Rock;
     wallGroup!: Phaser.Physics.Arcade.Group;
     brokenWallGroup!: Phaser.Physics.Arcade.StaticGroup;
 
@@ -142,13 +141,12 @@ export class Game extends Scene
         // Add collision between player and broken wall
         this.physics.add.collider(this.player, this.brokenWallGroup);
 
-        // Add collision handling for the rock
-        if (this.rock) {
-            this.rock.handleCollisions(this, this.wallGroup, this.brokenWallGroup);
-        } else {
-            console.error('Rock is not defined');
-        }
-        
+        // Destroy the rock and broken wall when they collide
+        this.physics.add.overlap(rock.sprite, this.brokenWallGroup, (_, brokenWall) => {
+            if (brokenWall instanceof Phaser.GameObjects.GameObject) {
+                rock.handleCollisionsWithBrokenWall(brokenWall);
+            }
+        });        
 
         // Add a purple portal
         this.purplePortal = this.add.image(50, 50, "purplePortal")
