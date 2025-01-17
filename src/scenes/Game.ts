@@ -259,7 +259,7 @@ export class Game extends Scene
         .setDisplaySize(buttonSize, buttonSize)
         .setInteractive()
         .setAlpha(buttonAlpha);
-        upButton.on('pointerdown', () => this.player.setVelocityY(-165));
+        upButton.on('pointerdown', () => this.player.setVelocityY(-400));
         upButton.on('pointerup', () => this.player.setVelocityY(0));
 
         const downButton = this.add.image(screenWidth / 2,
@@ -267,7 +267,7 @@ export class Game extends Scene
         .setDisplaySize(buttonSize, buttonSize)
         .setInteractive()
         .setAlpha(buttonAlpha);
-        downButton.on('pointerdown', () => this.player.setVelocityY(165));
+        downButton.on('pointerdown', () => this.player.setVelocityY(400));
         downButton.on('pointerup', () => this.player.setVelocityY(0));
 
         const leftButton = this.add.image(screenWidth / 2 - buttonSize - buttonAlpha,
@@ -275,7 +275,7 @@ export class Game extends Scene
         .setDisplaySize(buttonSize, buttonSize)
         .setInteractive()
         .setAlpha(buttonAlpha);
-        leftButton.on('pointerdown', () => this.player.setVelocityX(-165));
+        leftButton.on('pointerdown', () => this.player.setVelocityX(-400));
         leftButton.on('pointerup', () => this.player.setVelocityX(0));
 
         const rightButton = this.add.image(      screenWidth / 2 + buttonSize + buttonAlpha,
@@ -283,7 +283,7 @@ export class Game extends Scene
         .setDisplaySize(buttonSize, buttonSize)
         .setInteractive()
         .setAlpha(buttonAlpha);
-        rightButton.on('pointerdown', () => this.player.setVelocityX(165));
+        rightButton.on('pointerdown', () => this.player.setVelocityX(400));
         rightButton.on('pointerup', () => this.player.setVelocityX(0));
 
         // add red portal
