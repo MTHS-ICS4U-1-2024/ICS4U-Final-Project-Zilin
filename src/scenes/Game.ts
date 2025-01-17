@@ -278,7 +278,7 @@ export class Game extends Scene
         leftButton.on('pointerdown', () => this.player.setVelocityX(-400));
         leftButton.on('pointerup', () => this.player.setVelocityX(0));
 
-        const rightButton = this.add.image(      screenWidth / 2 + buttonSize + buttonAlpha,
+        const rightButton = this.add.image(screenWidth / 2 + buttonSize + buttonAlpha,
             screenHeight - buttonSize * 1.5,, "rightButton")
         .setDisplaySize(buttonSize, buttonSize)
         .setInteractive()
