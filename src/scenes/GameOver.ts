@@ -30,7 +30,7 @@ export class GameOver extends Scene
         });
         this.gameover_text.setOrigin(0.5);
 
-        this.gameover_text = this.add.text(512, 1100, 'palying.', {
+        this.gameover_text = this.add.text(512, 1100, 'playing.', {
             fontFamily: 'cursive', fontSize: 200, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
