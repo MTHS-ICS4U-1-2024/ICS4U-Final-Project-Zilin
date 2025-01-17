@@ -36,7 +36,8 @@ export default class MenuButton extends Phaser.GameObjects.Image {
     scene.scene.pause();
 
     // Create a semi-transparent background
-    const menuBackground = scene.add.image(centerX, centerY, "select").setDisplaySize(1400, 2100).setDepth(0);
+    const menuBackground = scene.add.image(centerX, centerY, "select")
+    .setDisplaySize(1400, 2100).setDepth(0).setInteractive();
 
     // Add a title
     const title = scene.add.text(centerX - 300, centerY - 400, "Pause Menu", {
@@ -51,39 +52,47 @@ export default class MenuButton extends Phaser.GameObjects.Image {
       color: "#fff",
       backgroundColor: "#666",
       padding: { x: 10, y: 5 },
-    }).setInteractive().setDepth(1);
+    }).setInteractive().setDepth(1)
+    .on("pointerdown", () => {
+      console.log("Main Menu button clicked");
+      scene.scene.start("MainMenu");
+    });
 
     const restartButton = scene.add.text(centerX - 300, centerY, "Restart", {
       fontSize: "100px",
       color: "#fff",
       backgroundColor: "#666",
       padding: { x: 10, y: 5 },
-    }).setInteractive().setDepth(1);
+    }).setInteractive().setDepth(1)
+    .on("pointerdown", () => {
+      console.log("Restart button clicked");
+      scene.scene.restart();
+    });;
 
     const cancelButton = scene.add.text(centerX - 300, centerY + 150, "Cancel", {
       fontSize: "100px",
       color: "#fff",
       backgroundColor: "#666",
       padding: { x: 10, y: 5 },
-    }).setInteractive().setDepth(1);
+    }).setInteractive().setDepth(1)
+    .on("pointerdown", () => {
+      console.log("Cancel button clicked");
+      console.log('Cancel clicked');
+      menuBackground.destroy();
+      backButton.destroy();
+      restartButton.destroy();
+      cancelButton.destroy();
+      scene.scene.resume();
+      this.menuShown = false;
+    });
+
 
     // Button functionality
-    restartButton.on("pointerdown", () => {
-      console.log("Restart button clicked");
-      this.closeMenu(scene, [menuBackground, title, restartButton, backButton, cancelButton]);
-      scene.scene.restart();
-    });
+    restartButton
 
-    backButton.on("pointerdown", () => {
-      console.log("Main Menu button clicked");
-      this.closeMenu(scene, [menuBackground, title, restartButton, backButton, cancelButton]);
-      scene.scene.start("MainMenu");
-    });
+    backButton
 
-    cancelButton.on("pointerdown", () => {
-      console.log("Cancel button clicked");
-      this.closeMenu(scene, [menuBackground, title, restartButton, backButton, cancelButton]);
-    });
+    cancelButton
   }
 
   closeMenu(scene: Phaser.Scene, menuElements: Phaser.GameObjects.GameObject[]) {

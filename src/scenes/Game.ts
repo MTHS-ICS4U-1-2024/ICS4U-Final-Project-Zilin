@@ -8,7 +8,6 @@
 
 import { Scene } from 'phaser';
 import Rock from "../classes/Rock";
-import MenuButton from "../classes/MenuButton";
 import Box from "../classes/Box";
 import Key from "../classes/Key";
 import Stair from "../classes/Stair";
@@ -18,10 +17,9 @@ export class Game extends Scene
     camera: Phaser.Cameras.Scene2D.Camera;
     background: Phaser.GameObjects.Image;
     msg_text : Phaser.GameObjects.Text;
-    player!: Phaser.Physics.Arcade.Sprite;
     cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
     pits: Phaser.GameObjects.Group;
-    menuButton: MenuButton;
+    player!: Phaser.Physics.Arcade.Sprite;
     purplePortal: Phaser.GameObjects.Image;
     arrow: Phaser.GameObjects.Image;
     redPortal: Phaser.GameObjects.Image;
@@ -63,6 +61,8 @@ export class Game extends Scene
             this.player.body.setSize(itemWidth, itemHeight);
             this.player.body.setOffset(0, 0);
         }
+        
+
 
         // Add walls
         const wall = this.physics.add.staticGroup();
@@ -236,11 +236,6 @@ export class Game extends Scene
                 }
             }
         });
-
-        // Create the menu button
-        this.menuButton = new MenuButton(this, 100, yOfItem * 10 - 50, 'menuButton')
-        .setDisplaySize(itemWidth * 2, itemHeight * 2);
-        this.add.existing(this.menuButton);
 
         // Create controls
         this.cursors = this.input!.keyboard!.createCursorKeys();
