@@ -253,38 +253,81 @@ export class Game extends Scene
 
         const buttonSize = 400;
         const buttonAlpha = 20;
+        const moveSpeed = 3200; // Max speed
+        const deceleration = 8000; // Deceleration rate when button is released
 
-        const upButton = this.add.image(screenWidth / 2,
+        // Up Button
+        const upButton = this.add.image(screenWidth / 2, 
             screenHeight - (buttonSize * 2) - buttonAlpha, "upButton")
-        .setDisplaySize(buttonSize, buttonSize)
-        .setInteractive()
-        .setAlpha(buttonAlpha);
-        upButton.on('pointerdown', () => this.player.setVelocityY(-5000));
-        upButton.on('pointerup', () => this.player.setVelocityY(0));
+            .setDisplaySize(buttonSize, buttonSize)
+            .setInteractive()
+            .setAlpha(buttonAlpha);
 
-        const downButton = this.add.image(screenWidth / 2,
+        upButton.on('pointerdown', () => {
+            this.player.setAccelerationY(-moveSpeed);  // Gradually move up
+            this.player.setDragY(deceleration); 
+        });
+        upButton.on('pointerup', () => {
+            this.player.setAccelerationY(0);  // Stop acceleration when released
+        });
+        upButton.on('pointerout', () => {
+            this.player.setAccelerationY(0);  // Stop acceleration if pointer leaves
+        });
+
+        // Down Button
+        const downButton = this.add.image(screenWidth / 2, 
             screenHeight - buttonSize, "downButton")
-        .setDisplaySize(buttonSize, buttonSize)
-        .setInteractive()
-        .setAlpha(buttonAlpha);
-        downButton.on('pointerdown', () => this.player.setVelocityY(5000));
-        downButton.on('pointerup', () => this.player.setVelocityY(0));
+            .setDisplaySize(buttonSize, buttonSize)
+            .setInteractive()
+            .setAlpha(buttonAlpha);
 
-        const leftButton = this.add.image(screenWidth / 2 - buttonSize - buttonAlpha,
+        downButton.on('pointerdown', () => {
+            this.player.setAccelerationY(moveSpeed);  // Gradually move down
+            this.player.setDragY(deceleration); 
+        });
+        downButton.on('pointerup', () => {
+           this.player.setAccelerationY(0);  // Stop acceleration when released
+        });
+        downButton.on('pointerout', () => {
+            this.player.setAccelerationY(0);  // Stop acceleration if pointer leaves
+        });
+
+        // Left Button
+        const leftButton = this.add.image(screenWidth / 2 - buttonSize - buttonAlpha, 
             screenHeight - buttonSize * 1.5, "leftButton")
-        .setDisplaySize(buttonSize, buttonSize)
-        .setInteractive()
-        .setAlpha(buttonAlpha);
-        leftButton.on('pointerdown', () => this.player.setVelocityX(-5000));
-        leftButton.on('pointerup', () => this.player.setVelocityX(0));
+            .setDisplaySize(buttonSize, buttonSize)
+            .setInteractive()
+            .setAlpha(buttonAlpha);
 
-        const rightButton = this.add.image(screenWidth / 2 + buttonSize + buttonAlpha,
+        leftButton.on('pointerdown', () => {
+            this.player.setAccelerationX(-moveSpeed);  // Gradually move left
+            this.player.setDragY(deceleration); 
+        });
+        leftButton.on('pointerup', () => {
+            this.player.setAccelerationX(0);  // Stop acceleration when released
+        });
+        leftButton.on('pointerout', () => {
+            this.player.setAccelerationX(0);  // Stop acceleration if pointer leaves
+        });
+
+        // Right Button
+        const rightButton = this.add.image(screenWidth / 2 + buttonSize + buttonAlpha, 
             screenHeight - buttonSize * 1.5, "rightButton")
-        .setDisplaySize(buttonSize, buttonSize)
-        .setInteractive()
-        .setAlpha(buttonAlpha);
-        rightButton.on('pointerdown', () => this.player.setVelocityX(5000));
-        rightButton.on('pointerup', () => this.player.setVelocityX(0));
+            .setDisplaySize(buttonSize, buttonSize)
+            .setInteractive()
+            .setAlpha(buttonAlpha);
+
+        rightButton.on('pointerdown', () => {
+            this.player.setAccelerationX(moveSpeed);  // Gradually move right
+            this.player.setDragY(deceleration); 
+        });
+        rightButton.on('pointerup', () => {
+            this.player.setAccelerationX(0);  // Stop acceleration when released
+        });
+        rightButton.on('pointerout', () => {
+            this.player.setAccelerationX(0);  // Stop acceleration if pointer leaves
+        });
+
 
         // add red portal
         this.redPortal = this.add.image(xOfItem * 6 + 50, yOfItem * 7 + 50, "redPortal")
@@ -306,15 +349,15 @@ export class Game extends Scene
 
     // Arrow keys movement
     if (this.cursors.left.isDown) {
-        velocityX = -165;
+        velocityX = -200;
     } else if (this.cursors.right.isDown) {
-        velocityX = 165;
+        velocityX = 200;
     }
 
     if (this.cursors.up.isDown) {
-        velocityY = -165;
+        velocityY = -200;
     } else if (this.cursors.down.isDown) {
-        velocityY = 165;
+        velocityY = 200;
     }
 
     // WASD movement
@@ -332,15 +375,15 @@ export class Game extends Scene
         };
 
         if (keys.A.isDown) {
-            velocityX = -165;
+            velocityX = -200;
         } else if (keys.D.isDown) {
-            velocityX = 165;
+            velocityX = 200;
         }
 
         if (keys.W.isDown) {
-            velocityY = -165;
+            velocityY = -200;
         } else if (keys.S.isDown) {
-            velocityY = 165;
+            velocityY = 200;
         }
     }
 
