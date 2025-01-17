@@ -40,7 +40,7 @@ export default class MenuButton extends Phaser.GameObjects.Image {
     .setDisplaySize(1400, 2100).setDepth(0).setInteractive();
 
     // Add a title
-    const title = scene.add.text(centerX - 300, centerY - 400, "Pause Menu", {
+    scene.add.text(centerX - 300, centerY - 400, "Pause Menu", {
       fontSize: "120px",
       color: "#fff",
       fontStyle: "bold",
