@@ -1,6 +1,5 @@
 /*
  * Main game program
- * the ratio is 14 x 7
  *
  * @author Zilin
  * @version 1.0
