@@ -271,7 +271,7 @@ export class Game extends Scene
         downButton.on('pointerup', () => this.player.setVelocityY(0));
 
         const leftButton = this.add.image(screenWidth / 2 - buttonSize - buttonAlpha,
-            screenHeight - buttonSize * 1.5,, "leftButton")
+            screenHeight - buttonSize * 1.5, "leftButton")
         .setDisplaySize(buttonSize, buttonSize)
         .setInteractive()
         .setAlpha(buttonAlpha);
@@ -279,7 +279,7 @@ export class Game extends Scene
         leftButton.on('pointerup', () => this.player.setVelocityX(0));
 
         const rightButton = this.add.image(screenWidth / 2 + buttonSize + buttonAlpha,
-            screenHeight - buttonSize * 1.5,, "rightButton")
+            screenHeight - buttonSize * 1.5, "rightButton")
         .setDisplaySize(buttonSize, buttonSize)
         .setInteractive()
         .setAlpha(buttonAlpha);
