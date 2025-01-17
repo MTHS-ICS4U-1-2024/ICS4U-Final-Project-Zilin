@@ -324,7 +324,12 @@ export class Game extends Scene
             A: Phaser.Input.Keyboard.KeyCodes.A,
             S: Phaser.Input.Keyboard.KeyCodes.S,
             D: Phaser.Input.Keyboard.KeyCodes.D,
-        });
+        }) as Phaser.Types.Input.Keyboard.CursorKeys & {
+            W: Phaser.Input.Keyboard.Key;
+            A: Phaser.Input.Keyboard.Key;
+            S: Phaser.Input.Keyboard.Key;
+            D: Phaser.Input.Keyboard.Key;
+        };
 
         if (keys.A.isDown) {
             velocityX = -165;
