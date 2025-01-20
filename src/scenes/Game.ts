@@ -365,9 +365,9 @@ export class Game extends Scene
     }
 
     if (this.cursors.up.isDown) {
-        velocityY = -200;
+        velocityY = -250;
     } else if (this.cursors.down.isDown) {
-        velocityY = 200;
+        velocityY = 250;
     }
 
     // WASD movement
@@ -391,9 +391,9 @@ export class Game extends Scene
         }
 
         if (keys.W.isDown) {
-            velocityY = -200;
+            velocityY = -250;
         } else if (keys.S.isDown) {
-            velocityY = 200;
+            velocityY = 250;
         }
     }
 
