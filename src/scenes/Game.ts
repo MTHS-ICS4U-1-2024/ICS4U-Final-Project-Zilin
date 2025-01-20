@@ -268,6 +268,7 @@ export class Game extends Scene
             .setAlpha(buttonAlpha);
 
         upButton.on('pointerdown', () => {
+            console.log('I should go up');
             this.player.setAccelerationY(-moveSpeed);  // Gradually move up
             this.player.setDragY(deceleration); 
         });
@@ -286,6 +287,7 @@ export class Game extends Scene
             .setAlpha(buttonAlpha);
 
         downButton.on('pointerdown', () => {
+            console.log('I should go down');
             this.player.setAccelerationY(moveSpeed);  // Gradually move down
             this.player.setDragY(deceleration); 
         });
@@ -304,6 +306,7 @@ export class Game extends Scene
             .setAlpha(buttonAlpha);
 
         leftButton.on('pointerdown', () => {
+            console.log('I should go left');
             this.player.setAccelerationX(-moveSpeed);  // Gradually move left
             this.player.setDragY(deceleration); 
         });
@@ -322,6 +325,7 @@ export class Game extends Scene
             .setAlpha(buttonAlpha);
 
         rightButton.on('pointerdown', () => {
+            console.log('I should go right');
             this.player.setAccelerationX(moveSpeed);  // Gradually move right
             this.player.setDragY(deceleration); 
         });

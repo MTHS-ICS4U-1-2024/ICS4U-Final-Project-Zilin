@@ -26,7 +26,5 @@ export default class Stair extends Phaser.Physics.Arcade.Sprite {
       // Set the position of the character to the target stair's position
       player.setPosition(targetStair.x, targetStair.y);
     }, undefined, this);  // 'undefined' for the callback argument type.
-    console.log('I am going down the stairs');
-    console.log('I walked out');
   }
 }
