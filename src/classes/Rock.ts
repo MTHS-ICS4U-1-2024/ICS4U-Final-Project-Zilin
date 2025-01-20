@@ -14,7 +14,8 @@ export default class Rock {
     this.sprite = scene.physics.add.sprite(x, y, texture)
       .setDisplaySize(1170 / 7, 2532 / 15) // Scale the sprite for display
       .setImmovable(immovable) // Set immovable property
-      .setCollideWorldBounds(true); // Ensure rock stays within game bounds
+      .setCollideWorldBounds(true)
+      .setDepth(20); // Ensure rock stays within game bounds
   }
 
   /**
@@ -39,7 +40,7 @@ export default class Rock {
   handleCollisionsWithWall(scene: Phaser.Scene, wallGroup: Phaser.Physics.Arcade.Group) {
     // Collision with solid walls stops the rock
     scene.physics.add.collider(this.sprite, wallGroup, () => {
-      this.sprite.setVelocity(0).setDepth(20); // Stop the rock
+      this.sprite.setVelocity(0); // Stop the rock
     });
   }
 
