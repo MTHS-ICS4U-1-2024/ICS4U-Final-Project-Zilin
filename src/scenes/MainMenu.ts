@@ -13,6 +13,7 @@ export class MainMenu extends Scene
 
     create ()
     {
+        console.log('Did you want to play my game?');
         const gameWidth = this.scale.width;
         const gameHeight = this.scale.height;
 
@@ -22,16 +23,16 @@ export class MainMenu extends Scene
 
         this.logo = this.add.image(1170 / 2, 2532 / 3 - 100, 'logo');
 
-        this.title = this.add.text(1170 / 2, 2532 / 2 + 100, 'start', {
+        this.add.text(1170 / 2, 2532 / 2 + 100, 'start', {
             fontFamily: 'cursive', fontSize: 200, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5);
 
-        this.input.once('pointerdown', () => {
-
-            this.scene.start('Game');
-
+  
+        // Alternatively, make the entire screen interactive
+        this.input.on("pointerdown", () => {
+            this.scene.start("Quest");
         });
     }
 }

@@ -1,10 +1,9 @@
-import { Scene } from 'phaser';
+import { Scene, GameObjects } from 'phaser';
 
 export class GameOver extends Scene
 {
-    camera: Phaser.Cameras.Scene2D.Camera;
-    background: Phaser.GameObjects.Image;
-    gameover_text : Phaser.GameObjects.Text;
+    background: GameObjects.Image;
+    gameover_text : GameObjects.Text;
 
     constructor ()
     {
@@ -13,14 +12,30 @@ export class GameOver extends Scene
 
     create ()
     {
-        this.camera = this.cameras.main
-        this.camera.setBackgroundColor(0xff0000);
+        console.log('Thanks for playing');
+        const gameWidth = this.scale.width;
+        const gameHeight = this.scale.height;
 
-        this.background = this.add.image(512, 384, 'bg');
-        this.background.setAlpha(0.5);
+        this.background = this.add.image(0, 0, 'titleBackground')
+        .setOrigin(0, 0)
+        .setDisplaySize(gameWidth, gameHeight);
 
-        this.gameover_text = this.add.text(512, 384, 'Game Over', {
-            fontFamily: 'Arial Black', fontSize: 64, color: '#ffffff',
+        this.gameover_text = this.add.text(512, 300, 'Thanks', {
+            fontFamily: 'cursive', fontSize: 150, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        });
+        this.gameover_text.setOrigin(0.5);
+
+        this.gameover_text = this.add.text(512, 700, 'for you', {
+            fontFamily: 'cursive', fontSize: 150, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        });
+        this.gameover_text.setOrigin(0.5);
+
+        this.gameover_text = this.add.text(512, 1100, 'playing!', {
+            fontFamily: 'cursive', fontSize: 150, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         });

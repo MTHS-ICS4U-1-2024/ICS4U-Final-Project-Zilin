@@ -32,26 +32,28 @@ export class Preloader extends Scene
         //  Load the assets for the game - Replace with your own assets
         this.load.setPath('assets');
 
-        this.load.image('logo', 'subtitle.png');
+        this.load.image('logo', 'logo.png');
         this.load.image('rock', 'rock.png');
         this.load.image('wall', 'wall.png');
         this.load.image('leftButton', 'left.png');
         this.load.image('rightButton', 'right.png');
         this.load.image('upButton', 'up.png');
         this.load.image('downButton', 'down.png');
-        this.load.image('menuButton', 'menuButton.png');
+        this.load.image('menuButton', 'menu.png');
         this.load.image('start', 'start.png');
-        this.load.image('key', 'YellowKey.png');
-        this.load.image('keyDoor', 'YellowKeyDoor.png');
+        this.load.image('key', 'key.png');
+        this.load.image('keyDoor', 'lock.png');
         this.load.image('player', 'character.png');
         this.load.image('purplePortal', 'purplePortal.png');
         this.load.image('redPortal', 'redPortal.png');
         this.load.image('floor', 'floorTwo.png');
         this.load.image('titleBackground', 'titleBackground.png');
         this.load.image('select', 'select.png');
-        this.load.image('stair', 'stair.png');
+        this.load.image('stair', 'stairs.png');
         this.load.image('arrow', 'arrow.png');
         this.load.image('rock', 'rock.png');
+        this.load.image('box', 'box.png');
+        this.load.image('pit', 'pit.png');
         this.load.image('brokenWall', 'brokenWall.png');
     }
 
