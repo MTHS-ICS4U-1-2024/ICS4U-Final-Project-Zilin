@@ -3,8 +3,8 @@
   <img src="public/assets/logo.png" alt="Going Deeper" style="width: 300px; height: auto;">
 </h1>
 
-link to the game:
-<a href="https://zilin-chen-1.github.io/ICS4U-Final-Project-Zilin/" style="font-size: 20px;">
+# link to the game:
+<a href="https://zilin-chen-1.github.io/ICS4U-Final-Project-Zilin/" style="font-size: 40px;">
   Click Here
 </a>
 
