@@ -54,72 +54,71 @@ export class Game extends Scene
         // add player
         this.player = this.physics.add.sprite(50, yOfItem, "player")
         .setDisplaySize(itemWidth, itemHeight)
-        .setCollideWorldBounds(true);
+        .setCollideWorldBounds(true)
+        .setDepth(10);
 
         // Ensure the physics body is properly configured
         if (this.player.body) {
             this.player.body.setSize(itemWidth, itemHeight);
             this.player.body.setOffset(0, 0);
         }
-        
-
 
         // Add walls
         const wall = this.physics.add.staticGroup();
         wall.create(xOfItem * 0 + 50, yOfItem * 8 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 1 + 50, 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 1 + 50, yOfItem * 1 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 1 + 50, yOfItem * 3 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 1 + 50, yOfItem * 4 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 1 + 50, yOfItem * 5 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 1 + 50, yOfItem * 6 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 1 + 50, yOfItem * 8 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 2 + 50, yOfItem * 6 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 2 + 50, yOfItem * 8 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 3 + 50, 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 3 + 50, yOfItem * 1 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 3 + 50, yOfItem * 2 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 3 + 50, yOfItem * 3 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 3 + 50, yOfItem * 4 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 3 + 50, yOfItem * 6 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 3 + 50, yOfItem * 8 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 4 + 50, yOfItem * 6 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 4 + 50, yOfItem * 8 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 5 + 50, yOfItem * 0 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 5 + 50, yOfItem * 2 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 5 + 50, yOfItem * 5 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 5 + 50, yOfItem * 6 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 5 + 50, yOfItem * 7 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 5 + 50, yOfItem * 8 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 6 + 50, yOfItem * 8 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
         wall.create(xOfItem * 7 + 50, yOfItem * 8 + 50, "wall")
-        .setDisplaySize(itemWidth, itemWidth).refreshBody();
+        .setDisplaySize(itemWidth, itemWidth).refreshBody().setDepth(20);
 
         // Add collision between the player and the walls
         this.physics.add.collider(this.player, wall);
@@ -218,15 +217,15 @@ export class Game extends Scene
 
         // Add the first stair with proper position and size
         const stair1 = new Stair(this, xOfItem * 2 + 50, 50, 'stair');
-        stair1.setDisplaySize(165, 165);
+        stair1.setDisplaySize(165 * 2, 165 * 2).setDepth(5);
         stairs.add(stair1); 
 
         // Add the second stair with a different position and size
         const stair2 = new Stair(this, xOfItem * 4 + 50, yOfItem * 7 + 50, 'stair');
-        stair2.setDisplaySize(165, 165);
+        stair2.setDisplaySize(165 * 2, 165 * 2).setDepth(5);
         stairs.add(stair2);
 
-        this.physics.add.overlap(this.player, stairs, (_, stair) => {
+         this.physics.add.overlap(this.player, stairs, (_, stair) => {
             // Type assertion to ensure stair is a Stair instance
             if (stair instanceof Stair) {
                 // Teleport the player to the other stair

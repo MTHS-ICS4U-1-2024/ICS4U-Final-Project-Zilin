@@ -12,7 +12,7 @@ export default class Box {
 
   constructor(scene: Phaser.Scene, x: number, y: number, texture: string) {
     this.sprite = scene.physics.add.sprite(x, y, texture)
-      .setDisplaySize(1170 / 7, 2532 / 15).refreshBody();
+      .setDisplaySize(1170 / 7, 2532 / 15).refreshBody().setDepth(20);
     this.sprite.setImmovable(false);
   }
 

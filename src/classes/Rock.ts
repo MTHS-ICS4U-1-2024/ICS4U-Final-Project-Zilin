@@ -39,7 +39,7 @@ export default class Rock {
   handleCollisionsWithWall(scene: Phaser.Scene, wallGroup: Phaser.Physics.Arcade.Group) {
     // Collision with solid walls stops the rock
     scene.physics.add.collider(this.sprite, wallGroup, () => {
-      this.sprite.setVelocity(0); // Stop the rock
+      this.sprite.setVelocity(0).setDepth(20); // Stop the rock
     });
   }
 
