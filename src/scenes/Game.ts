@@ -167,15 +167,15 @@ export class Game extends Scene
         // Add pits
         this.pits = this.physics.add.group();
         this.pits.create(xOfItem + 50, yOfItem * 2 + 50, 'pit')
-        .setDisplaySize(itemWidth, itemHeight).refreshBody();
+        .setDisplaySize(itemWidth, itemHeight).refreshBody().setImmovable(true);;
         this.pits.create(xOfItem + 50, yOfItem * 3 + 50, 'pit')
-        .setDisplaySize(itemWidth, itemHeight).refreshBody();
+        .setDisplaySize(itemWidth, itemHeight).refreshBody().setImmovable(true);;
         this.pits.create(xOfItem * 5 + 50, yOfItem * 3 + 50, 'pit')
-        .setDisplaySize(itemWidth, itemHeight).refreshBody();
+        .setDisplaySize(itemWidth, itemHeight).refreshBody().setImmovable(true);;
         this.pits.create(xOfItem * 5 + 50, yOfItem * 4 + 50, 'pit')
-        .setDisplaySize(itemWidth, itemHeight).refreshBody();
-        this.pits.create(xOfItem * 6 + 50, yOfItem * 3 + 50, 'pit')
-        .setDisplaySize(itemWidth, itemHeight).refreshBody();
+        .setDisplaySize(itemWidth, itemHeight).refreshBody().setImmovable(true);;
+        this.pits.create(xOfItem * 6 + 50, yOfItem * 4 + 50, 'pit')
+        .setDisplaySize(itemWidth, itemHeight).refreshBody().setImmovable(true);;
 
         this.physics.add.collider(this.player, this.pits);
 
@@ -331,7 +331,7 @@ export class Game extends Scene
 
         // add red portal
         this.redPortal = this.add.image(xOfItem * 6 + 50, yOfItem * 7 + 50, "redPortal")
-        .setDisplaySize(itemWidth, itemHeight);
+        .setDisplaySize(itemWidth, itemHeight).setDepth(20);
 
         // Enable physics on the red portal
         this.physics.add.existing(this.redPortal);
