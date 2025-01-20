@@ -4,7 +4,9 @@
 </h1>
 
 # link to the game
-https://zilin-chen-1.github.io/ICS4U-Final-Project-Zilin/
+<a href="https://zilin-chen-1.github.io/ICS4U-Final-Project-Zilin/" style="font-size: 20px;">
+  Click Here
+</a>
 
 # Tutorial
 <p style="font-family: 'Times New Roman', monospace; font-size: 14px; color: blue; font-weight: bold;">
