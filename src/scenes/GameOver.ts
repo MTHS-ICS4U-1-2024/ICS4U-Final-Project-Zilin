@@ -19,7 +19,7 @@ export class GameOver extends Scene
         .setOrigin(0, 0)
         .setDisplaySize(gameWidth, gameHeight);
 
-        this.gameover_text = this.add.text(512, 300, 'Thanks.', {
+        this.gameover_text = this.add.text(512, 300, 'Thanks', {
             fontFamily: 'cursive', fontSize: 180, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'

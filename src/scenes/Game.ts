@@ -134,7 +134,7 @@ export class Game extends Scene
         // Create broken wall group
         this.brokenWallGroup = this.physics.add.staticGroup();
         this.brokenWallGroup.create(50, yOfItem * 7 + 50, "brokenWall")
-        .setDisplaySize(165, 200).refreshBody();
+        .setDisplaySize(165, 200).refreshBody().setDepth(20);
 
         // Add collision between player and broken wall
         this.physics.add.collider(this.player, this.brokenWallGroup);
