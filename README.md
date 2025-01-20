@@ -2,17 +2,17 @@
 link to the game:
 https://zilin-chen-1.github.io/ICS4U-Final-Project-Zilin/
 
-Click the button/WASD/Arrow keyboard to control the character!
+- Click the button/WASD/Arrow keyboard to control the character!
 
-Try to go to the red portal from the purple portal!
+- Try to go to the red portal from the purple portal!
 
-Rock can destory itself and the broken wall when it touch the broken wall.
+- Rock can destory itself and the broken wall when it touch the broken wall.
 
-Box can destory itself and the pits.
+- Box can destory itself and the pits.
 
-Go to another place via stair.
+- Go to another place via stair.
 
-Try to get the key to open the door!
+- Try to get the key to open the door!
 
 Ps: you cannot jump directly over pits or pass through walls
 
