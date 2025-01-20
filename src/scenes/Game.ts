@@ -257,7 +257,7 @@ export class Game extends Scene
 
         const buttonSize = 400;
         const buttonAlpha = 20;
-        const moveSpeed = 3200; // Max speed
+        const moveSpeed = 5000; // Max speed
         const deceleration = 8000; // Deceleration rate when button is released
 
         // Up Button
