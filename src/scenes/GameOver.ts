@@ -12,6 +12,7 @@ export class GameOver extends Scene
 
     create ()
     {
+        console.log('Thanks for playing');
         const gameWidth = this.scale.width;
         const gameHeight = this.scale.height;
 

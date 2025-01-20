@@ -13,6 +13,7 @@ export class MainMenu extends Scene
 
     create ()
     {
+        console.log('Did you want to play my game?');
         const gameWidth = this.scale.width;
         const gameHeight = this.scale.height;
 

@@ -21,6 +21,7 @@ export class Quest extends Scene
 
     create ()
     {
+        console.log('If you see this, it means you want to play');
         const gameWidth = this.scale.width;
         const gameHeight = this.scale.height;
 

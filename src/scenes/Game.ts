@@ -34,6 +34,7 @@ export class Game extends Scene
 
     create ()
     {
+        console.log('Have fun');
         this.camera = this.cameras.main;
         this.camera.setBackgroundColor(0x00ff00);
 
