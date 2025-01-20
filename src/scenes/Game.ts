@@ -14,17 +14,17 @@ import Stair from "../classes/Stair";
 
 export class Game extends Scene
 {
-    camera: Phaser.Cameras.Scene2D.Camera;
+    private camera: Phaser.Cameras.Scene2D.Camera;
     background: Phaser.GameObjects.Image;
     msg_text : Phaser.GameObjects.Text;
-    cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
-    pits: Phaser.GameObjects.Group;
-    player!: Phaser.Physics.Arcade.Sprite;
+    private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
+    private pits: Phaser.GameObjects.Group;
+    private player!: Phaser.Physics.Arcade.Sprite;
     purplePortal: Phaser.GameObjects.Image;
     arrow: Phaser.GameObjects.Image;
-    redPortal: Phaser.GameObjects.Image;
-    wallGroup!: Phaser.Physics.Arcade.Group;
-    brokenWallGroup!: Phaser.Physics.Arcade.StaticGroup;
+    private redPortal: Phaser.GameObjects.Image;
+    private wallGroup!: Phaser.Physics.Arcade.Group;
+    private brokenWallGroup!: Phaser.Physics.Arcade.StaticGroup;
 
     constructor ()
     {
