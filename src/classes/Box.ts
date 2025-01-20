@@ -23,7 +23,8 @@ export default class Box {
   
   moveOpposite(velocity: Phaser.Math.Vector2) {
     const speed = 10;
-    this.sprite.setVelocity(-velocity.x * speed, -velocity.y * speed); // Move in the opposite direction
+    // Move in the opposite direction
+    this.sprite.setVelocity(-velocity.x * speed, -velocity.y * speed);
   }
 
   // Method to stop the box
