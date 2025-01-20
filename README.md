@@ -16,9 +16,7 @@
 - Go to another place via stair.<dr>
 - Try to get the key to open the door!<dr>
 
-<p style="font-family: 'Comic Sans MS', monospace; font-size: 14px; color: red; font-weight: bold;">
   Ps: you cannot jump directly over pits or pass through walls!
-</p>
 
 # Screenshot
 <h1 align="center">
