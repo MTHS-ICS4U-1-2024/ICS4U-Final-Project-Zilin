@@ -19,5 +19,6 @@ export default class Key {
   collect(callback: () => void) {
     this.sprite.destroy();
     callback();
+    console.log('This key might open something');
   }
 }

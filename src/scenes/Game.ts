@@ -127,6 +127,7 @@ export class Game extends Scene
         const rock = new Rock(this, 50, yOfItem * 3 + 50, "rock");
         this.physics.add.collider(this.player, rock.sprite, () => {
           if (this.player && this.player.body) {
+            console.log('Maybe I can push this to destory the wall that looks almost broken.');
             rock.roll(this.player.body.velocity);
           }
         });
@@ -150,11 +151,13 @@ export class Game extends Scene
         // Add a purple portal
         this.purplePortal = this.add.image(50, 50, "purplePortal")
         .setDisplaySize(itemWidth, itemHeight);
+        console.log('This portal is what I am here for.');
 
         // Add a box
         const box = new Box(this, xOfItem * 6 + 50, yOfItem * 2 + 50, 'box');
         this.physics.add.collider(this.player, box.sprite, () => {
             if (this.player && this.player.body) {
+                console.log('Maybe I can push this like the rock');
                 box.push(this.player.body.velocity);
             }
         });
@@ -230,6 +233,7 @@ export class Game extends Scene
             if (stair instanceof Stair) {
                 // Teleport the player to the other stair
                 if (stair === stair2) {
+                    console.log('Where does this flight of stairs lead');
                     stair2.teleport(this.player, stair1);
                 }
             }
@@ -338,6 +342,7 @@ export class Game extends Scene
 
         // Add overlap detection between the player and the red portal
         this.physics.add.overlap(this.player, this.redPortal, () => {
+            console.log('Yes, I did it.');
             this.scene.start('GameOver'); // Transition to GameOver scene
         });
     }

@@ -16,7 +16,7 @@ export class Quest extends Scene
 
     constructor ()
     {
-        super('MainMenu');
+        super('Quest');
     }
 
     create ()
@@ -28,22 +28,111 @@ export class Quest extends Scene
         .setOrigin(0, 0)
         .setDisplaySize(gameWidth, gameHeight);
 
-        this.logo = this.add.image(1170 / 2, 2532 / 3 - 100, 'logo');
+        this.add.text(1170 / 2, 2532 / 2 - 1200, 
+            'QUEST', {
+            fontFamily: 'italic', fontSize: 200, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5);
 
-        this.add.text(1170 / 2, 2532 / 2 - 300, 
-            'Click the button/WASD/Arrow keyboard to control the character!', {
-            fontFamily: 'cursive', fontSize: 200, color: '#ffffff',
+        this.add.text(1170 / 2, 2532 / 2 - 900, 
+            'Click the', {
+            fontFamily: 'cursive', fontSize: 80, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5);
+
+        this.add.text(1170 / 2, 2532 / 2 - 800, 
+            'button/WASD/Arrow keyboard', {
+            fontFamily: 'cursive', fontSize: 80, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5);
+
+
+        this.add.text(1170 / 2, 2532 / 2 - 700, 
+            ' to control the character!', {
+            fontFamily: 'cursive', fontSize: 80, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5);
+
+        this.add.text(1170 / 2, 2532 / 2 - 500, 
+            'Try to go to the red portal', {
+            fontFamily: 'cursive', fontSize: 80, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5);
+
+        this.add.text(1170 / 2, 2532 / 2 - 400, 
+            'from the purple portal!', {
+            fontFamily: 'cursive', fontSize: 80, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5);
+
+        this.add.text(1170 / 2, 2532 / 2 - 200, 
+            'Rock can destory', {
+            fontFamily: 'cursive', fontSize: 80, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5);
+
+        this.add.text(1170 / 2, 2532 / 2 - 100, 
+            'the broken wall.', {
+            fontFamily: 'cursive', fontSize: 80, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5);
 
         this.add.text(1170 / 2, 2532 / 2 + 100, 
-            'Click the button/WASD/Arrow keyboard to control the character!', {
-            fontFamily: 'cursive', fontSize: 200, color: '#ffffff',
+            'Box can destory the pits.', {
+            fontFamily: 'cursive', fontSize: 80, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         }).setOrigin(0.5);
 
+        this.add.text(1170 / 2, 2532 / 2 + 300, 
+            'Go to another place via stair.', {
+            fontFamily: 'cursive', fontSize: 80, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5);
+
+        this.add.text(1170 / 2, 2532 / 2 + 500, 
+            'Get the key to open the door!', {
+            fontFamily: 'cursive', fontSize: 80, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5);
+
+        this.add.text(1170 / 2, 2532 / 2 + 700, 
+            'Ps: you cannot', {
+            fontFamily: 'serif', fontSize: 80, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5);
+
+        this.add.text(1170 / 2, 2532 / 2 + 800, 
+            'jump directly over pits', {
+            fontFamily: 'serif', fontSize: 80, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5);
+
+        this.add.text(1170 / 2, 2532 / 2 + 900, 
+            'or pass through walls!', {
+            fontFamily: 'serif', fontSize: 80, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5);
+
+        this.add.text(1170 / 2, 2532 / 2 + 1100, 
+            'START', {
+            fontFamily: 'italic', fontSize: 200, color: '#ffffff',
+            stroke: '#000000', strokeThickness: 8,
+            align: 'center'
+        }).setOrigin(0.5);
   
         // Alternatively, make the entire screen interactive
         this.input.on("pointerdown", () => {
