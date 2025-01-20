@@ -21,21 +21,21 @@ export class GameOver extends Scene
         .setDisplaySize(gameWidth, gameHeight);
 
         this.gameover_text = this.add.text(512, 300, 'Thanks', {
-            fontFamily: 'cursive', fontSize: 180, color: '#ffffff',
+            fontFamily: 'cursive', fontSize: 150, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         });
         this.gameover_text.setOrigin(0.5);
 
         this.gameover_text = this.add.text(512, 700, 'for you', {
-            fontFamily: 'cursive', fontSize: 180, color: '#ffffff',
+            fontFamily: 'cursive', fontSize: 150, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         });
         this.gameover_text.setOrigin(0.5);
 
-        this.gameover_text = this.add.text(512, 1100, 'playing.', {
-            fontFamily: 'cursive', fontSize: 180, color: '#ffffff',
+        this.gameover_text = this.add.text(512, 1100, 'playing!', {
+            fontFamily: 'cursive', fontSize: 150, color: '#ffffff',
             stroke: '#000000', strokeThickness: 8,
             align: 'center'
         });
