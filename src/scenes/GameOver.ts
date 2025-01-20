@@ -1,9 +1,9 @@
-import { Scene } from 'phaser';
+import { Scene, GameObjects } from 'phaser';
 
 export class GameOver extends Scene
 {
-    background: Phaser.GameObjects.Image;
-    gameover_text : Phaser.GameObjects.Text;
+    background: GameObjects.Image;
+    gameover_text : GameObjects.Text;
 
     constructor ()
     {
@@ -12,9 +12,12 @@ export class GameOver extends Scene
 
     create ()
     {
+        const gameWidth = this.scale.width;
+        const gameHeight = this.scale.height;
+
         this.background = this.add.image(0, 0, 'titleBackground')
         .setOrigin(0, 0)
-        .setDisplayOrigin(1170, 2532);
+        .setDisplaySize(gameWidth, gameHeight);
 
         this.gameover_text = this.add.text(512, 300, 'Thanks.', {
             fontFamily: 'cursive', fontSize: 180, color: '#ffffff',
