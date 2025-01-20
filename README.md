@@ -1,4 +1,8 @@
 # ICS4U Final Project by Zilin
+<h1 align="center">
+  <img src="public/assets/logo.png" alt="Going Deeper" style="width: 300px; height: auto;">
+</h1>
+
 link to the game:
 https://zilin-chen-1.github.io/ICS4U-Final-Project-Zilin/
 
@@ -15,5 +19,3 @@ https://zilin-chen-1.github.io/ICS4U-Final-Project-Zilin/
 - Try to get the key to open the door!
 
 Ps: you cannot jump directly over pits or pass through walls
-
-![Title](public/assets/logo.png)
